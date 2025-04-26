@@ -29,11 +29,14 @@ else
   exit 1
 fi
 
-# On macOS, ensure brew is installed
-if [[ "$OS" == "macos" ]]; then
-  if ! command -v brew &> /dev/null; then
-    echo "Homebrew not found. Installing..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Ensure Homebrew is installed (needed for macOS and for fzf on Linux)
+if ! command -v brew &> /dev/null; then
+  echo "Homebrew not found. Installing..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  if [[ "$OS" == "linux" ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
   fi
 fi
 
@@ -46,7 +49,15 @@ fi
 
 # Install packages
 install_if_missing stow stow
-install_if_missing fzf fzf
+
+# Special case: install fzf always via brew
+if ! command -v fzf &> /dev/null; then
+  echo "Installing fzf with Homebrew..."
+  brew install fzf
+else
+  echo "fzf already installed ✔️"
+fi
+
 install_if_missing bat bat
 install_if_missing vivid vivid
 install_if_missing zoxide zoxide
