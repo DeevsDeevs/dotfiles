@@ -66,7 +66,7 @@ alias vim='nvim'
 alias c='clear'
 
 # Shell integrations
-eval "$(fzf --zsh)"
+eval "$(fzf --zsh)" > /dev/null 2>&1
 eval "$(zoxide init --cmd cd zsh)"
 
 
