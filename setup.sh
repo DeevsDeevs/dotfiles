@@ -37,17 +37,6 @@ if [[ "$OS" == "macos" ]]; then
   fi
 fi
 
-# On Linux, ensure snapd is installed
-if [[ "$OS" == "linux" ]]; then
-  if ! command -v snap &> /dev/null; then
-    echo "snap not found. Installing snapd..."
-    sudo apt-get update
-    sudo apt-get install -y snapd
-    sudo systemctl enable --now snapd.socket
-    sudo ln -s /var/lib/snapd/snap /snap || true
-  fi
-fi
-
 # Update package managers
 if [[ "$OS" == "linux" ]]; then
   sudo apt-get update
@@ -69,7 +58,23 @@ install_if_missing git git
 if ! command -v nvim &> /dev/null; then
   echo "Installing Neovim..."
   if [[ "$OS" == "linux" ]]; then
-    sudo snap install nvim --classic
+    # Download Neovim AppImage
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+    chmod u+x nvim-linux-x86_64.appimage
+
+    # Attempt to run the AppImage
+    if ./nvim-linux-x86_64.appimage --version &> /dev/null; then
+      echo "Neovim AppImage is executable."
+      sudo mkdir -p /opt/nvim
+      sudo mv nvim-linux-x86_64.appimage /opt/nvim/nvim
+      echo 'export PATH="$PATH:/opt/nvim/"' >> ~/.bashrc
+      echo 'export PATH="$PATH:/opt/nvim/"' >> ~/.zshrc
+    else
+      echo "AppImage execution failed. Attempting to extract..."
+      ./nvim-linux-x86_64.appimage --appimage-extract
+      sudo mv squashfs-root /opt/nvim
+      sudo ln -s /opt/nvim/AppRun /usr/bin/nvim
+    fi
   elif [[ "$OS" == "macos" ]]; then
     brew install neovim
   fi
@@ -99,6 +104,10 @@ stow zshrc
 stow nvim
 stow starship
 stow tmux
+
+# Reload the terminal session
+echo "Reloading the terminal session..."
+exec "$SHELL"
 
 echo "✅ Setup complete!"
 
