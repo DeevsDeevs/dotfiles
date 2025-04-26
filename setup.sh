@@ -67,8 +67,6 @@ if ! command -v nvim &> /dev/null; then
       echo "Neovim AppImage is executable."
       sudo mkdir -p /opt/nvim
       sudo mv nvim-linux-x86_64.appimage /opt/nvim/nvim
-      echo 'export PATH="$PATH:/opt/nvim/"' >> ~/.bashrc
-      echo 'export PATH="$PATH:/opt/nvim/"' >> ~/.zshrc
     else
       echo "AppImage execution failed. Attempting to extract..."
       ./nvim-linux-x86_64.appimage --appimage-extract
