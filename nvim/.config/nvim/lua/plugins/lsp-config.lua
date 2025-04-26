@@ -13,9 +13,10 @@ return {
             auto_install = true,
             ensure_installed = {
                 "lua_ls",
-                "basedpyright",
+                -- "basedpyright",
                 "ruff",
                 "clangd",
+                "stylua",
             },
         },
     },
@@ -29,19 +30,19 @@ return {
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
             })
-            lspconfig.basedpyright.setup({
-                capabilities = capabilities,
-                settings = {
-                    basedpyright = {
-                        disableOrganizeImports = true,
-                    },
-                    python = {
-                        analysys = {
-                            ignore = { "*" },
-                        },
-                    },
-                },
-            })
+            -- lspconfig.basedpyright.setup({
+            -- capabilities = capabilities,
+            -- settings = {
+            --    basedpyright = {
+            --        disableOrganizeImports = true,
+            --   },
+            -- python = {
+            --       analysys = {
+            --        ignore = { "*" },
+            --  },
+            --},
+            --},
+            --})
             lspconfig.ruff.setup({
                 capabilities = capabilities,
             })
