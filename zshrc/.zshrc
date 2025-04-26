@@ -66,7 +66,12 @@ alias vim='nvim'
 alias c='clear'
 
 # Shell integrations
-eval "$(fzf --zsh)" > /dev/null 2>&1
+if command -v fzf > /dev/null; then
+  FZF_VERSION=$(fzf --version | awk '{print $1}')
+  if [[ "$(printf '%s\n' 0.48.0 "$FZF_VERSION" | sort -V | head -n1)" == "0.48.0" ]]; then
+    eval "$(fzf --zsh)"
+  fi
+fi
 eval "$(zoxide init --cmd cd zsh)"
 
 
