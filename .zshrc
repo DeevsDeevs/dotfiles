@@ -72,8 +72,20 @@ eval "$(zoxide init --cmd cd zsh)"
 
 
 
+# Start ssh-agent if not running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" > /dev/null
+fi
 
-eval $(ssh-agent) > /dev/null 2>&1
-ssh-add ~/.ssh/github > /dev/null 2>&1
-ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
-ssh-add ~/.ssh/deevs > /dev/null 2>&1
+# Detect OS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS - use Apple Keychain
+  ssh-add --apple-use-keychain ~/.ssh/github > /dev/null 2>&1
+  ssh-add --apple-use-keychain ~/.ssh/id_rsa > /dev/null 2>&1
+  ssh-add --apple-use-keychain ~/.ssh/deevs > /dev/null 2>&1
+else
+  # Linux - normal ssh-add
+  ssh-add ~/.ssh/github > /dev/null 2>&1
+  ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
+  ssh-add ~/.ssh/deevs > /dev/null 2>&1
+fi
