@@ -45,6 +45,7 @@ elif [[ "$OS" == "macos" ]]; then
 fi
 
 # Install packages
+install_if_missing stow stow
 install_if_missing fzf fzf
 install_if_missing bat bat
 install_if_missing vivid vivid
