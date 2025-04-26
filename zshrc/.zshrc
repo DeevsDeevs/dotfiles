@@ -94,3 +94,6 @@ else
   ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
   ssh-add ~/.ssh/deevs > /dev/null 2>&1
 fi
+
+. "$HOME/.local/bin/env"
+export PATH="$PATH:/opt/nvim/"
