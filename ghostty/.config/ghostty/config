@@ -1,0 +1,26 @@
+# This is the configuration file for Ghostty by Deevs.
+
+# custom-shader = ./ghostty-shaders/gears-and-belts.glsl
+
+# custom-shader = ./ghostty-shaders/inside-the-matrix.glsl
+
+# custom-shader = ./ghostty-shaders/cineShader-Lava.glsl
+
+# custom-shader = ./ghostty-shaders/drunkard.glsl
+# custom-shader = ./ghostty-shaders/retro-terminal.glsl
+# custom-shader = ./ghostty-shaders/bloom.glsl
+
+# custom-shader = ./ghostty-shaders/glitchy.glsl
+# custom-shader = ./ghostty-shaders/bettercrt.glsl
+# custom-shader = ./ghostty-shaders/water.glsl
+# custom-shader = ./ghostty-shaders/bloom.glsl
+
+# custom-shader = ./ghostty-shaders/matrix-hallway.glsl
+
+copy-on-select = true
+theme = catppuccin-mocha
+
+font-family = Hack Nerd Font Mono
+font-size = 13
+
+gtk-titlebar = true

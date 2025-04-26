@@ -74,5 +74,6 @@ eval "$(zoxide init --cmd cd zsh)"
 
 
 eval $(ssh-agent) > /dev/null 2>&1
-ssh-add --apple-use-keychain ~/.ssh/github > /dev/null 2>&1
-ssh-add --apple-use-keychain ~/.ssh/id_rsa > /dev/null 2>&1
+ssh-add ~/.ssh/github > /dev/null 2>&1
+ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
+ssh-add ~/.ssh/deevs > /dev/null 2>&1
