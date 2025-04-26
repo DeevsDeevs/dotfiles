@@ -23,11 +23,11 @@ The setup script will install these tools if missing:
 
 ## Installation
 
-1. Clone this repository:
+1. Clone this repository (better fork it before using it):
 
 ```bash
 
-git clone https://github.com/yourusername/dotfiles.git ~/.dotfiles
+git clone https://github.com/DeevsDeevs/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
