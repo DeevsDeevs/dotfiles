@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-set -e  # exit if any command fails
-set -u  # exit if trying to use unset variables
+set -e  # Exit if any command fails
+set -u  # Exit if trying to use unset variables
 
 echo "🔧 Setting up your machine..."
 
-# Helper functions
+# Helper function to install packages if missing
 install_if_missing() {
   if ! command -v "$1" &> /dev/null; then
     echo "Installing $1..."
@@ -29,11 +29,22 @@ else
   exit 1
 fi
 
-# On macOS, ensure brew is installed
+# On macOS, ensure Homebrew is installed
 if [[ "$OS" == "macos" ]]; then
   if ! command -v brew &> /dev/null; then
     echo "Homebrew not found. Installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+fi
+
+# On Linux, ensure snapd is installed
+if [[ "$OS" == "linux" ]]; then
+  if ! command -v snap &> /dev/null; then
+    echo "snap not found. Installing snapd..."
+    sudo apt-get update
+    sudo apt-get install -y snapd
+    sudo systemctl enable --now snapd.socket
+    sudo ln -s /var/lib/snapd/snap /snap || true
   fi
 fi
 
@@ -53,7 +64,26 @@ install_if_missing zoxide zoxide
 install_if_missing starship starship
 install_if_missing tmux tmux
 install_if_missing git git
-install_if_missing nvim neovim
+
+# Install Neovim
+if ! command -v nvim &> /dev/null; then
+  echo "Installing Neovim..."
+  if [[ "$OS" == "linux" ]]; then
+    sudo snap install nvim --classic
+  elif [[ "$OS" == "macos" ]]; then
+    brew install neovim
+  fi
+else
+  echo "Neovim already installed ✔️"
+fi
+
+# Install uv
+if ! command -v uv &> /dev/null; then
+  echo "Installing uv..."
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+else
+  echo "uv already installed ✔️"
+fi
 
 # Set up tmux plugin manager
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
