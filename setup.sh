@@ -53,6 +53,7 @@ install_if_missing zoxide zoxide
 install_if_missing starship starship
 install_if_missing tmux tmux
 install_if_missing git git
+install_if_missing nvim neovim
 
 # Set up tmux plugin manager
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
