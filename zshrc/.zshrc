@@ -60,7 +60,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-mkdir ~/.cache/zinit/completions
+mkdir ~/.cache/zinit/completions > /dev/null 2>&1
 
 # Aliases
 alias ls='ls --color'
