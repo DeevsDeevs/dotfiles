@@ -74,10 +74,10 @@ if command -v fzf > /dev/null; then
     eval "$(fzf --zsh)"
   fi
 fi
-eval "$(zoxide init --cmd cd zsh)"
 
-
-
+if [ -z "$DISABLE_ZOXIDE" ]; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
 
 # Start ssh-agent if not running
 if [ -z "$SSH_AUTH_SOCK" ]; then
