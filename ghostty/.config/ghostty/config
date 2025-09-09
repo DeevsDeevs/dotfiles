@@ -26,3 +26,5 @@ font-size = 13
 gtk-titlebar = true
 
 macos-option-as-alt = true
+
+background-opacity = 0.95
