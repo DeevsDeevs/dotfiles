@@ -10,16 +10,11 @@ local media_cover = sbar.add("item", "media.cover", {
     position = "right",
     background = {
         color = colors.transparent,
-        height = 28,
-        corner_radius = 9,
-        padding_left = 2,
-        padding_right = 2,
     },
     label = { drawing = false },
     icon = { drawing = false },
     drawing = false,
     updates = true,
-    width = 28,
     popup = {
         align = "center",
         horizontal = true,
@@ -112,81 +107,134 @@ local media_watcher = sbar.add("item", "media.watcher", {
     update_freq = 2,
 })
 
+-- Error logging helper
+local function log_error(...)
+    local args = { ... }
+    local timestamp = os.date("%H:%M:%S")
+    print(string.format("[%s] MEDIA ERROR:", timestamp), table.unpack(args))
+end
+
+-- File existence checker with timeout
+local function wait_for_file(filepath, max_wait_ms)
+    max_wait_ms = max_wait_ms or 1000
+    local start_time = os.clock() * 1000
+    local attempts = 0
+
+    while (os.clock() * 1000 - start_time) < max_wait_ms do
+        attempts = attempts + 1
+        local f = io.open(filepath, "r")
+        if f then
+            local size = f:seek("end")
+            f:close()
+            if size and size > 0 then
+                return true
+            end
+        end
+        -- Small delay between checks
+        os.execute("sleep 0.01")
+    end
+    return false
+end
+
 media_watcher:subscribe("routine", function()
     sbar.exec("media-control get", function(result)
-        -- Debug log
-        print("Media check - result type:", type(result))
+        if not result then
+            log_error("No result from media-control")
+            return
+        end
 
-        -- Handle result - it comes as a table already parsed
-        if not result or type(result) ~= "table" then
+        if type(result) ~= "table" then
+            log_error("Result is not a table, got:", type(result))
             return
         end
 
         -- Check if we have the necessary fields
-        if result.playing ~= nil and result.title and result.artist and result.bundleIdentifier then
-            print("Media playing:", result.playing, "Title:", result.title, "App:", result.bundleIdentifier)
-            print("Artwork available:", result.artworkData ~= nil and string.len(result.artworkData) or "No artwork")
-            local app = "Unknown"
-            if result.bundleIdentifier == "com.spotify.client" then
-                app = "Spotify"
-            elseif result.bundleIdentifier == "com.apple.Music" then
-                app = "Music"
+        if not (result.playing ~= nil and result.title and result.artist and result.bundleIdentifier) then
+            log_error("Missing required fields from media-control")
+            return
+        end
+
+        local app = "Unknown"
+        if result.bundleIdentifier == "com.spotify.client" then
+            app = "Spotify"
+        elseif result.bundleIdentifier == "com.apple.Music" then
+            app = "Music"
+        end
+
+        -- Check if app is whitelisted
+        if not whitelist[app] then
+            media_cover:set({ drawing = false })
+            media_artist:set({ drawing = false })
+            media_title:set({ drawing = false })
+            return
+        end
+
+        local drawing = result.playing == true
+
+        -- Update text widgets
+        media_artist:set({ drawing = drawing, label = result.artist })
+        media_title:set({ drawing = drawing, label = result.title })
+
+        -- Handle artwork
+        if result.artworkData and drawing then
+            local artwork_file = "/tmp/sketchybar_album_art.jpg"
+            local temp_b64 = "/tmp/sketchybar_artwork.b64"
+
+            -- Clean up old files
+            os.execute("rm -f " .. artwork_file .. " " .. temp_b64)
+
+            -- Write base64 to temp file
+            local f = io.open(temp_b64, "w")
+            if not f then
+                log_error("Could not open temp file for writing:", temp_b64)
+                media_cover:set({ drawing = drawing })
+                return
             end
 
-            -- Check if app is whitelisted
-            if whitelist[app] then
-                local drawing = result.playing == true
+            f:write(result.artworkData)
+            f:close()
 
-                -- Update widgets - only cover is visible by default
-                media_artist:set({ drawing = drawing, label = result.artist })
-                media_title:set({ drawing = drawing, label = result.title })
+            -- Verify temp file was written
+            local temp_ready = wait_for_file(temp_b64, 100)
+            if not temp_ready then
+                log_error("Temp file not ready:", temp_b64)
+                media_cover:set({ drawing = drawing })
+                return
+            end
 
-                -- Set the artwork if available
-                if result.artworkData and drawing then
-                    -- Write artwork data to file synchronously
-                    local artwork_file = "/tmp/sketchybar_album_art.png"
-                    local temp_b64 = "/tmp/sketchybar_artwork.b64"
+            -- Use sbar.exec for proper async handling
+            local decode_cmd = string.format("base64 -d < '%s' > '%s' 2>&1", temp_b64, artwork_file)
 
-                    -- Write base64 to temp file
-                    local f = io.open(temp_b64, "w")
-                    if f then
-                        f:write(result.artworkData)
-                        f:close()
-
-                        -- Decode base64 to image
-                        os.execute(string.format("base64 -d < %s > %s 2>/dev/null", temp_b64, artwork_file))
-
-                        -- Set the cover image
-                        media_cover:set({
-                            drawing = true,
-                            background = {
-                                image = {
-                                    string = artwork_file,
-                                    scale = 0.85,
-                                    drawing = true,
-                                },
-                                height = 28,
-                                corner_radius = 9,
-                                padding_left = 2,
-                                padding_right = 2,
-                            }
-                        })
-                    else
-                        media_cover:set({ drawing = drawing })
-                    end
-                else
+            sbar.exec(decode_cmd, function(decode_result)
+                -- Check if decode was successful
+                local file_ready = wait_for_file(artwork_file, 500)
+                if not file_ready then
+                    log_error("Artwork file not created or empty:", artwork_file)
                     media_cover:set({ drawing = drawing })
+                    return
                 end
 
-                if not drawing then
-                    media_cover:set({ popup = { drawing = false } })
-                end
-            else
-                -- Hide everything if app is not whitelisted
-                media_cover:set({ drawing = false })
-                media_artist:set({ drawing = false })
-                media_title:set({ drawing = false })
-            end
+                -- Set the cover image
+                media_cover:set({
+                    drawing = true,
+                    background = {
+                        image = {
+                            string = artwork_file,
+                            scale = 0.05,
+                        },
+                        color = colors.transparent,
+                    }
+                })
+
+                -- Clean up temp file after a delay
+                sbar.exec("sleep 1 && rm -f " .. temp_b64, function() end)
+            end)
+        else
+            media_cover:set({ drawing = drawing })
+        end
+
+        if not drawing then
+            media_cover:set({ popup = { drawing = false } })
         end
     end)
 end)
