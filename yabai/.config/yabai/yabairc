@@ -1,0 +1,105 @@
+#!/usr/bin/env sh
+
+# ===== Loading Scripting Additions ============
+
+# See: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#macos-big-sur---automatically-load-scripting-addition-on-startup
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# ===== Tiling setting =========================
+
+yabai -m config layout                      bsp
+
+yabai -m config menubar_opacity             0.0
+
+yabai -m config top_padding                 5
+yabai -m config bottom_padding              5
+yabai -m config left_padding                5
+yabai -m config right_padding               5
+yabai -m config window_gap                  5
+
+yabai -m config mouse_follows_focus         off
+yabai -m config focus_follows_mouse         off
+
+yabai -m config window_topmost              off
+yabai -m config window_opacity              on
+yabai -m config window_opacity_duration     0.15
+yabai -m config window_shadow               float
+
+yabai -m config active_window_opacity       1.0
+yabai -m config normal_window_opacity       0.95
+yabai -m config split_ratio                 0.50
+yabai -m config auto_balance                off
+
+# ===== Mouse support ==========================
+
+yabai -m config mouse_modifier              fn
+yabai -m config mouse_action1               move
+yabai -m config mouse_action2               resize
+yabai -m config mouse_drop_action           swap
+
+# ===== Window modifications ===================
+
+yabai -m config window_placement            second_child
+yabai -m config window_animation_duration   0.35
+yabai -m config window_animation_easing     ease_out_quint
+yabai -m config insert_feedback_color       0xff61afef
+
+# ===== External bar support ===================
+
+# Account for sketchybar height
+yabai -m config external_bar all:40:0
+
+# ===== Status bar support =====================
+
+# Send signals to sketchybar on space change
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_minimized action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_deminimized action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_moved action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
+yabai -m signal --add event=display_changed action="sketchybar --trigger display_change"
+
+# Update space windows when a window changes space
+yabai -m signal --add event=window_created action="sketchybar --trigger space_windows_change"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger space_windows_change"
+yabai -m signal --add event=window_moved action="sketchybar --trigger space_windows_change"
+yabai -m signal --add event=space_changed action="sketchybar --trigger space_windows_change"
+yabai -m signal --add event=display_changed action="sketchybar --trigger space_windows_change"
+
+# ===== Rules ==================================
+
+# Unmanaged apps
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Information$" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Archive Utility$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Alfred Preferences$" manage=off
+yabai -m rule --add app="^Disk Utility$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Path Finder$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Dictionary$" manage=off
+yabai -m rule --add app="^Software Update$" manage=off
+yabai -m rule --add app="^About This Mac$" manage=off
+yabai -m rule --add app="^Installer$" manage=off
+yabai -m rule --add app="^Numi$" manage=off
+yabai -m rule --add app="^Console$" manage=off
+yabai -m rule --add app="^Bluetooth Explorer$" manage=off
+yabai -m rule --add app="^Logi Options$" manage=off
+yabai -m rule --add app="^Private Internet Access$" manage=off
+
+# Float specific windows
+yabai -m rule --add app="^zoom.us$" manage=off
+yabai -m rule --add app="^Facetime$" manage=off
+yabai -m rule --add app="^Messages$" sticky=on manage=off
+yabai -m rule --add title="^Opening$" manage=off
+yabai -m rule --add title="^Copy$" manage=off
+yabai -m rule --add title="^(Moving|Copying)$" manage=off
+
+# ===== Initialization =========================
+
+echo "yabai configuration loaded..."

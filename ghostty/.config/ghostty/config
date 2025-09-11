@@ -20,7 +20,7 @@
 copy-on-select = true
 theme = catppuccin-mocha
 
-font-family = Hack Nerd Font Mono
+font-family = JetBrainsMono Nerd Fontk
 font-size = 13
 
 gtk-titlebar = true

@@ -1,0 +1,141 @@
+#!/usr/bin/env sh
+
+# ===== Navigation (focusing) ==================
+
+# Window navigation
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# Focus window in stack
+alt - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+alt - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+
+# Display navigation
+alt - s : yabai -m display --focus west
+alt - g : yabai -m display --focus east
+
+# Space navigation
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+alt - 3 : yabai -m space --focus 3
+alt - 4 : yabai -m space --focus 4
+alt - 5 : yabai -m space --focus 5
+alt - 6 : yabai -m space --focus 6
+alt - 7 : yabai -m space --focus 7
+alt - 8 : yabai -m space --focus 8
+alt - 9 : yabai -m space --focus 9
+alt - 0 : yabai -m space --focus 10
+
+# Recent space navigation
+alt - tab : yabai -m space --focus recent
+
+# ===== Window Movement ========================
+
+# Move windows within space
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - l : yabai -m window --swap east
+
+# Move windows to space
+shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+shift + alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
+shift + alt - 6 : yabai -m window --space 6; yabai -m space --focus 6
+shift + alt - 7 : yabai -m window --space 7; yabai -m space --focus 7
+shift + alt - 8 : yabai -m window --space 8; yabai -m space --focus 8
+shift + alt - 9 : yabai -m window --space 9; yabai -m space --focus 9
+shift + alt - 0 : yabai -m window --space 10; yabai -m space --focus 10
+
+# Move window to display
+shift + alt - s : yabai -m window --display west; yabai -m display --focus west
+shift + alt - g : yabai -m window --display east; yabai -m display --focus east
+
+# ===== Window Sizing ==========================
+
+# Resize windows
+ctrl + alt - h : yabai -m window --resize left:-50:0 || yabai -m window --resize right:-50:0
+ctrl + alt - j : yabai -m window --resize bottom:0:50 || yabai -m window --resize top:0:50
+ctrl + alt - k : yabai -m window --resize top:0:-50 || yabai -m window --resize bottom:0:-50
+ctrl + alt - l : yabai -m window --resize right:50:0 || yabai -m window --resize left:50:0
+
+# Equalize window sizes
+ctrl + alt - e : yabai -m space --balance
+
+# ===== Window State ===========================
+
+# Toggle window float
+alt - t : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+
+# Toggle window fullscreen
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+# Toggle window parent zoom
+alt - d : yabai -m window --toggle zoom-parent
+
+# Toggle window split type
+alt - e : yabai -m window --toggle split
+
+# Toggle sticky (show on all spaces)
+alt - o : yabai -m window --toggle sticky
+
+# Toggle topmost (keep above other windows)
+alt - a : yabai -m window --toggle topmost
+
+# Toggle pip (disabled - conflicts with stack navigation)
+# alt - p : yabai -m window --toggle pip
+
+# ===== Insertion ==============================
+
+# Set insertion point for new windows
+shift + ctrl + alt - h : yabai -m window --insert west
+shift + ctrl + alt - j : yabai -m window --insert south
+shift + ctrl + alt - k : yabai -m window --insert north
+shift + ctrl + alt - l : yabai -m window --insert east
+shift + ctrl + alt - s : yabai -m window --insert stack
+
+# ===== Layout =================================
+
+# Toggle space layout between bsp and float
+ctrl + alt - a : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+
+# Rotate tree
+alt - r : yabai -m space --rotate 90
+
+# Mirror tree
+alt - y : yabai -m space --mirror y-axis
+alt - x : yabai -m space --mirror x-axis
+
+# Toggle padding and gap
+ctrl + alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
+
+# ===== Stacking ===============================
+
+# Stack window with direction
+ctrl + cmd - h : yabai -m window --stack west
+ctrl + cmd - j : yabai -m window --stack south
+ctrl + cmd - k : yabai -m window --stack north
+ctrl + cmd - l : yabai -m window --stack east
+
+# ===== Quick Actions ==========================
+
+# Restart yabai
+shift + ctrl + alt - r : yabai --restart-service
+
+# Toggle sketchybar
+shift + alt - space : sketchybar --bar hidden=toggle
+
+# Quick terminal
+alt - return : open -na "Ghostty"
+
+# ===== Application Shortcuts ==================
+
+# Open applications
+alt - b : open -a "Safari"
+alt - c : open -a "Visual Studio Code"
+alt - m : open -a "Messages"
+alt - n : open -a "Notes"
