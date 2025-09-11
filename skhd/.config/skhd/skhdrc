@@ -31,6 +31,14 @@ alt - 0 : yabai -m space --focus 10
 # Recent space navigation
 alt - tab : yabai -m space --focus recent
 
+# Navigate spaces with arrow keys
+alt - left : yabai -m space --focus prev
+alt - right : yabai -m space --focus next
+
+# Create and destroy spaces
+alt - w : yabai -m space --create && yabai -m space --focus last
+shift + alt - w : yabai -m space --destroy
+
 # ===== Window Movement ========================
 
 # Move windows within space
@@ -54,6 +62,10 @@ shift + alt - 0 : yabai -m window --space 10; yabai -m space --focus 10
 # Move window to display
 shift + alt - s : yabai -m window --display west; yabai -m display --focus west
 shift + alt - g : yabai -m window --display east; yabai -m display --focus east
+
+# Move window to prev/next space
+shift + alt - left : yabai -m window --space prev; yabai -m space --focus prev
+shift + alt - right : yabai -m window --space next; yabai -m space --focus next
 
 # ===== Window Sizing ==========================
 
@@ -136,6 +148,6 @@ alt - return : open -na "Ghostty"
 
 # Open applications
 alt - b : open -a "Safari"
-alt - c : open -a "Visual Studio Code"
+alt - z : open -a "Zed"
 alt - m : open -a "Messages"
 alt - n : open -a "Notes"
