@@ -18,7 +18,7 @@
 # custom-shader = ./ghostty-shaders/matrix-hallway.glsl
 
 copy-on-select = true
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 font-family = JetBrainsMono Nerd Fontk
 font-size = 13
