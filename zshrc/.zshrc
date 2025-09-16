@@ -110,7 +110,7 @@ if [ -f '/Users/deevs/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/deevs/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/deevs/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-export PATH=$PATH:/Users/deevs/.spicetify
+export PATH=$PATH:$HOME/.spicetify
 
 # opencode
-export PATH=/Users/deevs/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
