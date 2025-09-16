@@ -111,3 +111,6 @@ if [ -f '/Users/deevs/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 if [ -f '/Users/deevs/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/deevs/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 export PATH=$PATH:/Users/deevs/.spicetify
+
+# opencode
+export PATH=/Users/deevs/.opencode/bin:$PATH
