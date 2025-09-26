@@ -12,11 +12,11 @@ yabai -m config layout                      bsp
 
 yabai -m config menubar_opacity             0.0
 
-yabai -m config top_padding                 5
-yabai -m config bottom_padding              5
-yabai -m config left_padding                5
-yabai -m config right_padding               5
-yabai -m config window_gap                  5
+yabai -m config top_padding                 1
+yabai -m config bottom_padding              1
+yabai -m config left_padding                1
+yabai -m config right_padding               1
+yabai -m config window_gap                  1
 
 yabai -m config mouse_follows_focus         off
 yabai -m config focus_follows_mouse         off
