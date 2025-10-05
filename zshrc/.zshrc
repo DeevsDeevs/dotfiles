@@ -114,3 +114,10 @@ export PATH=$PATH:$HOME/.spicetify
 
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/Users/deevs/.bun/_bun" ] && source "/Users/deevs/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

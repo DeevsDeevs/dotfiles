@@ -69,6 +69,11 @@ yabai -m signal --add event=window_moved action="sketchybar --trigger space_wind
 yabai -m signal --add event=space_changed action="sketchybar --trigger space_windows_change"
 yabai -m signal --add event=display_changed action="sketchybar --trigger space_windows_change"
 
+# Ghostty Fix
+
+yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
+
 # ===== Rules ==================================
 
 # Unmanaged apps
