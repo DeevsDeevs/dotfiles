@@ -54,6 +54,7 @@ install_if_missing zoxide zoxide
 install_if_missing tmux tmux
 install_if_missing git git
 install_if_missing xclip xclip
+install_if_missing btop btop
 
 # Install Starship
 if ! command -v starship &> /dev/null; then
@@ -115,6 +116,7 @@ stow zshrc
 stow nvim
 stow starship
 stow tmux
+stow btop
 
 # Reload the terminal session
 echo "Reloading the terminal session..."
