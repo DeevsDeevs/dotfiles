@@ -7,7 +7,7 @@
 # custom-shader = ./ghostty-shaders/cineShader-Lava.glsl
 
 # custom-shader = ./ghostty-shaders/drunkard.glsl
-# custom-shader = ./ghostty-shaders/retro-terminal.glsl
+# сustom-shader = ./ghostty-shaders/retro-terminal.glsl
 # custom-shader = ./ghostty-shaders/bloom.glsl
 
 # custom-shader = ./ghostty-shaders/glitchy.glsl
