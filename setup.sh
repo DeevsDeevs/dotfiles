@@ -53,6 +53,7 @@ install_if_missing vivid vivid
 install_if_missing zoxide zoxide
 install_if_missing tmux tmux
 install_if_missing git git
+install_if_missing xclip xclip
 
 # Install Starship
 if ! command -v starship &> /dev/null; then
