@@ -67,12 +67,6 @@ alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 
-# Tmux kill session wrapper
-tmux-kill() {
-  tmux kill-session -t "$1" && \
-  tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/save.sh
-}
-
 # Shell integrations
 if command -v fzf > /dev/null; then
   FZF_VERSION=$(fzf --version | awk '{print $1}')
