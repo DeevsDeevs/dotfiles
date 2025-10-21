@@ -101,6 +101,9 @@ alt - a : yabai -m window --toggle topmost
 # Toggle pip (disabled - conflicts with stack navigation)
 # alt - p : yabai -m window --toggle pip
 
+# Minimize window
+shift + alt - m : yabai -m window --minimize
+
 # ===== Insertion ==============================
 
 # Set insertion point for new windows

@@ -48,7 +48,7 @@ yabai -m config insert_feedback_color       0xff61afef
 # ===== External bar support ===================
 
 # Account for sketchybar height
-yabai -m config external_bar all:40:0
+yabai -m config external_bar all:34:0
 
 # ===== Status bar support =====================
 
