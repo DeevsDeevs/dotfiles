@@ -29,7 +29,8 @@
     "spotify@latest",
     "_1password-cli@latest",
     "opencode@latest",
-    "lua5_4@latest"
+    "lua5_4@latest",
+    "tailscale@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
