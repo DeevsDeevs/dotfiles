@@ -18,6 +18,9 @@ brew install --cask sf-symbols
 brew install --cask font-sf-mono
 brew install --cask font-sf-pro
 
+echo "Installing sketchybar-app-font..."
+curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.28/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
+
 echo "Compiling SketchyBar helper binaries..."
 cd ~/.config/sketchybar/helpers
 make
