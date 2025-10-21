@@ -33,7 +33,15 @@
     "tailscale@latest",
     "process-compose@latest",
     "magic-wormhole@latest",
-    "google-cloud-sdk@latest"
+    "google-cloud-sdk@latest",
+    "tmuxPlugins.yank@latest",
+    "tmuxPlugins.vim-tmux-navigator@latest",
+    "tmuxPlugins.catppuccin@latest",
+    "tmuxifier@latest",
+    "tmuxPlugins.resurrect@latest",
+    "tmuxPlugins.continuum@latest",
+    "tmux-mem-cpu-load@latest",
+    "tmuxPlugins.sensible@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
