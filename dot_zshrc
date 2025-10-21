@@ -1,3 +1,5 @@
+devbox global pull ~/.config/devbox/global.json 2>/dev/null
+
 eval "$(devbox global shellenv --init-hook)"
 
 export EDITOR="zeditor --wait"
@@ -66,4 +68,3 @@ fi
 if [ -z "$DISABLE_ZOXIDE" ]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
-
