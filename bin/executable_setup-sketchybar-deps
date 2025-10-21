@@ -18,4 +18,8 @@ brew install --cask sf-symbols
 brew install --cask font-sf-mono
 brew install --cask font-sf-pro
 
+echo "Compiling SketchyBar helper binaries..."
+cd ~/.config/sketchybar/helpers
+make
+
 echo "SketchyBar dependencies installed successfully!"

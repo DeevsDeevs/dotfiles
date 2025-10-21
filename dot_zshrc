@@ -1,4 +1,8 @@
-devbox global pull ~/.config/devbox/devbox.json 2>/dev/null
+_devbox_config=~/.config/devbox/devbox.json
+_devbox_last_pull=~/.cache/devbox_last_pull
+if [[ ! -f $_devbox_last_pull ]] || [[ $_devbox_config -nt $_devbox_last_pull ]]; then
+  devbox global pull $_devbox_config 2>/dev/null && touch $_devbox_last_pull
+fi
 
 eval "$(devbox global shellenv --init-hook)"
 
