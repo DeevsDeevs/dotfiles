@@ -1,6 +1,6 @@
 eval "$(devbox global shellenv --init-hook)"
 
-export EDITOR="zededitor"
+export EDITOR="zeditor"
 
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
