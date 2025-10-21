@@ -1,7 +1,5 @@
 #!/usr/bin/env lua
 
-package.cpath = package.cpath .. ";/Users/deevs/.local/share/sketchybar_lua/?.so"
-
 -- Load the sketchybar-package and prepare the helper binaries
 require("helpers")
 require("init")
