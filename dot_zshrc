@@ -1,5 +1,7 @@
 eval "$(devbox global shellenv --init-hook)"
 
+export EDITOR="zededitor"
+
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
