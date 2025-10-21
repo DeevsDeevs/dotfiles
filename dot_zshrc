@@ -1,4 +1,4 @@
-devbox global pull ~/.config/devbox/global.json 2>/dev/null
+devbox global pull ~/.config/devbox/devbox.json 2>/dev/null
 
 eval "$(devbox global shellenv --init-hook)"
 
