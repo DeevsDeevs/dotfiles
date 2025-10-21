@@ -31,7 +31,9 @@
     "opencode@latest",
     "lua5_4@latest",
     "tailscale@latest",
-    "process-compose@latest"
+    "process-compose@latest",
+    "magic-wormhole@latest",
+    "google-cloud-sdk@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
