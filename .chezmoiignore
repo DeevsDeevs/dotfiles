@@ -1,3 +1,4 @@
 .config/sketchybar/helpers/**/*.o
 .config/sketchybar/helpers/**/bin/*
 .config/tmux/plugins
+.tmux/plugins
