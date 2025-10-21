@@ -1,0 +1,7 @@
+processes:
+  tailscaled:
+    command: "sudo tailscaled --tun=userspace-networking"
+    availability:
+      restart: on_failure
+      max_restarts: 5
+    daemon: true
