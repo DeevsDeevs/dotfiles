@@ -1,0 +1,39 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "icon_theme": "Catppuccin Mocha",
+  "ssh_connections": [
+    {
+      "host": "dagster.gcp.whitecircle",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/deevs/auto-deevs/./"]
+        },
+        {
+          "paths": ["/home/deevs/backtesting"]
+        }
+      ]
+    },
+    {
+      "host": "deevs.gcp.whitecircle",
+      "args": [],
+      "projects": []
+    }
+  ],
+  "base_keymap": "Cursor",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Mocha (Blur) [Light]",
+    "dark": "One Dark"
+  }
+}
