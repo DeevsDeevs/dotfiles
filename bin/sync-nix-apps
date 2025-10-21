@@ -1,0 +1,103 @@
+#!/bin/zsh
+# find all the installed Nix packages that have GUI apps and create
+# a 'MacOS Alias file' aka a 'Finder alias' for each so Spotlight will index them
+
+makealias() {
+    local aliasesdir="$1"
+    local apppath="$2"
+    local app="${apppath%.app}"
+    app=$(basename "$app")
+
+    osascript -e "tell application \"Finder\" to make new alias at (POSIX file \"$aliasesdir\") to (POSIX file \"$apppath\")" \
+              -e "set name of result to \"$app\"" 2>/dev/null
+}
+
+readalias() {
+    local aliaspath="$1"
+    osascript \
+        -e "set toPath to \"\"" \
+        -e "tell application \"Finder\"" \
+        -e "set toPath to (POSIX file \"$aliaspath\") as alias" \
+        -e "set theKind to kind of toPath" \
+        -e "if theKind is \"Alias\" then" \
+        -e "set toPath to ((original item of toPath) as alias)" \
+        -e "end if" \
+        -e "end tell" \
+        -e "return posix path of (toPath)" 2>/dev/null
+}
+
+# The correct path for devbox global apps
+linksdir="$(devbox global path)/.devbox/nix/profile/default/Applications"
+
+if [ ! -d "$linksdir" ]; then
+    echo "Error: Could not find Applications directory at $linksdir"
+    exit 1
+fi
+
+aliasesdir="$HOME/Applications/installed via DevBox"
+apps=()
+
+mkdir -p "$aliasesdir"
+
+echo "Looking for apps in: $linksdir"
+app_count=$(find "$linksdir" -maxdepth 1 -name '*.app' 2>/dev/null | wc -l | tr -d ' ')
+echo "Found $app_count apps"
+
+# Create/update aliases for all apps
+for link in "$linksdir"/*.app(N); do
+    # Follow the symlink to get the actual app path
+    apppath=$(readlink "$link")
+    if [ -z "$apppath" ]; then
+        apppath="$link"
+    fi
+
+    appname=$(basename "$apppath")
+    apps+=("${appname:l}") # lowercase for comparison (zsh syntax)
+
+    aliaspath="$aliasesdir/$(basename "$appname" .app)"
+
+    echo "Processing: $appname"
+
+    if [ ! -e "$aliaspath" ]; then
+        echo "  → creating alias for $appname"
+        makealias "$aliasesdir" "$apppath"
+    else
+        existing_target=$(readalias "$aliaspath" 2>/dev/null | tr -d '\n' | sed 's/[[:space:]]*$//')
+        if [ "$apppath" != "$existing_target" ]; then
+            echo "  → updating alias for $appname"
+            echo "     old: $existing_target"
+            echo "     new: $apppath"
+            rm "$aliaspath"
+            sleep 1
+            makealias "$aliasesdir" "$apppath"
+        else
+            echo "  → alias up to date"
+        fi
+    fi
+done
+
+# delete all the old aliases that reference apps we don't have in our devbox anymore
+if [ -d "$aliasesdir" ]; then
+    for alias in "$aliasesdir"/*; do
+        [ -e "$alias" ] || continue
+        alias_name=$(basename "$alias")
+        app_name="${alias_name:l}.app"
+
+        found=0
+        for app in "${apps[@]}"; do
+            if [ "$app" = "$app_name" ]; then
+                found=1
+                break
+            fi
+        done
+
+        if [ $found -eq 0 ]; then
+            echo "removing $aliasesdir/$alias_name"
+            rm "$alias"
+        fi
+    done
+fi
+
+echo ""
+echo "Done! Apps aliased to ~/Applications/installed via DevBox"
+echo "You can now find them in Spotlight and Raycast"
