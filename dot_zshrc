@@ -80,3 +80,5 @@ fi
 if [ -z "$DISABLE_ZOXIDE" ]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
+
+alias tailscale='tailscale --socket=$HOME/.local/share/tailscale/tailscaled.sock'
