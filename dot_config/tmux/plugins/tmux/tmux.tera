@@ -1,0 +1,42 @@
+---
+whiskers:
+  version: "^2.5.1"
+  matrix:
+    - flavor
+  filename: "themes/catppuccin_{{flavor.identifier}}_tmux.conf"
+  hex_format: "#{{r}}{{g}}{{b}}{{z}}"
+---
+# vim:set ft=tmux:
+
+# --> Catppuccin ({{ flavor.identifier | capitalize }})
+set -ogq @thm_bg "{{ base.hex }}"
+set -ogq @thm_fg "{{ text.hex }}"
+
+# Colors
+set -ogq @thm_rosewater "{{ rosewater.hex }}"
+set -ogq @thm_flamingo "{{ flamingo.hex }}"
+set -ogq @thm_pink "{{ pink.hex }}"
+set -ogq @thm_mauve "{{ mauve.hex }}"
+set -ogq @thm_red "{{ red.hex }}"
+set -ogq @thm_maroon "{{ maroon.hex }}"
+set -ogq @thm_peach "{{ peach.hex }}"
+set -ogq @thm_yellow "{{ yellow.hex }}"
+set -ogq @thm_green "{{ green.hex }}"
+set -ogq @thm_teal "{{ teal.hex }}"
+set -ogq @thm_sky "{{ sky.hex }}"
+set -ogq @thm_sapphire "{{ sapphire.hex }}"
+set -ogq @thm_blue "{{ blue.hex }}"
+set -ogq @thm_lavender "{{ lavender.hex }}"
+
+# Surfaces and overlays
+set -ogq @thm_subtext_1 "{{ subtext0.hex }}"
+set -ogq @thm_subtext_0 "{{ subtext1.hex }}"
+set -ogq @thm_overlay_2 "{{ overlay2.hex }}"
+set -ogq @thm_overlay_1 "{{ overlay1.hex }}"
+set -ogq @thm_overlay_0 "{{ overlay0.hex }}"
+set -ogq @thm_surface_2 "{{ surface2.hex }}"
+set -ogq @thm_surface_1 "{{ surface1.hex }}"
+set -ogq @thm_surface_0 "{{ surface0.hex }}"
+set -ogq @thm_mantle "{{ mantle.hex }}"
+set -ogq @thm_crust "{{ crust.hex }}"
+
