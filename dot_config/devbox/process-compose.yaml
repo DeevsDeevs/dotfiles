@@ -5,3 +5,9 @@ processes:
       restart: on_failure
       max_restarts: 5
     daemon: true
+  sketchybar:
+    command: "sketchybar"
+    availability:
+      restart: on_failure
+      max_restarts: 5
+    daemon: true
