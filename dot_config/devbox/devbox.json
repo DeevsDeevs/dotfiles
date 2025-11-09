@@ -41,7 +41,14 @@
     "tmuxPlugins.resurrect@latest",
     "tmuxPlugins.continuum@latest",
     "tmux-mem-cpu-load@latest",
-    "tmuxPlugins.sensible@latest"
+    "tmuxPlugins.sensible@latest",
+    "dbeaver@latest",
+    "zoom-us@latest",
+    "discord",
+    "wireguard@latest",
+    "transmission@latest",
+    "google-chrome@latest",
+    "code-cursor@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
