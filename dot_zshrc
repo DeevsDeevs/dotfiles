@@ -76,7 +76,7 @@ if command -v fzf > /dev/null; then
   fi
 fi
 
-if [ -z "$DISABLE_ZOXIDE" ]; then
+if [ -z "$DISABLE_ZOXIDE" ] && [[ $- == *i* ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
