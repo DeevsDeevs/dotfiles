@@ -1,3 +1,6 @@
+README.md
+assets/
+
 .config/sketchybar/helpers/**/*.o
 .config/sketchybar/helpers/**/bin/*
 .config/tmux/plugins
