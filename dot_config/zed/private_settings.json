@@ -7,6 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent": {
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "model_parameters": []
+  },
   "icon_theme": "Catppuccin Mocha",
   "ssh_connections": [
     {
@@ -14,17 +22,47 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/deevs/auto-deevs/./"]
-        },
-        {
-          "paths": ["/home/deevs/backtesting"]
+          "paths": [
+            "/home/deevs/auto-deevs/./"
+          ]
         }
       ]
     },
     {
       "host": "deevs.gcp.whitecircle",
       "args": [],
-      "projects": []
+      "projects": [
+        {
+          "paths": [
+            "/home/deevs/backtesting"
+          ]
+        },
+        {
+          "paths": [
+            "/home/deevs/fixes/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/deevs/path-2-postgres"
+          ]
+        },
+        {
+          "paths": [
+            "/home/deevs/personal/HSE/distsys-hse/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/deevs/personal/HSE/prom-prog"
+          ]
+        },
+        {
+          "paths": [
+            "/home/deevs/personal/HSE/shad-rust"
+          ]
+        }
+      ]
     }
   ],
   "base_keymap": "Cursor",
@@ -34,6 +72,6 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Mocha (Blur) [Light]",
-    "dark": "One Dark"
+    "dark": "Catppuccin Mocha (Blur) [Heavy]"
   }
 }

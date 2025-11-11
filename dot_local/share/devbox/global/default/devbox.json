@@ -54,7 +54,8 @@
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
     "scripts": {
       "test": ["echo \"Error: no test specified\" && exit 1"],
-      "setup-sketchybar": ["~/bin/setup-sketchybar-deps"]
+      "setup-sketchybar": ["$(devbox global path)/scripts/setup-sketchybar-deps.sh"],
+      "sync-nix-apps": ["$(devbox global path)/scripts/sync-nix-apps.sh"]
     }
   }
 }

@@ -1,17 +1,3 @@
-_devbox_config=~/.config/devbox/devbox.json
-_devbox_process_compose=~/.config/devbox/process-compose.yaml
-_devbox_global_dir=~/.local/share/devbox/global/default
-_devbox_last_pull=~/.cache/devbox_last_pull
-
-if [[ ! -f $_devbox_last_pull ]] || [[ $_devbox_config -nt $_devbox_last_pull ]]; then
-  devbox global pull $_devbox_config 2>/dev/null && touch $_devbox_last_pull
-fi
-
-if [[ -f $_devbox_process_compose ]]; then
-  mkdir -p $_devbox_global_dir
-  cp $_devbox_process_compose $_devbox_global_dir/process-compose.yaml
-fi
-
 eval "$(devbox global shellenv --init-hook)"
 
 export EDITOR="zeditor --wait"

@@ -2,3 +2,10 @@
 .config/sketchybar/helpers/**/bin/*
 .config/tmux/plugins
 .tmux/plugins
+
+.local/share/devbox/global/default/.devbox
+.local/share/devbox/global/default/devbox.lock
+.local/share/devbox/global/default/.gitignore
+.local/share/devbox/global/default/state.json
+.local/share/devbox/global/default/compose.log
+.local/share/devbox/global/default/.nix-print-dev-env-cache

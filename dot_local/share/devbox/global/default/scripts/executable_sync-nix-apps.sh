@@ -1,6 +1,4 @@
 #!/bin/zsh
-# find all the installed Nix packages that have GUI apps and create
-# a 'MacOS Alias file' aka a 'Finder alias' for each so Spotlight will index them
 
 makealias() {
     local aliasesdir="$1"
@@ -26,7 +24,6 @@ readalias() {
         -e "return posix path of (toPath)" 2>/dev/null
 }
 
-# The correct path for devbox global apps
 linksdir="$(devbox global path)/.devbox/nix/profile/default/Applications"
 
 if [ ! -d "$linksdir" ]; then
@@ -43,16 +40,14 @@ echo "Looking for apps in: $linksdir"
 app_count=$(find "$linksdir" -maxdepth 1 -name '*.app' 2>/dev/null | wc -l | tr -d ' ')
 echo "Found $app_count apps"
 
-# Create/update aliases for all apps
 for link in "$linksdir"/*.app(N); do
-    # Follow the symlink to get the actual app path
     apppath=$(readlink "$link")
     if [ -z "$apppath" ]; then
         apppath="$link"
     fi
 
     appname=$(basename "$apppath")
-    apps+=("${appname:l}") # lowercase for comparison (zsh syntax)
+    apps+=("${appname:l}")
 
     aliaspath="$aliasesdir/$(basename "$appname" .app)"
 
@@ -76,7 +71,6 @@ for link in "$linksdir"/*.app(N); do
     fi
 done
 
-# delete all the old aliases that reference apps we don't have in our devbox anymore
 if [ -d "$aliasesdir" ]; then
     for alias in "$aliasesdir"/*; do
         [ -e "$alias" ] || continue
