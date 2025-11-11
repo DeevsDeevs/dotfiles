@@ -1,0 +1,5 @@
+{
+  "env": {
+    "DISABLE_ZOXIDE": "1"
+  }
+}
