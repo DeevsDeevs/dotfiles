@@ -48,14 +48,15 @@
     "wireguard@latest",
     "transmission@latest",
     "google-chrome@latest",
-    "code-cursor@latest"
+    "code-cursor@latest",
+    "claude-code@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
     "scripts": {
-      "test": ["echo \"Error: no test specified\" && exit 1"],
+      "test":             ["echo \"Error: no test specified\" && exit 1"],
       "setup-sketchybar": ["$(devbox global path)/scripts/setup-sketchybar-deps.sh"],
-      "sync-nix-apps": ["$(devbox global path)/scripts/sync-nix-apps.sh"]
+      "sync-nix-apps":    ["$(devbox global path)/scripts/sync-nix-apps.sh"]
     }
   }
 }
