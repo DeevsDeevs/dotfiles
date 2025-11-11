@@ -56,6 +56,19 @@ alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 
+dbsync() {
+  chezmoi add ~/.local/share/devbox/global/default/devbox.json
+  echo "✓ Synced devbox.json to chezmoi"
+}
+
+dbadd() {
+  devbox global add "$@" && dbsync
+}
+
+dbrm() {
+  devbox global rm "$@" && dbsync
+}
+
 if command -v fzf > /dev/null; then
   FZF_VERSION=$(fzf --version | awk '{print $1}')
   if [[ "$(printf '%s\n' 0.48.0 "$FZF_VERSION" | sort -V | head -n1)" == "0.48.0" ]]; then
