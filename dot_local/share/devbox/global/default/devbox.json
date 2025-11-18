@@ -49,7 +49,8 @@
     "transmission@latest",
     "google-chrome@latest",
     "code-cursor@latest",
-    "claude-code@latest"
+    "claude-code@latest",
+    "k9s@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
