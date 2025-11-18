@@ -50,7 +50,8 @@
     "google-chrome@latest",
     "code-cursor@latest",
     "claude-code@latest",
-    "k9s@latest"
+    "k9s@latest",
+    "awscli2@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
