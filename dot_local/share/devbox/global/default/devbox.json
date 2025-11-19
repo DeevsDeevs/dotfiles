@@ -55,7 +55,8 @@
     "kubectl@latest",
     "kubectx@latest",
     "cargo@latest",
-    "rustup@latest"
+    "rustup@latest",
+    "libiconv@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
