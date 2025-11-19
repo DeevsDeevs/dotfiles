@@ -54,7 +54,8 @@
     "awscli2@latest",
     "kubectl@latest",
     "kubectx@latest",
-    "cargo@latest"
+    "cargo@latest",
+    "rustup@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
