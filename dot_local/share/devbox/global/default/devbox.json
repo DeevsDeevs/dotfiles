@@ -53,7 +53,8 @@
     "k9s@latest",
     "awscli2@latest",
     "kubectl@latest",
-    "kubectx@latest"
+    "kubectx@latest",
+    "cargo@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
