@@ -54,7 +54,6 @@
     "awscli2@latest",
     "kubectl@latest",
     "kubectx@latest",
-    "cargo@latest",
     "rustup@latest",
     "libiconv@latest",
     "cmake@latest"
