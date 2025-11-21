@@ -56,7 +56,8 @@
     "kubectx@latest",
     "rustup@latest",
     "libiconv@latest",
-    "cmake@latest"
+    "cmake@latest",
+    "postgresql@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
