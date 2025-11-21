@@ -1,6 +1,6 @@
 processes:
   tailscaled:
-    command: "sudo tailscaled --tun=userspace-networking --state=$HOME/.local/share/tailscale/tailscaled.state --socket=$HOME/.local/share/tailscale/tailscaled.sock"
+    command: "sudo tailscaled --tun=userspace-networking --socks5-server=localhost:1055 --state=$HOME/.local/share/tailscale/tailscaled.state --socket=$HOME/.local/share/tailscale/tailscaled.sock"
     availability:
       restart: on_failure
       max_restarts: 5
