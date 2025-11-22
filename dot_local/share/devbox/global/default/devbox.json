@@ -59,7 +59,6 @@
     "cmake@latest",
     "postgresql@latest",
     "libpq@latest",
-    "browsh@latest",
     "firefox@latest"
   ],
   "shell": {
