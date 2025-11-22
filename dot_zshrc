@@ -1,3 +1,4 @@
+export DEVBOX_NO_PROMPT=true
 eval "$(devbox global shellenv --init-hook)"
 
 export EDITOR="zeditor --wait"

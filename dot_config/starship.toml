@@ -19,9 +19,10 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:teal bg:blue)\
+[](fg:teal bg:blue)\
 $docker_context\
-[](fg:blue bg:purple)\
+$env_var\
+[](fg:blue bg:purple)\
 $time\
 [ ](fg:purple)\
 $line_break$character"""
@@ -169,9 +170,15 @@ style = "bg:teal"
 format = '[[$symbol ($virtualenv) ](fg:base bg:teal)]($style)'
 
 [docker_context]
-symbol = ""
+symbol = ""
 style = "bg:mantle"
 format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[env_var.DEVBOX]
+variable = "DEVBOX_SHELL_ENABLED"
+symbol = ""
+style = "bg:blue"
+format = '[[ $symbol ](fg:base bg:blue)]($style)'
 
 [time]
 disabled = false
