@@ -184,7 +184,7 @@ format = '[[ $symbol ](fg:base bg:blue)]($style)'
 disabled = false
 time_format = "%R"
 style = "bg:peach"
-format = '[[  $time ](fg:mantle bg:purple)]($style)'
+format = '[[  $time ](fg:mantle bg:purple)]($style)'
 
 [line_break]
 disabled = false
