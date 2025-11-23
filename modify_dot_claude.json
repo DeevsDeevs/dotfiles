@@ -1,0 +1,13 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $apiKey := onepasswordRead "op://JustEnvs/context7-api-key/credential" -}}
+{{- $config := fromJson .chezmoi.stdin -}}
+{{- if not (hasKey $config "mcpServers") -}}
+{{-   $_ := set $config "mcpServers" dict -}}
+{{- end -}}
+{{- $context7 := dict
+  "type" "http"
+  "url" "https://mcp.context7.com/mcp"
+  "headers" (dict "CONTEXT7_API_KEY" $apiKey)
+-}}
+{{- $_ := set $config.mcpServers "context7" $context7 -}}
+{{- $config | toPrettyJson -}}
