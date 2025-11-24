@@ -58,7 +58,8 @@
     "libiconv@latest",
     "cmake@latest",
     "postgresql@latest",
-    "libpq@latest"
+    "libpq@latest",
+    "atlas@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
