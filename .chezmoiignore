@@ -12,3 +12,12 @@ assets/
 .local/share/devbox/global/default/state.json
 .local/share/devbox/global/default/compose.log
 .local/share/devbox/global/default/.nix-print-dev-env-cache
+
+{{ if ne .chezmoi.os "darwin" }}
+# macOS-only configs - ignore on Linux
+.config/yabai
+.config/skhd
+.config/sketchybar
+.config/ghostty
+.config/zed
+{{ end }}

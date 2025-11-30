@@ -1,66 +1,121 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
-  "packages": [
-    "uv@latest",
-    "chezmoi@latest",
-    "zed-editor@latest",
-    "ghostty-bin@latest",
-    "direnv@latest",
-    "ripgrep@latest",
-    "fzf@latest",
-    "bat@latest",
-    "vivid@latest",
-    "zoxide@latest",
-    "tmux@latest",
-    "xclip@latest",
-    "btop@latest",
-    "starship@latest",
-    "neovim@latest",
-    "zinit@latest",
-    "bun@latest",
-    "yabai@latest",
-    "telegram-desktop@latest",
-    "raycast@latest",
-    "slack@latest",
-    "notion-app@latest",
-    "skhd@latest",
-    "sketchybar@latest",
-    "spicetify-cli@latest",
-    "spotify@latest",
-    "_1password-cli@latest",
-    "opencode@latest",
-    "lua5_4@latest",
-    "tailscale@latest",
-    "process-compose@latest",
-    "magic-wormhole@latest",
-    "google-cloud-sdk@latest",
-    "tmuxPlugins.yank@latest",
-    "tmuxPlugins.vim-tmux-navigator@latest",
-    "tmuxPlugins.catppuccin@latest",
-    "tmuxifier@latest",
-    "tmuxPlugins.resurrect@latest",
-    "tmuxPlugins.continuum@latest",
-    "tmux-mem-cpu-load@latest",
-    "tmuxPlugins.sensible@latest",
-    "dbeaver@latest",
-    "zoom-us@latest",
-    "discord",
-    "wireguard@latest",
-    "transmission@latest",
-    "google-chrome@latest",
-    "code-cursor@latest",
-    "k9s@latest",
-    "awscli2@latest",
-    "kubectl@latest",
-    "kubectx@latest",
-    "rustup@latest",
-    "libiconv@latest",
-    "cmake@latest",
-    "postgresql@latest",
-    "libpq@latest",
-    "github:sadjow/claude-code-nix",
-    "allure@latest"
-  ],
+  "packages": {
+    "uv": "latest",
+    "chezmoi": "latest",
+    "direnv": "latest",
+    "ripgrep": "latest",
+    "fzf": "latest",
+    "bat": "latest",
+    "vivid": "latest",
+    "zoxide": "latest",
+    "tmux": "latest",
+    "xclip": "latest",
+    "btop": "latest",
+    "starship": "latest",
+    "neovim": "latest",
+    "zinit": "latest",
+    "bun": "latest",
+    "opencode": "latest",
+    "lua5_4": "latest",
+    "tailscale": "latest",
+    "process-compose": "latest",
+    "magic-wormhole": "latest",
+    "google-cloud-sdk": "latest",
+    "tmuxPlugins.yank": "latest",
+    "tmuxPlugins.vim-tmux-navigator": "latest",
+    "tmuxPlugins.catppuccin": "latest",
+    "tmuxifier": "latest",
+    "tmuxPlugins.resurrect": "latest",
+    "tmuxPlugins.continuum": "latest",
+    "tmux-mem-cpu-load": "latest",
+    "tmuxPlugins.sensible": "latest",
+    "k9s": "latest",
+    "awscli2": "latest",
+    "kubectl": "latest",
+    "kubectx": "latest",
+    "rustup": "latest",
+    "libiconv": "latest",
+    "cmake": "latest",
+    "postgresql": "latest",
+    "libpq": "latest",
+    "github:sadjow/claude-code-nix": "",
+    "allure": "latest",
+    "_1password-cli": "latest",
+
+    "zed-editor": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "ghostty-bin": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "yabai": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "skhd": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "sketchybar": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "raycast": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "telegram-desktop": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "slack": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "notion-app": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "spicetify-cli": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "spotify": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "dbeaver": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "zoom-us": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "discord": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "wireguard": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "transmission": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "google-chrome": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "code-cursor": {
+      "version": "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    }
+  },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
     "scripts": {

@@ -70,6 +70,14 @@ dbrm() {
   devbox global rm "$@" && dbsync
 }
 
+dbadd-mac() {
+  devbox global add "$@" --platform x86_64-darwin,aarch64-darwin && dbsync
+}
+
+dbadd-linux() {
+  devbox global add "$@" --platform x86_64-linux,aarch64-linux && dbsync
+}
+
 if command -v fzf > /dev/null; then
   FZF_VERSION=$(fzf --version | awk '{print $1}')
   if [[ "$(printf '%s\n' 0.48.0 "$FZF_VERSION" | sort -V | head -n1)" == "0.48.0" ]]; then

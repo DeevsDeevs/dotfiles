@@ -1,6 +1,6 @@
-# macOS Dotfiles
+# Dotfiles
 
-HIGHLY opinionated macOS configuration managed with [chezmoi](https://www.chezmoi.io) and [devbox](https://www.jetify.com/devbox). Contains only tools and applications used daily with zEr0 bloat.
+HIGHLY opinionated macOS & Linux configuration managed with [chezmoi](https://www.chezmoi.io) and [devbox](https://www.jetify.com/devbox). Contains only tools and applications used daily with zEr0 bloat.
 
 <img src="assets/preview.jpg" width="600" alt="Desktop Setup">
 
@@ -16,14 +16,20 @@ Everything is managed through [devbox](https://www.jetify.com/devbox) - a Nix-ba
 - Both CLI tools and GUI applications
 - Automatic application syncing to Spotlight/Raycast
 
+### Platform-Specific Packages
+
+Devbox supports platform-specific packages via `platforms` field in `devbox.json`. macOS-only packages (GUI apps, window management) are automatically skipped on Linux.
+
 ### Custom Shell Functions
 
 Defined in [`.zshrc`](dot_zshrc):
 
 ```bash
-dbadd package-name    # Add package and sync to chezmoi
-dbrm package-name     # Remove package and sync to chezmoi
-dbsync                # Manually sync devbox.json to chezmoi
+dbadd package-name       # Add package (all platforms) and sync to chezmoi
+dbrm package-name        # Remove package and sync to chezmoi
+dbsync                   # Manually sync devbox.json to chezmoi
+dbadd-mac package-name   # Add macOS-only package
+dbadd-linux package-name # Add Linux-only package
 ```
 
 ### Process Management
@@ -41,14 +47,19 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 ## Prerequisites
 
+### macOS
 - macOS (Big Sur or later)
 - [Devbox](https://www.jetify.com/devbox/docs/installing_devbox/)
 - [Homebrew](https://brew.sh) - Only required for SketchyBar icons (SF Symbols, fonts, media-control)
 - Command Line Tools: `xcode-select --install`
 
+### Linux
+- [Devbox](https://www.jetify.com/devbox/docs/installing_devbox/)
+- Nix package manager (installed automatically by Devbox)
+
 ## Components
 
-### Window Management
+### Window Management (macOS only)
 
 - **[yabai](https://github.com/koekeishiya/yabai)** - Tiling window manager
   - Requires SIP (System Integrity Protection) to be disabled for scripting additions
@@ -71,7 +82,7 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 ### Terminal & Shell
 
-- **[Ghostty](https://ghostty.org)** - GPU-accelerated terminal
+- **[Ghostty](https://ghostty.org)** - GPU-accelerated terminal (macOS only)
   - Configuration: [`.config/ghostty/config`](dot_config/ghostty/config)
   - Theme: Catppuccin Mocha
   - Font: JetBrainsMono Nerd Font
@@ -101,7 +112,7 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
   - Plugin manager: [lazy.nvim](https://github.com/folke/lazy.nvim)
   - Plugins defined in [`lua/plugins/`](dot_config/nvim/lua/plugins/)
 
-- **[Zed](https://zed.dev)** - Code editor
+- **[Zed](https://zed.dev)** - Code editor (macOS only)
   - Configuration: [`.config/zed/`](dot_config/zed/)
   - Set as default `$EDITOR` via `zeditor --wait`
 
@@ -136,15 +147,23 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 ### Applications
 
+#### Cross-platform (macOS & Linux)
+- **CLI Tools**: ripgrep, fzf, bat, zoxide, btop, k9s
+- **Cloud/DevOps**: awscli2, kubectl, kubectx, google-cloud-sdk
+- **Development**: neovim, tmux, bun, rustup, postgresql
+- **Networking**: Tailscale, 1Password CLI
+- **Other**: Magic Wormhole
+
+#### macOS only (GUI apps)
 Managed via devbox and available in Spotlight/Raycast after sync:
 
 - **Communication**: Telegram, Slack, Discord, Zoom
-- **Productivity**: Notion, Raycast, 1Password CLI
-- **Development**: DBeaver, Cursor, Claude Code
+- **Productivity**: Notion, Raycast
+- **Development**: DBeaver, Cursor, Zed
 - **Media**: Spotify
-- **Networking**: Tailscale, WireGuard
+- **Networking**: WireGuard
 - **Browsers**: Google Chrome
-- **Other**: Transmission, Magic Wormhole
+- **Other**: Transmission
 
 ## Installation
 
@@ -173,7 +192,7 @@ chezmoi diff
 chezmoi apply
 ```
 
-### 4. Install SketchyBar Dependencies
+### 4. Install SketchyBar Dependencies (macOS only)
 
 ```bash
 devbox global run setup-sketchybar
@@ -186,7 +205,7 @@ This script will:
 - Download sketchybar-app-font
 - Compile SketchyBar helper binaries
 
-### 5. Sync Nix Applications to Spotlight/Raycast
+### 5. Sync Nix Applications to Spotlight/Raycast (macOS only)
 
 ```bash
 devbox global run sync-nix-apps
@@ -194,7 +213,7 @@ devbox global run sync-nix-apps
 
 Creates aliases in `~/Applications/installed via DevBox/` for all devbox-installed GUI applications.
 
-## Post-Installation Configuration
+## Post-Installation Configuration (macOS only)
 
 ### yabai Setup
 
@@ -222,7 +241,7 @@ devbox global run setup-sketchybar
 
 Service managed automatically by process-compose.
 
-## Key Bindings
+## Key Bindings (macOS only)
 
 ### Window Navigation
 
@@ -289,8 +308,14 @@ Service managed automatically by process-compose.
 ### Adding/Removing Packages
 
 ```bash
-# Add a package globally
+# Add a package (all platforms)
 dbadd package-name
+
+# Add macOS-only package
+dbadd-mac package-name
+
+# Add Linux-only package
+dbadd-linux package-name
 
 # Remove a package
 dbrm package-name
@@ -332,31 +357,41 @@ All applications are configured with **Catppuccin Mocha** theme:
 
 ## Troubleshooting
 
-### yabai Not Working
+### macOS
+
+#### yabai Not Working
 
 1. Verify SIP is disabled: `csrutil status`
 2. Check accessibility permissions
 3. Verify sudo configuration: `sudo yabai --load-sa`
 4. Check logs: `tail -f /tmp/yabai_$USER.err.log`
 
-### skhd Hotkeys Not Working
+#### skhd Hotkeys Not Working
 
 1. Check accessibility permissions
 2. Disable "Secure Keyboard Entry" in terminal
 3. Check logs: `tail -f /tmp/skhd_$USER.err.log`
 
-### SketchyBar Not Showing
+#### SketchyBar Not Showing
 
 1. Ensure dependencies are installed: `devbox global run setup-sketchybar`
 2. Check if helper binaries are compiled: `ls ~/.config/sketchybar/helpers/bin/`
 3. Restart: `sketchybar --reload`
 
-### Applications Not in Spotlight
+#### Applications Not in Spotlight
 
 Run the sync script:
 ```bash
 devbox global run sync-nix-apps
 ```
+
+### Linux
+
+#### Devbox packages not installing
+
+1. Ensure Nix is installed: `nix --version`
+2. Check devbox status: `devbox global list`
+3. Try refreshing: `devbox global shellenv`
 
 ## Resources
 
