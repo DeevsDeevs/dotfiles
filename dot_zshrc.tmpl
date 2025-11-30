@@ -1,7 +1,12 @@
 export DEVBOX_NO_PROMPT=true
 eval "$(devbox global shellenv --init-hook)"
 
+{{ if eq .chezmoi.os "darwin" -}}
 export EDITOR="zeditor --wait"
+{{ else -}}
+export EDITOR="nvim"
+export COLORTERM=truecolor
+{{ end -}}
 
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
