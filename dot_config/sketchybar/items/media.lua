@@ -114,24 +114,13 @@ local function log_error(...)
     print(string.format("[%s] MEDIA ERROR:", timestamp), table.unpack(args))
 end
 
--- File existence checker with timeout
-local function wait_for_file(filepath, max_wait_ms)
-    max_wait_ms = max_wait_ms or 1000
-    local start_time = os.clock() * 1000
-    local attempts = 0
-
-    while (os.clock() * 1000 - start_time) < max_wait_ms do
-        attempts = attempts + 1
-        local f = io.open(filepath, "r")
-        if f then
-            local size = f:seek("end")
-            f:close()
-            if size and size > 0 then
-                return true
-            end
-        end
-        -- Small delay between checks
-        os.execute("sleep 0.01")
+-- File existence checker (single check, no busy-wait)
+local function check_file_ready(filepath)
+    local f = io.open(filepath, "r")
+    if f then
+        local size = f:seek("end")
+        f:close()
+        return size and size > 0
     end
     return false
 end
@@ -194,21 +183,12 @@ media_watcher:subscribe("routine", function()
             f:write(result.artworkData)
             f:close()
 
-            -- Verify temp file was written
-            local temp_ready = wait_for_file(temp_b64, 100)
-            if not temp_ready then
-                log_error("Temp file not ready:", temp_b64)
-                media_cover:set({ drawing = drawing })
-                return
-            end
-
-            -- Use sbar.exec for proper async handling
+            -- Use sbar.exec for async decode - no busy-wait needed
             local decode_cmd = string.format("base64 -d < '%s' > '%s' 2>&1", temp_b64, artwork_file)
 
             sbar.exec(decode_cmd, function(decode_result)
-                -- Check if decode was successful
-                local file_ready = wait_for_file(artwork_file, 500)
-                if not file_ready then
+                -- Check if decode was successful (single check, no busy-wait)
+                if not check_file_ready(artwork_file) then
                     log_error("Artwork file not created or empty:", artwork_file)
                     media_cover:set({ drawing = drawing })
                     return
