@@ -107,14 +107,6 @@ local media_watcher = sbar.add("item", "media.watcher", {
     update_freq = 2,
 })
 
--- Error logging helper
-local function log_error(...)
-    local args = { ... }
-    local timestamp = os.date("%H:%M:%S")
-    print(string.format("[%s] MEDIA ERROR:", timestamp), table.unpack(args))
-end
-
--- File existence checker (single check, no busy-wait)
 local function check_file_ready(filepath)
     local f = io.open(filepath, "r")
     if f then
@@ -127,19 +119,8 @@ end
 
 media_watcher:subscribe("routine", function()
     sbar.exec("media-control get", function(result)
-        if not result then
-            log_error("No result from media-control")
-            return
-        end
-
-        if type(result) ~= "table" then
-            log_error("Result is not a table, got:", type(result))
-            return
-        end
-
-        -- Check if we have the necessary fields
+        if type(result) ~= "table" then return end
         if not (result.playing ~= nil and result.title and result.artist and result.bundleIdentifier) then
-            log_error("Missing required fields from media-control")
             return
         end
 
@@ -167,34 +148,20 @@ media_watcher:subscribe("routine", function()
         -- Handle artwork
         if result.artworkData and drawing then
             local artwork_file = "/tmp/sketchybar_album_art.jpg"
-            local temp_b64 = "/tmp/sketchybar_artwork.b64"
 
-            -- Clean up old files
-            os.execute("rm -f " .. artwork_file .. " " .. temp_b64)
+            -- Decode base64 directly via pipe (no temp file needed)
+            local decode_cmd = string.format(
+                "echo '%s' | base64 -d > '%s' 2>/dev/null",
+                result.artworkData:gsub("'", "'\\''"),
+                artwork_file
+            )
 
-            -- Write base64 to temp file
-            local f = io.open(temp_b64, "w")
-            if not f then
-                log_error("Could not open temp file for writing:", temp_b64)
-                media_cover:set({ drawing = drawing })
-                return
-            end
-
-            f:write(result.artworkData)
-            f:close()
-
-            -- Use sbar.exec for async decode - no busy-wait needed
-            local decode_cmd = string.format("base64 -d < '%s' > '%s' 2>&1", temp_b64, artwork_file)
-
-            sbar.exec(decode_cmd, function(decode_result)
-                -- Check if decode was successful (single check, no busy-wait)
+            sbar.exec(decode_cmd, function()
                 if not check_file_ready(artwork_file) then
-                    log_error("Artwork file not created or empty:", artwork_file)
                     media_cover:set({ drawing = drawing })
                     return
                 end
 
-                -- Set the cover image
                 media_cover:set({
                     drawing = true,
                     background = {
@@ -205,9 +172,6 @@ media_watcher:subscribe("routine", function()
                         color = colors.transparent,
                     }
                 })
-
-                -- Clean up temp file after a delay
-                sbar.exec("sleep 1 && rm -f " .. temp_b64, function() end)
             end)
         else
             media_cover:set({ drawing = drawing })
