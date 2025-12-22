@@ -25,6 +25,11 @@
           "paths": [
             "/home/deevs/auto-deevs/./"
           ]
+        },
+        {
+          "paths": [
+            "/home/deevs/tasks/crud/./"
+          ]
         }
       ]
     },
@@ -60,6 +65,27 @@
         {
           "paths": [
             "/home/deevs/personal/HSE/shad-rust"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "deevs.hetzner.whitecircle",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/deevs/tasks/context/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/deevs/tasks/crud/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/deevs/tasks/geoip/./"
           ]
         }
       ]
