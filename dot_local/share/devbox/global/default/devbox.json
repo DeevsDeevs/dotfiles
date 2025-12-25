@@ -15,7 +15,6 @@
     "starship":                       "latest",
     "neovim":                         "latest",
     "zinit":                          "latest",
-    "bun":                            "latest",
     "opencode":                       "latest",
     "lua5_4":                         "latest",
     "process-compose":                "latest",
@@ -119,7 +118,8 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "github:sadjow/claude-code-nix": ""
+    "github:sadjow/claude-code-nix": "",
+    "bun":                           "1.2"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
