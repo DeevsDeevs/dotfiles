@@ -120,7 +120,11 @@
     },
     "github:sadjow/claude-code-nix": "",
     "bun":                           "1.2",
-    "jq":                            "latest"
+    "jq":                            "latest",
+    "atlas": {
+      "version":   "latest",
+      "platforms": ["x86_64-linux", "aarch64-linux"]
+    }
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
