@@ -14,6 +14,43 @@
 
 **Why**: Ensures current, accurate documentation rather than outdated knowledge.
 
+## Dev Experts Agents - USE PROACTIVELY
+
+**Always use these agents when the task matches:**
+
+| Agent | Trigger |
+|-------|---------|
+| `dev-experts:reviewer` | Before ANY commit/PR, or when reviewing code changes |
+| `dev-experts:tester` | When writing or updating tests |
+| `dev-experts:architect` | When planning new features or significant changes |
+| `dev-experts:python-dev` | When writing/reviewing Python code |
+| `dev-experts:rust-dev` | When writing/reviewing Rust code |
+| `dev-experts:cpp-dev` | When writing/reviewing C++ code |
+| `dev-experts:devops` | When debugging production/infrastructure issues |
+
+**How**: Use the Task tool with `subagent_type="dev-experts:<agent-name>"`
+
+## Skills - USE WHEN APPLICABLE
+
+| Skill | When to Use | How to Invoke |
+|-------|-------------|---------------|
+| `datetime` | Need current date/time for logging, file naming, timestamps, APIs | `/datetime` or use `date` commands from skill |
+| `tmux` | Interactive programs: REPLs, debuggers, dev servers, parallel tasks | `/tmux` - use `tmux-ctl` commands |
+| `anti-ai-slop` | After writing code, before commit - clean up AI-generated bloat | `/anti-ai-slop` |
+| `prompt-improver` | Auto-triggered on vague prompts to ask clarifying questions | Automatic via hook |
+
+### Quick Skill Reference
+
+**datetime**: `date +%Y-%m-%d`, `date +%s` (epoch), `date -u +"%Y-%m-%dT%H:%M:%SZ"` (ISO UTC)
+
+**tmux**:
+- `tmux-ctl eval "command"` - one-off execution
+- `tmux-ctl repl python "expr"` - REPL one-shot
+- `tmux-ctl start "npm run dev" --name=server` - background process
+- `tmux-ctl logs server` - view output
+
+**anti-ai-slop**: Removes unnecessary comments, redundant checks, single-use variables, style drift from branch diff
+
 ## Code Quality
 
 ### Comments
