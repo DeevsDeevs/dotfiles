@@ -1,5 +1,39 @@
 {
   "env": {
     "DISABLE_ZOXIDE": "1"
+  },
+  "permissions": {
+    "allow": [
+      "mcp__context7__*",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(ag:*)",
+      "Bash(fd:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(awk:*)",
+      "Bash(sed:*)",
+      "Bash(cut:*)",
+      "Bash(tr:*)",
+      "Bash(xargs:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "chain-system@deevs-agent-system": true,
+    "tmux@deevs-agent-system": true,
+    "dev-experts@deevs-agent-system": true,
+    "prompt-improver@claude-code-marketplace": true,
+    "datetime@deevs-agent-system": true
+  },
+  "alwaysThinkingEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); cd \"$dir\" 2>/dev/null || cd ~; status=\"\"; user=$(whoami); host=$(hostname -s); status+=\"${user}@${host}\"; short_dir=$(echo \"$dir\" | sed \"s|^$HOME|~|\"); status+=\"  ${short_dir}\"; if git rev-parse --git-dir > /dev/null 2>&1; then branch=$(git -c core.useReplaceRefs=false branch --show-current 2>/dev/null || echo \"detached\"); git_status=$(git -c core.useReplaceRefs=false status --porcelain 2>/dev/null); if [ -n \"$git_status\" ]; then status+=\"  ${branch} [±]\"; else status+=\"  ${branch}\"; fi; fi; if [ -n \"$DEVBOX_SHELL_ENABLED\" ]; then status+=\"  [devbox]\"; fi; time=$(date +%H:%M); status+=\"  ${time}\"; printf \"%s\" \"$status\""
   }
 }
