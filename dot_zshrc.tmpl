@@ -95,3 +95,7 @@ if [ -z "$DISABLE_ZOXIDE" ] && [[ $- == *i* ]]; then
 fi
 
 alias tailscale='tailscale --socket=$HOME/.local/share/tailscale/tailscaled.sock'
+
+if command -v wagner > /dev/null; then
+  eval "$(wagner completions zsh)"
+fi
