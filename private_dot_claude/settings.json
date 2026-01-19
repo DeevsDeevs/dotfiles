@@ -31,7 +31,10 @@
     "dev-experts@deevs-agent-system": true,
     "prompt-improver@claude-code-marketplace": true,
     "datetime@deevs-agent-system": true,
-    "anti-ai-slop@deevs-agent-system": true
+    "anti-ai-slop@deevs-agent-system": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "97-dev@deevs-agent-system": true,
+    "arxiv-search@deevs-agent-system": true
   },
   "alwaysThinkingEnabled": true,
   "statusLine": {
