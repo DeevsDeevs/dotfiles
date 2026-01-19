@@ -125,11 +125,27 @@
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
     "github:DeevsDeevs/wagner/v0.2.2": "",
+    "github:sadjow/claude-code-nix":   "",
     "yaak": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "github:sadjow/claude-code-nix": ""
+    "clang": {
+      "version":   "latest",
+      "platforms": ["x86_64-linux", "aarch64-linux"]
+    },
+    "mold": {
+      "version":   "latest",
+      "platforms": ["x86_64-linux", "aarch64-linux"]
+    },
+    "lld": {
+      "version":   "latest",
+      "platforms": ["x86_64-linux", "aarch64-linux"]
+    },
+    "openssl": {
+      "version":   "latest",
+      "platforms": ["x86_64-linux", "aarch64-linux"]
+    }
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
