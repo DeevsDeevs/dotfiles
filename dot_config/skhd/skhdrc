@@ -150,5 +150,5 @@ alt - return : open -na "Ghostty"
 # ===== Application Shortcuts ==================
 
 # Open applications
-alt - b : open -a "Safari"
+alt - b : google-chrome-stable
 alt - z : open -a "Zed"
