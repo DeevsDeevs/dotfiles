@@ -144,7 +144,8 @@
     "openssl": {
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
-    }
+    },
+    "github:sadjow/claude-code-nix": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
