@@ -125,7 +125,6 @@
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
     "github:DeevsDeevs/wagner/v0.2.2": "",
-    "github:sadjow/claude-code-nix":   "",
     "yaak": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
