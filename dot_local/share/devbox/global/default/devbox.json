@@ -149,6 +149,10 @@
     "coreutils": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "nodejs": {
+      "version":   "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
     }
   },
   "shell": {
