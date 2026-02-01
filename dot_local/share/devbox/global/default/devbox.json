@@ -124,7 +124,6 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "github:DeevsDeevs/wagner/v0.2.2": "",
     "yaak": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
@@ -145,7 +144,16 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "github:sadjow/claude-code-nix": ""
+    "github:sadjow/claude-code-nix": "",
+    "coreutils": {
+      "version":   "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "nodejs": {
+      "version":   "latest",
+      "platforms": ["x86_64-darwin", "aarch64-darwin"]
+    },
+    "github:DeevsDeevs/wagner/v0.2.3": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
