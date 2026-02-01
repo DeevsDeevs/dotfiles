@@ -153,8 +153,7 @@
     "nodejs": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
-    },
-    "github:DeevsDeevs/wagner/v0.2.3": ""
+    }
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
