@@ -18,75 +18,18 @@
   "icon_theme": "Catppuccin Mocha",
   "ssh_connections": [
     {
-      "host": "dagster.gcp.whitecircle",
-      "args": [],
-      "projects": [
-        {
-          "paths": [
-            "/home/deevs/auto-deevs/./"
-          ]
-        },
-        {
-          "paths": [
-            "/home/deevs/tasks/crud/./"
-          ]
-        }
-      ]
-    },
-    {
-      "host": "deevs.gcp.whitecircle",
-      "args": [],
-      "projects": [
-        {
-          "paths": [
-            "/home/deevs/backtesting"
-          ]
-        },
-        {
-          "paths": [
-            "/home/deevs/fixes/./"
-          ]
-        },
-        {
-          "paths": [
-            "/home/deevs/path-2-postgres"
-          ]
-        },
-        {
-          "paths": [
-            "/home/deevs/personal/HSE/distsys-hse/./"
-          ]
-        },
-        {
-          "paths": [
-            "/home/deevs/personal/HSE/prom-prog"
-          ]
-        },
-        {
-          "paths": [
-            "/home/deevs/personal/HSE/shad-rust"
-          ]
-        }
-      ]
-    },
-    {
       "host": "deevs.hetzner.whitecircle",
       "args": [],
+      "port_forwards": [
+        {
+          "local_port": 4203,
+          "remote_port": 4203,
+          "local_host": "0.0.0.0"
+        }
+      ],
       "projects": [
         {
-          "paths": [
-            "/home/deevs/tasks/context/./"
-          ]
-        },
-        {
-          "paths": [
-            "/home/deevs/tasks/crud/./"
-          ]
-        },
-        {
-          "paths": [
-            "/home/deevs/tasks/geoip/./"
-          ]
+          "paths": ["/home/deevs/tasks/"]
         }
       ]
     }
