@@ -105,4 +105,8 @@ if command -v wagner > /dev/null; then
   eval "$(wagner completions zsh)"
 fi
 
+if command -v codex > /dev/null; then
+  eval "$(codex completion zsh)"
+fi
+
 export PATH="$HOME/.local/bin:$PATH"
