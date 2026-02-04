@@ -157,7 +157,8 @@
     "unrar": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
-    }
+    },
+    "github:sadjow/codex-cli-nix": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
