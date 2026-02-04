@@ -49,12 +49,12 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 ### macOS
 - macOS (Big Sur or later)
-- [Devbox](https://www.jetify.com/devbox/docs/installing_devbox/)
+- [Devbox](https://www.jetify.com/devbox/docs/installing-devbox/)
 - [Homebrew](https://brew.sh) - Only required for SketchyBar icons (SF Symbols, fonts, media-control)
 - Command Line Tools: `xcode-select --install`
 
 ### Linux
-- [Devbox](https://www.jetify.com/devbox/docs/installing_devbox/)
+- [Devbox](https://www.jetify.com/devbox/docs/installing-devbox/)
 - Nix package manager (installed automatically by Devbox)
 
 ## Components
