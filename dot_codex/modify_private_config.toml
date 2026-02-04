@@ -1,0 +1,78 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $data := dict -}}
+{{- if ne (trim .chezmoi.stdin) "" -}}
+{{- $data = fromToml .chezmoi.stdin -}}
+{{- end -}}
+
+{{- /* Top-level settings. */ -}}
+{{- $data = set $data "sandbox_mode" "workspace-write" -}}
+{{- $data = set $data "web_search" "live" -}}
+{{- $data = set $data "model" "gpt-5.2-codex" -}}
+{{- $data = set $data "model_reasoning_effort" "high" -}}
+{{- $data = set $data "tool_output_token_limit" 25000 -}}
+{{- $data = set $data "model_auto_compact_token_limit" 233000 -}}
+{{- $data = set $data "suppress_unstable_features_warning" true -}}
+
+{{- /* MCP settings. */ -}}
+{{- $mcpServers := get $data "mcp_servers" | default (dict) -}}
+{{- $context7 := dict "url" "https://mcp.context7.com/mcp" "http_headers" (dict "CONTEXT7_API_KEY" (onepasswordRead "op://JustEnvs/context7-api-key/credential")) "enabled" true -}}
+{{- $mcpServers = set $mcpServers "context7" $context7 -}}
+{{- $data = set $data "mcp_servers" $mcpServers -}}
+
+{{- /* Sandbox settings. */ -}}
+{{- $sandbox := get $data "sandbox_workspace_write" | default (dict) -}}
+{{- $sandbox = set $sandbox "network_access" true -}}
+
+{{- /* Build cross-platform writable roots without hardcoding absolute user paths. */ -}}
+{{- $home := env "HOME" -}}
+{{- $xdgCache := env "XDG_CACHE_HOME" | default (printf "%s/.cache" $home) -}}
+{{- $xdgData := env "XDG_DATA_HOME" | default (printf "%s/.local/share" $home) -}}
+{{- $devboxHome := env "DEVBOX_HOME" | default (printf "%s/devbox" $xdgData) -}}
+
+{{- $computedRoots := list "/nix/var/nix" "/nix/store" (printf "%s/nix" $xdgCache) (printf "%s/devbox" $xdgCache) $devboxHome -}}
+{{- if eq .chezmoi.os "darwin" -}}
+  {{- $computedRoots = append $computedRoots (printf "%s/Library/Caches" $home) -}}
+{{- end -}}
+
+{{- $existingRoots := get $sandbox "writable_roots" | default (list) -}}
+{{- if not (kindIs "slice" $existingRoots) -}}
+  {{- if $existingRoots -}}
+    {{- $existingRoots = list $existingRoots -}}
+  {{- else -}}
+    {{- $existingRoots = list -}}
+  {{- end -}}
+{{- end -}}
+{{- $allRoots := list -}}
+{{- range $existingRoots -}}
+  {{- $allRoots = append $allRoots . -}}
+{{- end -}}
+{{- range $computedRoots -}}
+  {{- $allRoots = append $allRoots . -}}
+{{- end -}}
+{{- $seen := dict -}}
+{{- $dedup := list -}}
+{{- range $allRoots -}}
+  {{- if and . (not (hasKey $seen .)) -}}
+    {{- $seen = set $seen . true -}}
+    {{- $dedup = append $dedup . -}}
+  {{- end -}}
+{{- end -}}
+{{- $sandbox = set $sandbox "writable_roots" $dedup -}}
+
+{{- $data = set $data "sandbox_workspace_write" $sandbox -}}
+
+{{- /* Profiles. */ -}}
+{{- $profiles := get $data "profiles" | default (dict) -}}
+{{- $profiles = set $profiles "auto" (dict "approval_policy" "never") -}}
+{{- $profiles = set $profiles "review" (dict "approval_policy" "on-request") -}}
+{{- $data = set $data "profiles" $profiles -}}
+
+{{- /* Features. */ -}}
+{{- $features := get $data "features" | default (dict) -}}
+{{- $features = set $features "unified_exec" true -}}
+{{- $features = set $features "apply_patch_freeform" true -}}
+{{- $features = set $features "shell_snapshot" true -}}
+{{- $features = set $features "skills" true -}}
+{{- $data = set $data "features" $features -}}
+
+{{- $data | toToml -}}
