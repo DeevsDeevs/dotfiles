@@ -157,8 +157,7 @@
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "github:sadjow/codex-cli-nix":     "",
-    "github:DeevsDeevs/wagner/v0.3.0": ""
+    "github:sadjow/codex-cli-nix": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
