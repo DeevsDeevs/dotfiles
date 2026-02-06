@@ -156,9 +156,10 @@
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "github:DeevsDeevs/wagner/v0.3.1": "",
-    "github:sadjow/codex-cli-nix":     "",
-    "github:sadjow/claude-code-nix":   ""
+    "libcap":                              "latest",
+    "github:DeevsDeevs/wagner/v0.3.1":     "",
+    "github:sadjow/claude-code-nix":       "",
+    "github:sadjow/codex-cli-nix/v0.96.0": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
