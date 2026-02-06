@@ -156,7 +156,6 @@
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "github:sadjow/codex-cli-nix":     "",
     "github:DeevsDeevs/wagner/v0.3.1": ""
   },
   "shell": {
