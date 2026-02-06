@@ -144,7 +144,6 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "github:sadjow/claude-code-nix": "",
     "coreutils": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
