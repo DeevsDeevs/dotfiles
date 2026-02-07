@@ -8,6 +8,7 @@
 {{- $data = set $data "sandbox_mode" "workspace-write" -}}
 {{- $data = set $data "web_search" "live" -}}
 {{- $data = set $data "model" "gpt-5.3-codex" -}}
+{{- $data = set $data "personality" "pragmatic" -}}
 {{- $data = set $data "model_reasoning_effort" "high" -}}
 {{- $data = set $data "tool_output_token_limit" 25000 -}}
 {{- $data = set $data "model_auto_compact_token_limit" 233000 -}}
@@ -72,7 +73,8 @@
 {{- $features = set $features "unified_exec" true -}}
 {{- $features = set $features "apply_patch_freeform" true -}}
 {{- $features = set $features "shell_snapshot" true -}}
-{{- $features = set $features "skills" true -}}
+{{- $features = set $features "child_agents_md" true -}}
+{{- $features = set $features "collab" true -}}
 {{- $data = set $data "features" $features -}}
 
 {{- $data | toToml -}}
