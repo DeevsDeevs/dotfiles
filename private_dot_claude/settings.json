@@ -4,7 +4,6 @@
   },
   "permissions": {
     "allow": [
-      "Skill(prompt-improver:*)",
       "mcp__context7__*",
       "Bash(find:*)",
       "Bash(grep:*)",
@@ -27,14 +26,12 @@
   },
   "enabledPlugins": {
     "chain-system@deevs-agent-system": true,
-    "tmux@deevs-agent-system": true,
     "dev-experts@deevs-agent-system": true,
     "datetime@deevs-agent-system": true,
     "anti-ai-slop@deevs-agent-system": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "97-dev@deevs-agent-system": true,
-    "arxiv-search@deevs-agent-system": true,
-    "prompt-improver@severity1-marketplace": true
+    "arxiv-search@deevs-agent-system": true
   },
   "alwaysThinkingEnabled": true,
   "statusLine": {
