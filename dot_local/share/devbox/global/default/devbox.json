@@ -18,6 +18,7 @@
     "opencode":                       "latest",
     "lua5_4":                         "latest",
     "process-compose":                "latest",
+    "mosh":                           "latest",
     "magic-wormhole":                 "latest",
     "google-cloud-sdk":               "latest",
     "tmuxPlugins.yank":               "latest",
