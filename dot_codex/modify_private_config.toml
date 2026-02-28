@@ -69,12 +69,18 @@
 {{- $data = set $data "profiles" $profiles -}}
 
 {{- /* Features. */ -}}
-{{- $features := get $data "features" | default (dict) -}}
+{{- $existingFeatures := get $data "features" | default (dict) -}}
+{{- $features := dict -}}
+{{- range $k, $v := $existingFeatures -}}
+  {{- if ne $k "collab" -}}
+    {{- $features = set $features $k $v -}}
+  {{- end -}}
+{{- end -}}
 {{- $features = set $features "unified_exec" true -}}
 {{- $features = set $features "apply_patch_freeform" true -}}
 {{- $features = set $features "shell_snapshot" true -}}
 {{- $features = set $features "child_agents_md" true -}}
-{{- $features = set $features "collab" true -}}
+{{- $features = set $features "multi_agent" true -}}
 {{- $data = set $data "features" $features -}}
 
 {{- $data | toToml -}}
