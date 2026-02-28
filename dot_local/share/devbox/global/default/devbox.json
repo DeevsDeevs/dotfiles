@@ -162,7 +162,6 @@
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
     "github:sadjow/claude-code-nix":   "",
-    "github:sadjow/codex-cli-nix":     "",
     "github:DeevsDeevs/wagner/v0.3.1": ""
   },
   "shell": {
