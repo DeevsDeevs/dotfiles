@@ -163,7 +163,8 @@
     },
     "github:sadjow/claude-code-nix": "",
     "github:sadjow/codex-cli-nix":   "",
-    "github:DeevsDeevs/wagner":      ""
+    "github:DeevsDeevs/wagner":      "",
+    "ffmpeg":                        "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
