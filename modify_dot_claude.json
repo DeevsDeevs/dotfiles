@@ -9,5 +9,10 @@
   "url" "https://mcp.context7.com/mcp"
   "headers" (dict "CONTEXT7_API_KEY" $apiKey)
 -}}
+{{- $datadog := dict
+  "type" "http"
+  "url" "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp"
+-}}
 {{- $_ := set $config.mcpServers "context7" $context7 -}}
+{{- $_ := set $config.mcpServers "datadog" $datadog -}}
 {{- $config | toPrettyJson -}}

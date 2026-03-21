@@ -40,6 +40,7 @@
     "97-dev@deevs-agent-system": true,
     "arxiv-search@deevs-agent-system": true
   },
+  "effortLevel": "high",
   "alwaysThinkingEnabled": true,
   "statusLine": {
     "type": "command",
