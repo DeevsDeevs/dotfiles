@@ -5,6 +5,7 @@
   "permissions": {
     "allow": [
       "mcp__context7__*",
+      "mcp__datadog__*",
       "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(rg:*)",
@@ -23,6 +24,12 @@
       "Bash(tr:*)",
       "Bash(xargs:*)"
     ]
+  },
+  "mcpServers": {
+    "datadog": {
+      "type": "http",
+      "url": "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp"
+    }
   },
   "enabledPlugins": {
     "chain-system@deevs-agent-system": true,

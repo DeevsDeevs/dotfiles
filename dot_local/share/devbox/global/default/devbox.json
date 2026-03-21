@@ -121,10 +121,6 @@
     },
     "bun": "1.2",
     "jq":  "latest",
-    "atlas": {
-      "version":   "latest",
-      "platforms": ["x86_64-linux", "aarch64-linux"]
-    },
     "yaak": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
@@ -161,10 +157,11 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "github:sadjow/claude-code-nix": "",
-    "github:sadjow/codex-cli-nix":   "",
     "ffmpeg":                        "latest",
-    "github:DeevsDeevs/wagner":      ""
+    "github:DeevsDeevs/wagner":      "",
+    "github:sadjow/codex-cli-nix":   "",
+    "github:sadjow/claude-code-nix": "",
+    "atlas":                         "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
