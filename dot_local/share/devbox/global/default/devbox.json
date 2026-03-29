@@ -158,7 +158,6 @@
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
     "ffmpeg":                        "latest",
-    "github:DeevsDeevs/wagner":      "",
     "github:sadjow/codex-cli-nix":   "",
     "github:sadjow/claude-code-nix": "",
     "atlas":                         "latest"
