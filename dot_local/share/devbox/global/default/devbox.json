@@ -157,10 +157,11 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "ffmpeg":                        "latest",
-    "github:sadjow/codex-cli-nix":   "",
-    "github:sadjow/claude-code-nix": "",
-    "atlas":                         "latest"
+    "ffmpeg":                          "latest",
+    "github:sadjow/codex-cli-nix":     "",
+    "github:sadjow/claude-code-nix":   "",
+    "atlas":                           "latest",
+    "github:DeevsDeevs/wagner/v0.5.3": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
