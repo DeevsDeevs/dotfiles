@@ -160,8 +160,7 @@
     "ffmpeg":                        "latest",
     "github:sadjow/codex-cli-nix":   "",
     "github:sadjow/claude-code-nix": "",
-    "atlas":                         "latest",
-    "github:DeevsDeevs/wagner":      ""
+    "atlas":                         "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
