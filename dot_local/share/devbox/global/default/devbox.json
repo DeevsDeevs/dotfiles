@@ -159,7 +159,8 @@
     },
     "ffmpeg":                          "latest",
     "atlas":                           "latest",
-    "github:DeevsDeevs/wagner/v0.5.3": ""
+    "github:DeevsDeevs/wagner/v0.5.3": "",
+    "github:sadjow/codex-cli-nix":     ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
