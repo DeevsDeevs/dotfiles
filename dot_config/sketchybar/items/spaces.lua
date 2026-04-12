@@ -2,10 +2,33 @@ local colors = require("colors")
 local icons = require("icons")
 local settings = require("settings")
 local app_icons = require("helpers.app_icons")
+local helpers = require("helpers")
 
 local spaces = {}
+local function active_space_indices()
+    local output = helpers.read_command("yabai -m query --spaces 2>/dev/null")
+    local indices = {}
+    local seen = {}
 
-for i = 1, 10, 1 do
+    for index in output:gmatch('"index"%s*:%s*(%d+)') do
+        local number = tonumber(index)
+        if number and not seen[number] then
+            table.insert(indices, number)
+            seen[number] = true
+        end
+    end
+
+    table.sort(indices)
+    if #indices == 0 then
+        for i = 1, 10, 1 do
+            table.insert(indices, i)
+        end
+    end
+
+    return indices
+end
+
+for _, i in ipairs(active_space_indices()) do
     local space = sbar.add("space", "space." .. i, {
         space = i,
         icon = {

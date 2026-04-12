@@ -2,6 +2,21 @@
 
 package.cpath = package.cpath .. ";/Users/deevs/.local/share/sketchybar_lua/?.so"
 
+for module_name, _ in pairs(package.loaded) do
+    if module_name == "helpers"
+        or module_name == "bar"
+        or module_name == "default"
+        or module_name == "items"
+        or module_name == "colors"
+        or module_name == "icons"
+        or module_name == "settings"
+        or module_name:match("^helpers%.")
+        or module_name:match("^items%.")
+    then
+        package.loaded[module_name] = nil
+    end
+end
+
 -- Require the sketchybar module first
 sbar = require("sketchybar")
 
