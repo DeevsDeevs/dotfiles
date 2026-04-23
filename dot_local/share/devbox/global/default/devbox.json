@@ -160,7 +160,11 @@
     "ffmpeg":                          "latest",
     "github:DeevsDeevs/wagner/v0.5.3": "",
     "github:sadjow/claude-code-nix":   "",
-    "github:sadjow/codex-cli-nix":     ""
+    "github:sadjow/codex-cli-nix":     "",
+    "bubblewrap": {
+      "version":   "latest",
+      "platforms": ["x86_64-linux", "aarch64-linux"]
+    }
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
