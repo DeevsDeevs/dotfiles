@@ -1,6 +1,9 @@
 {{- /* chezmoi:modify-template */ -}}
-{{- $apiKey := output "sh" "-c" "if command -v op >/dev/null 2>&1; then op read --no-newline 'op://JustEnvs/context7-api-key/credential' 2>/dev/null || true; fi" -}}
-{{- $config := fromJson .chezmoi.stdin -}}
+{{- $apiKey := output "sh" "-c" "if command -v op >/dev/null 2>&1; then op read --no-newline 'op://JustEnvs/context7-api-key/credential' </dev/null 2>/dev/null || true; fi" -}}
+{{- $config := dict -}}
+{{- if ne (trim .chezmoi.stdin) "" -}}
+{{-   $config = fromJson .chezmoi.stdin -}}
+{{- end -}}
 {{- if not (hasKey $config "mcpServers") -}}
 {{-   $_ := set $config "mcpServers" dict -}}
 {{- end -}}
