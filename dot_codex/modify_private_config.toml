@@ -16,7 +16,8 @@
 
 {{- /* MCP settings. */ -}}
 {{- $mcpServers := get $data "mcp_servers" | default (dict) -}}
-{{- $context7 := dict "url" "https://mcp.context7.com/mcp" "http_headers" (dict "CONTEXT7_API_KEY" (onepasswordRead "op://JustEnvs/context7-api-key/credential")) "enabled" true -}}
+{{- $context7ApiKey := output "sh" "-c" "if command -v op >/dev/null 2>&1; then op read --no-newline 'op://JustEnvs/context7-api-key/credential' 2>/dev/null || true; fi" -}}
+{{- $context7 := dict "url" "https://mcp.context7.com/mcp" "http_headers" (dict "CONTEXT7_API_KEY" $context7ApiKey) "enabled" true -}}
 {{- $datadog := dict "url" "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp" "enabled" true -}}
 {{- $mcpServers = set $mcpServers "context7" $context7 -}}
 {{- $mcpServers = set $mcpServers "datadog" $datadog -}}
