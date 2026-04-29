@@ -12,3 +12,9 @@ macos-option-as-alt = true
 background-opacity = 0.95
 
 auto-update-channel = tip
+
+desktop-notifications = true
+
+bell-features = system,audio,attention,title
+bell-audio-path = /System/Library/Sounds/Ping.aiff
+bell-audio-volume = 1.0
