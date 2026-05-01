@@ -166,7 +166,8 @@
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
     "github:DeevsDeevs/pup-cli-nix": "",
-    "rtk":                           "latest"
+    "rtk":                           "latest",
+    "gh":                            "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
