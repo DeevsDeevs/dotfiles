@@ -99,8 +99,6 @@ if [ -z "$DISABLE_ZOXIDE" ] && [[ $- == *i* ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
-alias tailscale='tailscale --socket=$HOME/.local/share/tailscale/tailscaled.sock'
-
 if command -v wagner > /dev/null; then
   eval "$(wagner completions zsh)"
 fi
