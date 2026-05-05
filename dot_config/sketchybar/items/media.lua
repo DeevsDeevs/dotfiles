@@ -76,10 +76,8 @@ local function animate_detail(detail)
     if (not detail) then interrupt = interrupt - 1 end
     if interrupt > 0 and (not detail) then return end
 
-    sbar.animate("tanh", 30, function()
-        media_artist:set({ label = { width = detail and "dynamic" or 0 } })
-        media_title:set({ label = { width = detail and "dynamic" or 0 } })
-    end)
+    media_artist:set({ label = { width = detail and "dynamic" or 0 } })
+    media_title:set({ label = { width = detail and "dynamic" or 0 } })
 end
 
 -- Mouse interactions

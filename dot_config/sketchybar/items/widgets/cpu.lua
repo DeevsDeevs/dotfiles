@@ -1,10 +1,17 @@
 local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
+local helpers = require("helpers")
+
+local function start_cpu_updates()
+    if not helpers.has.cpu_load then return end
+    sbar.exec("killall cpu_load >/dev/null 2>&1; "
+        .. helpers.detached(helpers.shell_quote(helpers.paths.cpu_load) .. " cpu_update 2.0"))
+end
 
 -- Execute the event provider binary which provides the event "cpu_update" for
 -- the cpu load data, which is fired every 2.0 seconds.
-sbar.exec("killall cpu_load >/dev/null; $CONFIG_DIR/helpers/event_providers/cpu_load/bin/cpu_load cpu_update 2.0")
+start_cpu_updates()
 
 local cpu = sbar.add("graph", "widgets.cpu", 42, {
     position = "right",

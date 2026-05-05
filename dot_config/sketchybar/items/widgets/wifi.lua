@@ -13,9 +13,12 @@ end
 
 local function start_network_updates()
     if not helpers.has.network_load then return end
-    sbar.exec("killall network_load >/dev/null; "
-        .. shell_quote(network_load_bin)
-        .. " " .. network_interface .. " network_update 2.0")
+    sbar.exec("killall network_load >/dev/null 2>&1; "
+        .. helpers.detached(
+            shell_quote(network_load_bin)
+            .. " " .. shell_quote(network_interface)
+            .. " network_update 2.0"
+        ))
 end
 
 local function refresh_network_interface()

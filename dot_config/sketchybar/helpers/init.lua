@@ -15,6 +15,13 @@ function M.shell_quote(value)
     return "'" .. tostring(value):gsub("'", "'\\''") .. "'"
 end
 
+function M.detached(command)
+    -- sbar.exec children inherit sketchybar_lua's stdio, lock fd, and other
+    -- implementation fds. Long-running helpers must not keep those fds open
+    -- after reloads, or they can look like leaked/orphaned processes.
+    return "( for fd in $(jot 253 3); do eval \"exec ${fd}>&-\" 2>/dev/null || true; done; exec </dev/null >/dev/null 2>&1 " .. command .. " ) &"
+end
+
 function M.file_exists(path)
     local file = io.open(path, "r")
     if file then
