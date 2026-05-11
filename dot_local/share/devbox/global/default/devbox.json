@@ -105,10 +105,6 @@
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "code-cursor": {
-      "version":   "latest",
-      "platforms": ["x86_64-darwin", "aarch64-darwin"]
-    },
     "pigz": "latest",
     "pv":   "latest",
     "unzip": {
@@ -161,9 +157,10 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "github:DeevsDeevs/pup-cli-nix": "",
-    "rtk":                           "latest",
-    "gh":                            "latest"
+    "github:DeevsDeevs/pup-cli-nix":       "",
+    "rtk":                                 "latest",
+    "gh":                                  "latest",
+    "github:DeevsDeevs/dumbgram-tui/main": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
