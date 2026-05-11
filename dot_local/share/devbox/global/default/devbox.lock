@@ -653,6 +653,154 @@
         }
       }
     },
+    "ffmpeg@latest": {
+      "last_modified": "2026-05-06T02:58:03Z",
+      "resolved": "github:NixOS/nixpkgs/ed67bc86e84e51d4a88e73c7fd36006dc876476f#ffmpeg",
+      "source": "devbox-search",
+      "version": "8.0.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/h6fbp9mf3asvqqrpfa76259nyxsk3wi4-ffmpeg-8.0.1-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/hgc8k86j30cxdmpad937kw6p1fnfh418-ffmpeg-8.0.1-man",
+              "default": true
+            },
+            {
+              "name": "data",
+              "path": "/nix/store/59jc9i19x0pggr30r80caxv9hlfwfmmm-ffmpeg-8.0.1-data"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/5rw0vz79g0k10innml94a6cahk0zdq0c-ffmpeg-8.0.1-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/08j6rfcgjxb4n6yw7cc2viggdm5hrb23-ffmpeg-8.0.1-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/xwrdkxphjw7dcvijz7hmjshgdh00pb8y-ffmpeg-8.0.1-lib"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/7x8affiw23mjygfdxp1h00rg5j9k1cpk-ffmpeg-8.0.1"
+            }
+          ],
+          "store_path": "/nix/store/h6fbp9mf3asvqqrpfa76259nyxsk3wi4-ffmpeg-8.0.1-bin"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/gg5fq58jr9scw9f0k0n29gwz82xjqwcn-ffmpeg-8.0.1-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/xz033zsph4csl2c0ks6x06rzyk9qzlry-ffmpeg-8.0.1-man",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/vfw6xffwgs4lg607hskbl53krwmqy0mn-ffmpeg-8.0.1-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/lm0h9yll1fgaic68m2aqicqpd17vxk6w-ffmpeg-8.0.1-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/dr8zxnra7jpnz92d41282s4i51rqsqgf-ffmpeg-8.0.1-lib"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/hmy40l2dy0hx3vfljb44srl5lfykg2l6-ffmpeg-8.0.1"
+            },
+            {
+              "name": "data",
+              "path": "/nix/store/sf329hswmdr00kgbmxlq0jwisnfp9kj4-ffmpeg-8.0.1-data"
+            }
+          ],
+          "store_path": "/nix/store/gg5fq58jr9scw9f0k0n29gwz82xjqwcn-ffmpeg-8.0.1-bin"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/jzf5nkzr21p13gbim6xhm17fs2cibhd6-ffmpeg-8.0.1-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/6lrs6d13m2ab8xw7rkpqqisqp6vqnnaj-ffmpeg-8.0.1-man",
+              "default": true
+            },
+            {
+              "name": "data",
+              "path": "/nix/store/ji5fnjviz7d0w281015z6w4wlp7hn3qj-ffmpeg-8.0.1-data"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/4ldbi1idfy5w4x9vqydjs7xr8d5imy39-ffmpeg-8.0.1-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/97q6hqzlyc2gfr02amnjh9gx5jxp2f83-ffmpeg-8.0.1-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/670zzi96flss4x3f8d4hpik9ydz61kiz-ffmpeg-8.0.1-lib"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/bpfx18fi8blpfg1r60vci24j9zis4fhy-ffmpeg-8.0.1"
+            }
+          ],
+          "store_path": "/nix/store/jzf5nkzr21p13gbim6xhm17fs2cibhd6-ffmpeg-8.0.1-bin"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/nih4c7knfj2mgjz6jp5l0fqn86xdwmhc-ffmpeg-8.0.1-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/x5pnf13md9xa4841ckdp9p0n192rlbwn-ffmpeg-8.0.1-man",
+              "default": true
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/c3q3hnqsp4b0l7fjx4q6ns4idw9pn6kv-ffmpeg-8.0.1-lib"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/26mpi27i6pj69dpk33fq61yhh46qi2id-ffmpeg-8.0.1"
+            },
+            {
+              "name": "data",
+              "path": "/nix/store/5q7nx3scq02s4wnjg028i9iv77ihqjz5-ffmpeg-8.0.1-data"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/28zawmnigadf607pbhmd3l775gafaf98-ffmpeg-8.0.1-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/9ld21n4la75hpd4jijxdrl2cjmv5fjcm-ffmpeg-8.0.1-doc"
+            }
+          ],
+          "store_path": "/nix/store/nih4c7knfj2mgjz6jp5l0fqn86xdwmhc-ffmpeg-8.0.1-bin"
+        }
+      }
+    },
     "fzf@latest": {
       "last_modified": "2026-01-23T17:20:52Z",
       "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#fzf",
@@ -721,6 +869,54 @@
         }
       }
     },
+    "gh@latest": {
+      "last_modified": "2026-05-01T13:14:57Z",
+      "resolved": "github:NixOS/nixpkgs/c6d65881c5624c9cae5ea6cedef24699b0c0a4c0#gh",
+      "source": "devbox-search",
+      "version": "2.92.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/iqnlcrakmwilxwwm2v127lvic5f11wj4-gh-2.92.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/iqnlcrakmwilxwwm2v127lvic5f11wj4-gh-2.92.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rh89irgvdyragn9269ja281wz97rrzjp-gh-2.92.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/rh89irgvdyragn9269ja281wz97rrzjp-gh-2.92.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/v2baccv5siwfhqdk8lz570vncd3i5ali-gh-2.92.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/v2baccv5siwfhqdk8lz570vncd3i5ali-gh-2.92.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/y3m73nv1ry783kqfjqq17p3kxxaxx5d1-gh-2.92.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/y3m73nv1ry783kqfjqq17p3kxxaxx5d1-gh-2.92.0"
+        }
+      }
+    },
     "ghostty-bin@latest": {
       "last_modified": "2026-01-23T17:20:52Z",
       "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#ghostty-bin",
@@ -786,10 +982,6 @@
           "store_path": "/nix/store/dms46nlnlghqdmgm7q2fx39g8mwdfrmx-ghostty-bin-1.2.3"
         }
       }
-    },
-    "github:DeevsDeevs/wagner/v0.3.1": {
-      "last_modified": "2026-02-04T23:59:01Z",
-      "resolved": "github:DeevsDeevs/wagner/7093e43b865eae2884ae433185e3d25161b109f0?lastModified=1770249541"
     },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2026-01-30T02:32:49Z",
@@ -1377,6 +1569,54 @@
         }
       }
     },
+    "mosh@latest": {
+      "last_modified": "2026-04-23T13:07:47Z",
+      "resolved": "github:NixOS/nixpkgs/01fbdeef22b76df85ea168fbfe1bfd9e63681b30#mosh",
+      "source": "devbox-search",
+      "version": "1.4.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xwgb112x4lbc4028ibcing803bwaaj8q-mosh-1.4.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xwgb112x4lbc4028ibcing803bwaaj8q-mosh-1.4.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/x39l3pcrvna7ihl1ip24sgp0zdhlbclb-mosh-1.4.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/x39l3pcrvna7ihl1ip24sgp0zdhlbclb-mosh-1.4.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/s76l5bqssvwxnnqalgwwpw3n2b4bdlc0-mosh-1.4.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/s76l5bqssvwxnnqalgwwpw3n2b4bdlc0-mosh-1.4.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/y11hqr0fwlm0xwij1xr1s8p9n3fzlswa-mosh-1.4.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/y11hqr0fwlm0xwij1xr1s8p9n3fzlswa-mosh-1.4.0"
+        }
+      }
+    },
     "neovim@latest": {
       "last_modified": "2026-01-27T15:18:14Z",
       "resolved": "github:NixOS/nixpkgs/afce96367b2e37fc29afb5543573cd49db3357b7#neovim",
@@ -1622,6 +1862,7 @@
     },
     "postgresql@latest": {
       "last_modified": "2026-01-30T02:32:49Z",
+      "plugin_version": "0.0.2",
       "resolved": "github:NixOS/nixpkgs/6308c3b21396534d8aaeac46179c14c439a89b8a#postgresql",
       "source": "devbox-search",
       "version": "17.7",
@@ -1980,6 +2221,54 @@
         }
       }
     },
+    "rtk@latest": {
+      "last_modified": "2026-05-07T03:23:16Z",
+      "resolved": "github:NixOS/nixpkgs/68a8af93ff4297686cb68880845e61e5e2e41d92#rtk",
+      "source": "devbox-search",
+      "version": "0.38.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/y66n05skskbffm94r26b7wmqy1ih81nm-rtk-0.38.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/y66n05skskbffm94r26b7wmqy1ih81nm-rtk-0.38.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/csx0rxayp1gbwdadjczb8sfqa6snaz2y-rtk-0.38.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/csx0rxayp1gbwdadjczb8sfqa6snaz2y-rtk-0.38.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2hzf575h43qyflw9j86cvblkcbkxkjmh-rtk-0.38.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/2hzf575h43qyflw9j86cvblkcbkxkjmh-rtk-0.38.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6la6v5c8ggh6xrai8579pws1l6z92gyv-rtk-0.38.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6la6v5c8ggh6xrai8579pws1l6z92gyv-rtk-0.38.0"
+        }
+      }
+    },
     "rustup@latest": {
       "last_modified": "2026-01-23T17:20:52Z",
       "plugin_version": "0.0.1",
@@ -2244,54 +2533,6 @@
             }
           ],
           "store_path": "/nix/store/j0aj06b2hf0jxppgjfxq7x8mlk9mlkpn-starship-1.24.2"
-        }
-      }
-    },
-    "telegram-desktop@latest": {
-      "last_modified": "2026-01-23T17:20:52Z",
-      "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#telegram-desktop",
-      "source": "devbox-search",
-      "version": "6.4.1",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/vmzzxq7wwpazk295xpm65gs3x4vfpsln-telegram-desktop-6.4.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/vmzzxq7wwpazk295xpm65gs3x4vfpsln-telegram-desktop-6.4.1"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/d8yxcwxb2q1jflj6f7ns4zy0rvjwa8hf-telegram-desktop-6.4.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/d8yxcwxb2q1jflj6f7ns4zy0rvjwa8hf-telegram-desktop-6.4.1"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/q8vnqb8v2raw2yvir0jyyxzq1z362vdx-telegram-desktop-6.4.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/q8vnqb8v2raw2yvir0jyyxzq1z362vdx-telegram-desktop-6.4.1"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/yz9dg7m5b045kpxgpmr7anrsw4f73r44-telegram-desktop-6.4.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/yz9dg7m5b045kpxgpmr7anrsw4f73r44-telegram-desktop-6.4.1"
         }
       }
     },

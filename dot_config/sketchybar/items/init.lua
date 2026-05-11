@@ -4,4 +4,6 @@ require("items.spaces")
 require("items.front_app")
 require("items.calendar")
 require("items.widgets")
-require("items.media")
+-- Disabled for stability: the high-frequency media-control/artwork polling was
+-- implicated in sketchybar_lua <-> sketchybar Mach send deadlocks.
+-- require("items.media")

@@ -65,10 +65,6 @@
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "telegram-desktop": {
-      "version":   "latest",
-      "platforms": ["x86_64-darwin", "aarch64-darwin"]
-    },
     "slack": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]

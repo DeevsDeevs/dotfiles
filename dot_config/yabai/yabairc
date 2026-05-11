@@ -52,27 +52,43 @@ yabai -m config external_bar all:34:0
 
 # ===== Status bar support =====================
 
-# Send signals to sketchybar on space change
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_minimized action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_deminimized action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_moved action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
-yabai -m signal --add event=display_changed action="sketchybar --trigger display_change"
+SKETCHYBAR_TRIGGER="$HOME/.config/yabai/scripts/sketchybar_trigger.sh"
 
-# Update space windows when a window changes space
-yabai -m signal --add event=window_created action="sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger space_windows_change"
-yabai -m signal --add event=window_moved action="sketchybar --trigger space_windows_change"
-yabai -m signal --add event=space_changed action="sketchybar --trigger space_windows_change"
-yabai -m signal --add event=display_changed action="sketchybar --trigger space_windows_change"
+# Keep signals idempotent across yabairc reloads. Remove both current labels and
+# labels from older versions of this config.
+for label in \
+  sketchybar_window_focus \
+  sketchybar_windows_on_spaces_created \
+  sketchybar_windows_on_spaces_destroyed \
+  sketchybar_windows_on_spaces_minimized \
+  sketchybar_windows_on_spaces_deminimized \
+  sketchybar_windows_on_spaces_moved \
+  sketchybar_space_change \
+  sketchybar_display_change \
+  sketchybar_space_windows_created \
+  sketchybar_space_windows_destroyed \
+  sketchybar_space_windows_moved \
+  sketchybar_space_windows_space_changed \
+  sketchybar_space_windows_display_changed \
+  ghostty_layout_created \
+  ghostty_layout_destroyed
+ do
+  yabai -m signal --remove "$label" >/dev/null 2>&1 || true
+done
+
+# Only send the custom event that this sketchybar config subscribes to. Avoid
+# flooding sketchybar with unused window_focus/windows_on_spaces triggers. The
+# wrapper times out so a hung sketchybar cannot leave stuck trigger clients.
+yabai -m signal --add label=sketchybar_space_windows_created event=window_created action="$SKETCHYBAR_TRIGGER space_windows_change"
+yabai -m signal --add label=sketchybar_space_windows_destroyed event=window_destroyed action="$SKETCHYBAR_TRIGGER space_windows_change"
+yabai -m signal --add label=sketchybar_space_windows_moved event=window_moved action="$SKETCHYBAR_TRIGGER space_windows_change"
+yabai -m signal --add label=sketchybar_space_windows_space_changed event=space_changed action="$SKETCHYBAR_TRIGGER space_windows_change"
+yabai -m signal --add label=sketchybar_space_windows_display_changed event=display_changed action="$SKETCHYBAR_TRIGGER space_windows_change"
 
 # Ghostty Fix
 
-yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
-yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
+yabai -m signal --add label=ghostty_layout_created app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+yabai -m signal --add label=ghostty_layout_destroyed app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
 
 # ===== Rules ==================================
 
