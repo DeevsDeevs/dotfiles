@@ -36,7 +36,7 @@ dbadd-linux package-name # Add Linux-only package
 
 [process-compose](https://github.com/F1bonacc1/process-compose) manages background services:
 - Configuration: [`.local/share/devbox/global/default/process-compose.yaml`](dot_local/share/devbox/global/default/process-compose.yaml)
-- Services: tailscaled, sketchybar
+- Services: sketchybar
 
 ### Helper Scripts
 
@@ -150,8 +150,8 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 #### Cross-platform (macOS & Linux)
 - **CLI Tools**: ripgrep, fzf, bat, zoxide, btop, k9s
 - **Cloud/DevOps**: awscli2, kubectl, kubectx, google-cloud-sdk
-- **Development**: neovim, tmux, bun, rustup, postgresql
-- **Networking**: Tailscale, 1Password CLI
+- **Development**: neovim, tmux, bun, rustup
+- **Networking**: 1Password CLI
 - **Other**: Magic Wormhole
 
 #### macOS only (GUI apps)

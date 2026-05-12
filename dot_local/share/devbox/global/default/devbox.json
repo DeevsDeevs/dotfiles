@@ -36,7 +36,6 @@
     "rustup":                         "latest",
     "libiconv":                       "latest",
     "cmake":                          "latest",
-    "postgresql":                     "latest",
     "libpq":                          "latest",
     "allure":                         "latest",
     "_1password-cli":                 "latest",
@@ -157,10 +156,10 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "github:DeevsDeevs/pup-cli-nix":       "",
-    "rtk":                                 "latest",
-    "gh":                                  "latest",
-    "github:DeevsDeevs/dumbgram-tui/main": ""
+    "github:DeevsDeevs/pup-cli-nix": "",
+    "rtk":                           "latest",
+    "gh":                            "latest",
+    "git+ssh://git":                 "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
