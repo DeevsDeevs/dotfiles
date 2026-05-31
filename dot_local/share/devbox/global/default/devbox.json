@@ -158,7 +158,8 @@
     "github:DeevsDeevs/pup-cli-nix": "",
     "rtk":                           "latest",
     "gh":                            "latest",
-    "git+ssh://git":                 "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui"
+    "git+ssh://git":                 "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
+    "github:sadjow/codex-cli-nix":   ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
