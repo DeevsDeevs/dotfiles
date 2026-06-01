@@ -148,9 +148,8 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "ffmpeg":                          "latest",
-    "github:DeevsDeevs/wagner/v0.5.3": "",
-    "github:sadjow/claude-code-nix":   "",
+    "ffmpeg":                        "latest",
+    "github:sadjow/claude-code-nix": "",
     "bubblewrap": {
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
