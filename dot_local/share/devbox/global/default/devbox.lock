@@ -1019,17 +1019,13 @@
         }
       }
     },
-    "github:DeevsDeevs/dumbgram-tui/main": {
-      "last_modified": "2026-05-11T09:29:03Z",
-      "resolved": "github:DeevsDeevs/dumbgram-tui/6b26c70fb23f9b4599d5a28f9302d8cf71ff40f1?lastModified=1778491743"
+    "git+ssh://git@github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui": {
+      "last_modified": "2026-05-12T16:37:31Z",
+      "resolved": "git+ssh://git@github.com/DeevsDeevs/dumbgram-tui.git?ref=main&rev=a827b992f507c6806b0d63a77aca61c16511998a#dumbgram_tui"
     },
     "github:DeevsDeevs/pup-cli-nix": {
       "last_modified": "2026-04-28T21:54:23Z",
       "resolved": "github:DeevsDeevs/pup-cli-nix/0a2a65750491ec8a79a0d6465f084500aae48d13?lastModified=1777413263"
-    },
-    "github:DeevsDeevs/wagner/v0.5.3": {
-      "last_modified": "2026-03-30T00:02:00Z",
-      "resolved": "github:DeevsDeevs/wagner/5a0a894fed2fb8244658f304309cf642756beb5d?lastModified=1774828920"
     },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2026-01-30T02:32:49Z",
@@ -1040,8 +1036,8 @@
       "resolved": "github:sadjow/claude-code-nix/214fdf6592f40a8bb472e80283c029d01fb6653d?lastModified=1775271377"
     },
     "github:sadjow/codex-cli-nix": {
-      "last_modified": "2026-04-23T19:30:32Z",
-      "resolved": "github:sadjow/codex-cli-nix/f24bd798cfaf1fa514b5e22f77f8100a77438ea1?lastModified=1776972632"
+      "last_modified": "2026-05-28T19:53:59Z",
+      "resolved": "github:sadjow/codex-cli-nix/803b7de2cccae3abbb9d23c10826af087428b06e?lastModified=1779998039"
     },
     "google-chrome@latest": {
       "last_modified": "2026-01-30T02:32:49Z",
