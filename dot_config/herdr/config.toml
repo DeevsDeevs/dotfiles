@@ -1,0 +1,44 @@
+onboarding = false
+
+# Match tmux muscle memory from ~/.config/tmux/tmux.conf (chezmoi):
+# prefix C-s, reload with prefix+r, split with prefix+" / prefix+%,
+# hjkl pane movement, prefix+c/n/p/1..9 tabs, prefix+x pane close.
+[keys]
+prefix = "ctrl+s"
+
+# tmux-style session/window/pane actions
+detach = "prefix+d"
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+new_tab = "prefix+c"
+rename_tab = "prefix+comma"
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+switch_tab = "prefix+1..9"
+close_tab = "prefix+ampersand"
+copy_mode = "prefix+["
+last_pane = "prefix+semicolon"
+
+# tmux-style pane actions
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+split_horizontal = "prefix+double_quote" # tmux: prefix+" -> split-window -v / stacked panes
+split_vertical = "prefix+percent"        # tmux: prefix+% -> split-window -h / side-by-side panes
+close_pane = "prefix+x"
+zoom = "prefix+z"
+
+[terminal]
+# Keep tmux-like behavior: new panes/tabs inherit the focused pane/workspace cwd.
+new_cwd = "follow"
+
+[ui.sound]
+enabled = true
+
+[ui.toast]
+delivery = "system"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+mouse_capture = true
