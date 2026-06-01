@@ -158,8 +158,8 @@
     "rtk":                                                                "latest",
     "gh":                                                                 "latest",
     "git+ssh://git":                                                      "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
-    "github:sadjow/codex-cli-nix":                                        "",
-    "path:{{ .chezmoi.homeDir }}/.local/share/devbox/global/default/nix/herdr-bin": ""
+    "github:sadjow/codex-cli-nix": "",
+    "github:ogulcancelik/herdr":   ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
