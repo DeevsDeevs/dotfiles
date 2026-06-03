@@ -80,6 +80,30 @@ dbrm() {
   devbox global rm "$@" && dbsync
 }
 
+dbupdate() {
+  if [[ $# -eq 0 ]]; then
+    devbox global update && dbsync
+    return
+  fi
+
+  local pkg flake_ref
+  for pkg in "$@"; do
+    case "$pkg" in
+      github:*|gitlab:*|sourcehut:*|git+*|path:*)
+        flake_ref="${pkg%%#*}"
+        echo "↻ Refreshing flake metadata for ${flake_ref}"
+        nix flake metadata "$flake_ref" --refresh > /dev/null || return
+        ;;
+    esac
+  done
+
+  devbox global update "$@" && dbsync
+}
+
+dbup() {
+  dbupdate "$@"
+}
+
 dbadd-mac() {
   devbox global add "$@" --platform x86_64-darwin,aarch64-darwin && dbsync
 }
