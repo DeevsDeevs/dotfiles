@@ -158,7 +158,6 @@
     "rtk":                           "latest",
     "gh":                            "latest",
     "git+ssh://git":                 "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
-    "github:sadjow/codex-cli-nix":   "",
     "github:ogulcancelik/herdr":     ""
   },
   "shell": {
