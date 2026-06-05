@@ -72,32 +72,97 @@ dbsync() {
   echo "✓ Synced devbox.json to chezmoi"
 }
 
+_is_devbox_flake_ref() {
+  case "$1" in
+    github:*|gitlab:*|sourcehut:*|git+*|path:*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+_devbox_raise_nofile_limit() {
+  local current hard target=8192
+
+  current="$(ulimit -n 2>/dev/null)" || return 0
+  [[ "$current" == "unlimited" ]] && return 0
+  [[ -z "$current" || "$current" -ge "$target" ]] && return 0
+
+  hard="$(ulimit -H -n 2>/dev/null)" || hard=""
+  if [[ -n "$hard" && "$hard" != "unlimited" && "$hard" -lt "$target" ]]; then
+    target="$hard"
+  fi
+
+  ulimit -n "$target" 2>/dev/null || true
+}
+
+_dbupdate_flake_ref() {
+  local pkg="$1"
+  local flake_ref="${pkg%%#*}"
+  local devbox_json backup
+
+  _devbox_raise_nofile_limit
+
+  echo "↻ Refreshing flake metadata for ${flake_ref}"
+  nix flake metadata "$flake_ref" --refresh > /dev/null || return
+
+  devbox_json="$(devbox global path)/devbox.json" || return
+  backup="$(mktemp)" || return
+  cp "$devbox_json" "$backup" || { rm -f "$backup"; return 1; }
+
+  echo "↻ Re-adding flake package ${pkg}"
+  if ! devbox global rm "$pkg"; then
+    echo "! Remove failed; restoring ${devbox_json}"
+    cp "$backup" "$devbox_json"
+    rm -f "$backup"
+    return 1
+  fi
+
+  if ! devbox global add "$pkg"; then
+    echo "! Re-add failed; restoring ${devbox_json}"
+    cp "$backup" "$devbox_json"
+    rm -f "$backup"
+    return 1
+  fi
+
+  rm -f "$backup"
+}
+
 dbadd() {
+  _devbox_raise_nofile_limit
   devbox global add "$@" && dbsync
 }
 
 dbrm() {
+  _devbox_raise_nofile_limit
   devbox global rm "$@" && dbsync
 }
 
 dbupdate() {
+  _devbox_raise_nofile_limit
+
   if [[ $# -eq 0 ]]; then
     devbox global update && dbsync
     return
   fi
 
-  local pkg flake_ref
+  local pkg
+  local -a registry_pkgs flake_pkgs
   for pkg in "$@"; do
-    case "$pkg" in
-      github:*|gitlab:*|sourcehut:*|git+*|path:*)
-        flake_ref="${pkg%%#*}"
-        echo "↻ Refreshing flake metadata for ${flake_ref}"
-        nix flake metadata "$flake_ref" --refresh > /dev/null || return
-        ;;
-    esac
+    if _is_devbox_flake_ref "$pkg"; then
+      flake_pkgs+=("$pkg")
+    else
+      registry_pkgs+=("$pkg")
+    fi
   done
 
-  devbox global update "$@" && dbsync
+  if [[ ${#registry_pkgs[@]} -gt 0 ]]; then
+    devbox global update "${registry_pkgs[@]}" || return
+  fi
+
+  for pkg in "${flake_pkgs[@]}"; do
+    _dbupdate_flake_ref "$pkg" || return
+  done
+
+  dbsync
 }
 
 dbup() {

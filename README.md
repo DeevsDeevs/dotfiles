@@ -27,6 +27,7 @@ Defined in [`.zshrc`](dot_zshrc):
 ```bash
 dbadd package-name       # Add package (all platforms) and sync to chezmoi
 dbrm package-name        # Remove package and sync to chezmoi
+dbup [package-name]      # Update packages; flake refs are refreshed via remove+add
 dbsync                   # Manually sync devbox.json to chezmoi
 dbadd-mac package-name   # Add macOS-only package
 dbadd-linux package-name # Add Linux-only package
@@ -319,6 +320,11 @@ dbadd-linux package-name
 
 # Remove a package
 dbrm package-name
+
+# Update all packages, or specific packages
+# Flake refs like github:owner/repo are refreshed by remove+add.
+dbup
+dbup github:DeevsDeevs/pup-cli-nix
 
 # Manually edit devbox.json
 zeditor ~/.local/share/devbox/global/default/devbox.json
