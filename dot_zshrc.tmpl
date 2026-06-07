@@ -68,7 +68,10 @@ alias vim='nvim'
 alias c='clear'
 
 dbsync() {
-  chezmoi add ~/.local/share/devbox/global/default/devbox.json
+  local devbox_dir
+
+  devbox_dir="$(devbox global path)" || return
+  chezmoi add "$devbox_dir/devbox.json" || return
   echo "✓ Synced devbox.json to chezmoi"
 }
 
@@ -94,53 +97,108 @@ _devbox_raise_nofile_limit() {
   ulimit -n "$target" 2>/dev/null || true
 }
 
+_devbox_snapshot_create() {
+  local devbox_dir backup
+
+  devbox_dir="$(devbox global path)" || return
+  backup="$(mktemp -d)" || return
+
+  cp "$devbox_dir/devbox.json" "$backup/devbox.json" || {
+    rm -rf "$backup"
+    return 1
+  }
+
+  if [[ -f "$devbox_dir/devbox.lock" ]]; then
+    cp "$devbox_dir/devbox.lock" "$backup/devbox.lock" || {
+      rm -rf "$backup"
+      return 1
+    }
+  fi
+
+  echo "$backup"
+}
+
+_devbox_snapshot_restore() {
+  local backup="$1"
+  local devbox_dir
+
+  devbox_dir="$(devbox global path)" || return
+
+  cp "$backup/devbox.json" "$devbox_dir/devbox.json" || return
+  if [[ -f "$backup/devbox.lock" ]]; then
+    cp "$backup/devbox.lock" "$devbox_dir/devbox.lock" || return
+  else
+    rm -f "$devbox_dir/devbox.lock"
+  fi
+
+  devbox global install > /dev/null || return
+  devbox global shellenv --install --recompute --format zsh > /dev/null
+}
+
+_devbox_snapshot_cleanup() {
+  [[ -n "$1" && -d "$1" ]] && rm -rf "$1"
+}
+
+_devbox_mutate() {
+  local backup exit_code
+
+  backup="$(_devbox_snapshot_create)" || return
+
+  "$@"
+  exit_code=$?
+  if [[ "$exit_code" -eq 0 ]]; then
+    _devbox_snapshot_cleanup "$backup"
+    dbsync
+    return
+  fi
+
+  echo "! Devbox command failed; restoring devbox.json and devbox.lock"
+  _devbox_snapshot_restore "$backup" || echo "! Restore completed with warnings; run 'devbox global install' if shellenv still looks stale"
+  _devbox_snapshot_cleanup "$backup"
+  return "$exit_code"
+}
+
 _dbupdate_flake_ref() {
   local pkg="$1"
   local flake_ref="${pkg%%#*}"
-  local devbox_json backup
+  local backup exit_code
 
   _devbox_raise_nofile_limit
 
   echo "↻ Refreshing flake metadata for ${flake_ref}"
   nix flake metadata "$flake_ref" --refresh > /dev/null || return
 
-  devbox_json="$(devbox global path)/devbox.json" || return
-  backup="$(mktemp)" || return
-  cp "$devbox_json" "$backup" || { rm -f "$backup"; return 1; }
+  backup="$(_devbox_snapshot_create)" || return
 
   echo "↻ Re-adding flake package ${pkg}"
-  if ! devbox global rm "$pkg"; then
-    echo "! Remove failed; restoring ${devbox_json}"
-    cp "$backup" "$devbox_json"
-    rm -f "$backup"
-    return 1
+  devbox global rm "$pkg" && devbox global add "$pkg"
+  exit_code=$?
+  if [[ "$exit_code" -eq 0 ]]; then
+    _devbox_snapshot_cleanup "$backup"
+    return
   fi
 
-  if ! devbox global add "$pkg"; then
-    echo "! Re-add failed; restoring ${devbox_json}"
-    cp "$backup" "$devbox_json"
-    rm -f "$backup"
-    return 1
-  fi
-
-  rm -f "$backup"
+  echo "! Flake update failed; restoring devbox.json and devbox.lock"
+  _devbox_snapshot_restore "$backup" || echo "! Restore completed with warnings; run 'devbox global install' if shellenv still looks stale"
+  _devbox_snapshot_cleanup "$backup"
+  return "$exit_code"
 }
 
 dbadd() {
   _devbox_raise_nofile_limit
-  devbox global add "$@" && dbsync
+  _devbox_mutate devbox global add "$@"
 }
 
 dbrm() {
   _devbox_raise_nofile_limit
-  devbox global rm "$@" && dbsync
+  _devbox_mutate devbox global rm "$@"
 }
 
 dbupdate() {
   _devbox_raise_nofile_limit
 
   if [[ $# -eq 0 ]]; then
-    devbox global update && dbsync
+    _devbox_mutate devbox global update
     return
   fi
 
@@ -155,7 +213,7 @@ dbupdate() {
   done
 
   if [[ ${#registry_pkgs[@]} -gt 0 ]]; then
-    devbox global update "${registry_pkgs[@]}" || return
+    _devbox_mutate devbox global update "${registry_pkgs[@]}" || return
   fi
 
   for pkg in "${flake_pkgs[@]}"; do
@@ -170,11 +228,13 @@ dbup() {
 }
 
 dbadd-mac() {
-  devbox global add "$@" --platform x86_64-darwin,aarch64-darwin && dbsync
+  _devbox_raise_nofile_limit
+  _devbox_mutate devbox global add "$@" --platform x86_64-darwin,aarch64-darwin
 }
 
 dbadd-linux() {
-  devbox global add "$@" --platform x86_64-linux,aarch64-linux && dbsync
+  _devbox_raise_nofile_limit
+  _devbox_mutate devbox global add "$@" --platform x86_64-linux,aarch64-linux
 }
 
 if command -v fzf > /dev/null; then
