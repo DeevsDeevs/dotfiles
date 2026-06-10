@@ -148,8 +148,7 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "ffmpeg":                        "latest",
-    "github:sadjow/claude-code-nix": "",
+    "ffmpeg": "latest",
     "bubblewrap": {
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
@@ -159,7 +158,8 @@
     "git+ssh://git":                 "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
     "github:sadjow/codex-cli-nix":   "",
     "github:DeevsDeevs/pup-cli-nix": "",
-    "github:ogulcancelik/herdr":     ""
+    "github:ogulcancelik/herdr":     "",
+    "github:sadjow/claude-code-nix": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
