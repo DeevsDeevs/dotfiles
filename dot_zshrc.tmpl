@@ -100,7 +100,7 @@ _devbox_raise_nofile_limit() {
 _devbox_with_github_token() {
   local token cfg="$NIX_CONFIG"
 
-  if [[ "$cfg" != *access-tokens* ]] && command -v gh > /dev/null; then
+  if [[ "$cfg" != *github.com=* ]] && command -v gh > /dev/null; then
     token="$(gh auth token -h github.com 2>/dev/null)" || token=""
     [[ -n "$token" ]] && cfg="${cfg:+$cfg$'\n'}access-tokens = github.com=$token"
   fi
