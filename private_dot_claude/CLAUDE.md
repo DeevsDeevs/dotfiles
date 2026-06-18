@@ -35,19 +35,12 @@
 | Skill | When to Use | How to Invoke |
 |-------|-------------|---------------|
 | `datetime` | Need current date/time for logging, file naming, timestamps, APIs | `/datetime` or use `date` commands from skill |
-| `tmux` | Interactive programs: REPLs, debuggers, dev servers, parallel tasks | `/tmux` - use `tmux-ctl` commands |
 | `anti-ai-slop` | After writing code, before commit - clean up AI-generated bloat | `/anti-ai-slop` |
 | `prompt-improver` | Auto-triggered on vague prompts to ask clarifying questions | Automatic via hook |
 
 ### Quick Skill Reference
 
 **datetime**: `date +%Y-%m-%d`, `date +%s` (epoch), `date -u +"%Y-%m-%dT%H:%M:%SZ"` (ISO UTC)
-
-**tmux**:
-- `tmux-ctl eval "command"` - one-off execution
-- `tmux-ctl repl python "expr"` - REPL one-shot
-- `tmux-ctl start "npm run dev" --name=server` - background process
-- `tmux-ctl logs server` - view output
 
 **anti-ai-slop**: Removes unnecessary comments, redundant checks, single-use variables, style drift from branch diff
 
