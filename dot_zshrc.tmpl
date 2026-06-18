@@ -97,6 +97,25 @@ _devbox_raise_nofile_limit() {
   ulimit -n "$target" 2>/dev/null || true
 }
 
+_devbox_with_github_token() {
+  local token cfg="$NIX_CONFIG"
+
+  if [[ "$cfg" != *access-tokens* ]] && command -v gh > /dev/null; then
+    token="$(gh auth token -h github.com 2>/dev/null)" || token=""
+    [[ -n "$token" ]] && cfg="${cfg:+$cfg$'\n'}access-tokens = github.com=$token"
+  fi
+
+  if [[ -n "$cfg" ]]; then
+    NIX_CONFIG="$cfg" "$@"
+  else
+    "$@"
+  fi
+}
+
+_devbox_refresh_shell() {
+  eval "$(_devbox_with_github_token devbox global shellenv --preserve-path-stack -r)" && hash -r
+}
+
 _devbox_snapshot_create() {
   local devbox_dir backup
 
@@ -131,8 +150,8 @@ _devbox_snapshot_restore() {
     rm -f "$devbox_dir/devbox.lock"
   fi
 
-  devbox global install > /dev/null || return
-  devbox global shellenv --install --recompute --format zsh > /dev/null
+  _devbox_with_github_token devbox global install > /dev/null || return
+  _devbox_with_github_token devbox global shellenv --install --recompute --format zsh > /dev/null
 }
 
 _devbox_snapshot_cleanup() {
@@ -144,10 +163,11 @@ _devbox_mutate() {
 
   backup="$(_devbox_snapshot_create)" || return
 
-  "$@"
+  _devbox_with_github_token "$@"
   exit_code=$?
   if [[ "$exit_code" -eq 0 ]]; then
     _devbox_snapshot_cleanup "$backup"
+    _devbox_refresh_shell
     dbsync
     return
   fi
@@ -166,12 +186,12 @@ _dbupdate_flake_ref() {
   _devbox_raise_nofile_limit
 
   echo "↻ Refreshing flake metadata for ${flake_ref}"
-  nix flake metadata "$flake_ref" --refresh > /dev/null || return
+  _devbox_with_github_token nix flake metadata "$flake_ref" --refresh > /dev/null || return
 
   backup="$(_devbox_snapshot_create)" || return
 
   echo "↻ Re-adding flake package ${pkg}"
-  devbox global rm "$pkg" && devbox global add "$pkg"
+  _devbox_with_github_token devbox global rm "$pkg" && _devbox_with_github_token devbox global add "$pkg"
   exit_code=$?
   if [[ "$exit_code" -eq 0 ]]; then
     _devbox_snapshot_cleanup "$backup"
@@ -220,6 +240,7 @@ dbupdate() {
     _dbupdate_flake_ref "$pkg" || return
   done
 
+  _devbox_refresh_shell
   dbsync
 }
 
