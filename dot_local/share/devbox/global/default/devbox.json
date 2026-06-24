@@ -159,7 +159,8 @@
     "github:DeevsDeevs/pup-cli-nix": "",
     "github:sadjow/claude-code-nix": "",
     "github:ogulcancelik/herdr":     "",
-    "github:sadjow/codex-cli-nix":   ""
+    "github:sadjow/codex-cli-nix":   "",
+    "grpcurl":                       "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
