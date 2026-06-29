@@ -108,6 +108,9 @@ function __icon_map() {
    "ChatGPT")
         icon_result=":openai:"
         ;;
+   "Codex")
+        icon_result=":openai:"
+        ;;
    "Books" | "Apple Books")
         icon_result=":apple_books:"
         ;;

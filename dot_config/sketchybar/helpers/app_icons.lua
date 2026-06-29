@@ -45,6 +45,7 @@ return {
 	["MongoDB Compass"] = ":mongodb:",
 	["Joplin"] = ":joplin:",
 	["ChatGPT"] = ":openai:",
+	["Codex"] = ":openai:",
 	["Books"] = ":apple_books:",
 	["Apple Books"] = ":apple_books:",
 	["Quantumult X"] = ":quantumult_x:",
