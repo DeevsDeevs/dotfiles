@@ -158,9 +158,9 @@
     "git+ssh://git":                 "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
     "github:DeevsDeevs/pup-cli-nix": "",
     "github:sadjow/claude-code-nix": "",
-    "github:ogulcancelik/herdr":     "",
     "github:sadjow/codex-cli-nix":   "",
-    "grpcurl":                       "latest"
+    "grpcurl":                       "latest",
+    "github:ogulcancelik/herdr":     ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
