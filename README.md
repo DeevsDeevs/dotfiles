@@ -28,7 +28,7 @@ Defined in [`.zshrc`](dot_zshrc):
 dbadd package-name       # Add package (all platforms) and sync to chezmoi
 dbrm package-name        # Remove package and sync to chezmoi
 dbup [package-name]      # Update packages; flake refs are refreshed via remove+add
-dbsync                   # Manually sync devbox.json to chezmoi
+dbsync                   # Manually sync devbox.json and devbox.lock to chezmoi
 dbadd-mac package-name   # Add macOS-only package
 dbadd-linux package-name # Add Linux-only package
 ```
@@ -329,7 +329,7 @@ dbup github:DeevsDeevs/pup-cli-nix
 # Manually edit devbox.json
 zeditor ~/.local/share/devbox/global/default/devbox.json
 
-# Then sync
+# Then sync devbox.json and devbox.lock
 dbsync
 ```
 

@@ -71,8 +71,8 @@ dbsync() {
   local devbox_dir
 
   devbox_dir="$(devbox global path)" || return
-  chezmoi add "$devbox_dir/devbox.json" || return
-  echo "✓ Synced devbox.json to chezmoi"
+  chezmoi add "$devbox_dir/devbox.json" "$devbox_dir/devbox.lock" || return
+  echo "✓ Synced devbox.json and devbox.lock to chezmoi"
 }
 
 _is_devbox_flake_ref() {
@@ -151,7 +151,7 @@ _devbox_snapshot_restore() {
   fi
 
   _devbox_with_github_token devbox global install > /dev/null || return
-  _devbox_with_github_token devbox global shellenv --install --recompute --format zsh > /dev/null
+  _devbox_with_github_token devbox global shellenv --install --recompute > /dev/null
 }
 
 _devbox_snapshot_cleanup() {
