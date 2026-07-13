@@ -160,7 +160,8 @@
     "github:sadjow/claude-code-nix": "",
     "grpcurl":                       "latest",
     "github:ogulcancelik/herdr":     "",
-    "github:sadjow/codex-cli-nix":   ""
+    "github:sadjow/codex-cli-nix":   "",
+    "sshpass":                       "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
