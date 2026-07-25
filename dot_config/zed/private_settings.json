@@ -7,6 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "cli_default_open_behavior": "new_window",
+  "vim_mode": true,
   "agent": {
     "default_profile": "ask",
     "default_model": {
@@ -15,32 +17,62 @@
     },
     "model_parameters": []
   },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "cargo": {
+          "allTargets": false
+        },
+        "check": {
+          "workspace": false,
+          "extraArgs": ["--jobs", "2"]
+        }
+      }
+    }
+  },
   "icon_theme": "Catppuccin Mocha",
   "ssh_connections": [
     {
       "host": "deevs.hetzner.whitecircle",
       "args": [],
-      "port_forwards": [
-        {
-          "local_port": 4203,
-          "remote_port": 4203,
-          "local_host": "0.0.0.0"
-        }
-      ],
       "projects": [
         {
-          "paths": ["/home/deevs/tasks/"]
+          "paths": [
+            "/home/deevs/personal/kazo"
+          ]
+        },
+        {
+          "paths": [
+            "/home/deevs/tasks/"
+          ]
+        }
+      ],
+      "port_forwards": [
+        {
+          "local_host": "0.0.0.0",
+          "local_port": 4203,
+          "remote_port": 4203
         }
       ]
+    },
+    {
+      "host": "deevs.aws.berezka",
+      "args": [],
+      "projects": []
+    },
+    {
+      "host": "deevs.hetzner.berezka",
+      "args": [],
+      "projects": []
     }
   ],
-  "base_keymap": "Cursor",
+  "base_keymap": "VSCode",
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "theme": {
     "mode": "system",
-    "light": "Catppuccin Mocha (Blur) [Light]",
-    "dark": "Catppuccin Mocha (Blur) [Heavy]"
+    "light": "One Light",
+    "dark": "One Dark"
   }
 }

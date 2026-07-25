@@ -3,8 +3,14 @@
 # ===== Loading Scripting Additions ============
 
 # See: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#macos-big-sur---automatically-load-scripting-addition-on-startup
-sudo yabai --load-sa
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+#
+# sudo -n: never block startup on a password prompt. yabai is installed via
+# devbox/nix, so every update changes the binary hash pinned in
+# /etc/sudoers.d/yabai — a stale hash makes plain `sudo` prompt and hang the
+# whole yabairc ("yabai stuck"). If load-sa fails, regenerate the entry:
+#   echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 "$(readlink -f "$(which yabai)")" | cut -d' ' -f1) $(which yabai) --load-sa" | sudo tee /etc/sudoers.d/yabai
+sudo -n yabai --load-sa || echo "yabai: load-sa failed — regenerate /etc/sudoers.d/yabai (see comment above)"
+yabai -m signal --add event=dock_did_restart action="sudo -n yabai --load-sa"
 
 # ===== Tiling setting =========================
 

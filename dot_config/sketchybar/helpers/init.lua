@@ -46,6 +46,7 @@ end
 M.paths = {
     audio_devices = M.config_dir .. "/helpers/audio_devices/bin/audio_devices",
     cpu_load = M.config_dir .. "/helpers/event_providers/cpu_load/bin/cpu_load",
+    media_stream = M.config_dir .. "/helpers/media_stream.sh",
     menus = M.config_dir .. "/helpers/menus/bin/menus",
     network_interface = M.config_dir .. "/helpers/network_interface.sh",
     network_load = M.config_dir .. "/helpers/event_providers/network_load/bin/network_load",

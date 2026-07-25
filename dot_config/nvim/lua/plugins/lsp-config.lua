@@ -47,7 +47,7 @@ return {
 						disableOrganizeImports = true,
 					},
 					python = {
-						analysys = {
+						analysis = {
 							ignore = { "*" },
 						},
 					},

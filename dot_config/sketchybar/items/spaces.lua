@@ -157,7 +157,12 @@ space_window_observer:subscribe("space_windows_change", function(env)
     if (no_app) then
         icon_line = " —"
     end
-    spaces[env.INFO.space]:set({ label = icon_line })
+    -- Spaces created after sketchybar startup have no item yet; indexing nil
+    -- here killed the event handler. They appear after a sketchybar reload.
+    local space_item = spaces[tonumber(env.INFO.space)]
+    if space_item then
+        space_item:set({ label = icon_line })
+    end
 end)
 
 spaces_indicator:subscribe("swap_menus_and_spaces", function(env)

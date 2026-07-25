@@ -6,7 +6,6 @@
     "allow": [
       "mcp__context7__*",
       "mcp__datadog__*",
-      "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(ag:*)",
@@ -18,11 +17,8 @@
       "Bash(wc:*)",
       "Bash(sort:*)",
       "Bash(uniq:*)",
-      "Bash(awk:*)",
-      "Bash(sed:*)",
       "Bash(cut:*)",
-      "Bash(tr:*)",
-      "Bash(xargs:*)"
+      "Bash(tr:*)"
     ]
   },
   "hooks": {

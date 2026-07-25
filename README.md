@@ -22,7 +22,7 @@ Devbox supports platform-specific packages via `platforms` field in `devbox.json
 
 ### Custom Shell Functions
 
-Defined in [`.zshrc`](dot_zshrc):
+Defined in [`.zshrc`](dot_zshrc.tmpl):
 
 ```bash
 dbadd package-name       # Add package (all platforms) and sync to chezmoi
@@ -122,7 +122,7 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
   - Environment: Disables zoxide in Claude Code sessions
 
 - **[OpenCode](https://opencode.ai)** - AI code assistant
-  - Configuration: [`.config/opencode/opencode.json`](dot_config/opencode/empty_opencode.json.tmpl)
+  - Configuration: [`.config/opencode/opencode.json`](dot_config/opencode/opencode.json.tmpl)
   - Theme: Catppuccin
   - MCP integration with Context7
   - 1Password integration for API keys
@@ -158,9 +158,9 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 #### macOS only (GUI apps)
 Managed via devbox and available in Spotlight/Raycast after sync:
 
-- **Communication**: Telegram, Slack, Discord, Zoom
+- **Communication**: Slack, Discord, Zoom
 - **Productivity**: Notion, Raycast
-- **Development**: DBeaver, Cursor, Zed
+- **Development**: DBeaver, Zed
 - **Media**: Spotify
 - **Networking**: WireGuard
 - **Browsers**: Google Chrome

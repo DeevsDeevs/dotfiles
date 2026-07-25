@@ -1,9 +1,10 @@
 local icons = require("icons")
 local colors = require("colors")
+local helpers = require("helpers")
 
 local whitelist = {
-    ["Spotify"] = true,
-    ["Music"] = true
+    ["com.spotify.client"] = true,
+    ["com.apple.Music"] = true,
 }
 
 local media_cover = sbar.add("item", "media.cover", {
@@ -98,85 +99,47 @@ media_title:subscribe("mouse.exited.global", function(env)
     media_cover:set({ popup = { drawing = false } })
 end)
 
--- Poll media-control for updates
-local media_watcher = sbar.add("item", "media.watcher", {
-    drawing = false,
-    updates = true,
-    update_freq = 2,
-})
+-- media_stream.sh follows `media-control stream` and fires this event with
+-- small env vars only; artwork arrives as a decoded file path. Keeps the
+-- ~300KB base64 payloads out of the lua<->sketchybar bridge (deadlocks).
+sbar.add("event", "media_change")
 
-local function check_file_ready(filepath)
-    local f = io.open(filepath, "r")
-    if f then
-        local size = f:seek("end")
-        f:close()
-        return size and size > 0
-    end
-    return false
+local function start_media_stream()
+    if not helpers.has.media_stream then return end
+    sbar.exec("pkill -f 'sketchybar/helpers/media_stream.sh' >/dev/null 2>&1;"
+        .. " pkill -f 'media-control stream' >/dev/null 2>&1; "
+        .. helpers.detached(helpers.shell_quote(helpers.paths.media_stream)))
 end
 
-media_watcher:subscribe("routine", function()
-    sbar.exec("media-control get", function(result)
-        if type(result) ~= "table" then return end
-        if not (result.playing ~= nil and result.title and result.artist and result.bundleIdentifier) then
-            return
-        end
+start_media_stream()
 
-        local app = "Unknown"
-        if result.bundleIdentifier == "com.spotify.client" then
-            app = "Spotify"
-        elseif result.bundleIdentifier == "com.apple.Music" then
-            app = "Music"
-        end
+media_cover:subscribe("system_woke", function()
+    start_media_stream()
+end)
 
-        -- Check if app is whitelisted
-        if not whitelist[app] then
-            media_cover:set({ drawing = false })
-            media_artist:set({ drawing = false })
-            media_title:set({ drawing = false })
-            return
-        end
+media_cover:subscribe("media_change", function(env)
+    local drawing = env.PLAYING == "true" and whitelist[env.APP] or false
 
-        local drawing = result.playing == true
+    media_artist:set({ drawing = drawing, label = env.ARTIST })
+    media_title:set({ drawing = drawing, label = env.TITLE })
 
-        -- Update text widgets
-        media_artist:set({ drawing = drawing, label = result.artist })
-        media_title:set({ drawing = drawing, label = result.title })
+    if not drawing then
+        media_cover:set({ drawing = false, popup = { drawing = false } })
+        return
+    end
 
-        -- Handle artwork
-        if result.artworkData and drawing then
-            local artwork_file = "/tmp/sketchybar_album_art.jpg"
-
-            -- Decode base64 directly via pipe (no temp file needed)
-            local decode_cmd = string.format(
-                "echo '%s' | base64 -d > '%s' 2>/dev/null",
-                result.artworkData:gsub("'", "'\\''"),
-                artwork_file
-            )
-
-            sbar.exec(decode_cmd, function()
-                if not check_file_ready(artwork_file) then
-                    media_cover:set({ drawing = drawing })
-                    return
-                end
-
-                media_cover:set({
-                    drawing = true,
-                    background = {
-                        image = {
-                            string = artwork_file,
-                            scale = 0.05,
-                        },
-                        color = colors.transparent,
-                    }
-                })
-            end)
-        else
-            media_cover:set({ drawing = drawing })
-        end
-
-        if not drawing then
-            media_cover:set({ popup = { drawing = false } })
-        end
-    end)
+    if env.ART_PATH and helpers.file_exists(env.ART_PATH) then
+        media_cover:set({
+            drawing = true,
+            background = {
+                image = {
+                    string = env.ART_PATH,
+                    scale = 0.05,
+                },
+                color = colors.transparent,
+            }
+        })
+    else
+        media_cover:set({ drawing = true })
+    end
 end)

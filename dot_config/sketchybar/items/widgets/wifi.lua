@@ -163,7 +163,7 @@ end)
 
 wifi:subscribe({ "wifi_change", "system_woke" }, function(env)
     local iface = refresh_network_interface()
-    sbar.exec("ipconfig getifaddr " .. iface, function(ip_address)
+    sbar.exec("ipconfig getifaddr " .. helpers.shell_quote(iface), function(ip_address)
         local connected = not (ip_address == "")
         wifi:set({
             icon = {
