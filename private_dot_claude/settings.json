@@ -21,6 +21,7 @@
       "Bash(tr:*)"
     ]
   },
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -46,6 +47,7 @@
     "chain-system@deevs-agent-system": true,
     "datetime@deevs-agent-system": true,
     "dev-experts@deevs-agent-system": true,
+    "ponytail@ponytail": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "prompt-improver@claude-code-marketplace": true
   },

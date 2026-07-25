@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Streams now-playing changes into the custom sketchybar event "media_change".
+# Streams now-playing changes into the custom sketchybar event "media_update".
 # Replaces the old 2s `media-control get` polling through sbar.exec, which
 # pushed ~300KB of base64 artwork through the lua<->sketchybar Mach bridge on
 # every tick and was implicated in deadlocks. Artwork is decoded here and
@@ -12,6 +12,10 @@ export PATH="/usr/bin:/bin:/opt/homebrew/bin:$PATH"
 # TMPDIR is per-user (0700) on macOS — no world-writable /tmp symlink games.
 readonly ART_DIR="${TMPDIR:-$HOME/.cache}"
 readonly ART="${ART_DIR%/}/sketchybar_album_art.jpg"
+
+# The initial full-state line arrives instantly; wait for sketchybar to finish
+# loading the lua config and registering subscriptions before the first trigger.
+sleep 5
 
 media-control stream 2>/dev/null | while IFS= read -r line; do
   payload="$(jq -c 'select(.type == "data") | .payload // {}' <<<"$line" 2>/dev/null)" || continue
@@ -31,7 +35,7 @@ media-control stream 2>/dev/null | while IFS= read -r line; do
   sig="$(jq -r '[.playing, .title, .artist, .bundleIdentifier] | @tsv' <<<"$state")"
   if [[ "$sig" != "${last_sig:-}" || -n "$art" ]]; then
     last_sig="$sig"
-    sketchybar --trigger media_change \
+    sketchybar --trigger media_update \
       PLAYING="$(jq -r '.playing // false' <<<"$state")" \
       TITLE="$(jq -r '.title // ""' <<<"$state")" \
       ARTIST="$(jq -r '.artist // ""' <<<"$state")" \

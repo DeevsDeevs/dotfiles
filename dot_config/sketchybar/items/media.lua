@@ -102,7 +102,7 @@ end)
 -- media_stream.sh follows `media-control stream` and fires this event with
 -- small env vars only; artwork arrives as a decoded file path. Keeps the
 -- ~300KB base64 payloads out of the lua<->sketchybar bridge (deadlocks).
-sbar.add("event", "media_change")
+sbar.add("event", "media_update")
 
 local function start_media_stream()
     if not helpers.has.media_stream then return end
@@ -117,7 +117,7 @@ media_cover:subscribe("system_woke", function()
     start_media_stream()
 end)
 
-media_cover:subscribe("media_change", function(env)
+media_cover:subscribe("media_update", function(env)
     local drawing = env.PLAYING == "true" and whitelist[env.APP] or false
 
     media_artist:set({ drawing = drawing, label = env.ARTIST })
