@@ -113,8 +113,13 @@ _devbox_with_github_token() {
 }
 
 _devbox_refresh_shell() {
-  eval "$(_devbox_with_github_token devbox global shellenv --preserve-path-stack -r)" && hash -r
+  local shellenv
+
+  shellenv="$(_devbox_with_github_token devbox global shellenv --preserve-path-stack -r)" || return
+  eval "$shellenv" && hash -r
 }
+
+alias refresh-global='_devbox_raise_nofile_limit; _devbox_refresh_shell'
 
 _devbox_snapshot_create() {
   local devbox_dir backup
