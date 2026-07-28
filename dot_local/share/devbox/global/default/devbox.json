@@ -152,15 +152,16 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "rtk":                           "0.41.0",
-    "gh":                            "latest",
-    "git+ssh://git":                 "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
-    "github:DeevsDeevs/pup-cli-nix": "",
-    "github:sadjow/claude-code-nix": "",
-    "grpcurl":                       "latest",
+    "rtk":                              "0.41.0",
+    "gh":                               "latest",
+    "git+ssh://git":                    "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
+    "github:DeevsDeevs/pup-cli-nix":    "",
+    "github:sadjow/claude-code-nix":    "",
+    "grpcurl":                          "latest",
     "github:ogulcancelik/herdr/v0.7.5": "",
-    "github:sadjow/codex-cli-nix":   "",
-    "sshpass":                       "latest"
+    "github:sadjow/codex-cli-nix":      "",
+    "sshpass":                          "latest",
+    "cava":                             "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
