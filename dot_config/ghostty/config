@@ -1,15 +1,14 @@
-# This is the configuration file for Ghostty by Deevs.
+# Ghostty config — everforest glass (managed by chezmoi)
 copy-on-select = true
-theme = Catppuccin Mocha
+theme = Everforest Dark Hard
 
 font-family = JetBrainsMono Nerd Font
 font-size = 13
 
-gtk-titlebar = true
-
 macos-option-as-alt = true
 
-background-opacity = 0.95
+background-opacity = 0.66
+background-blur-radius = 30
 
 auto-update-channel = tip
 
