@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "darwin" -}}
+[".config/sketchybar"]
+    type = "git-repo"
+    url = "git@github.com:DeevsDeevs/deevs-sketchybar.git"
+    refreshPeriod = "168h"
+{{ end -}}
