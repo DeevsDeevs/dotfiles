@@ -1,0 +1,9 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $data := dict -}}
+{{- if ne (trim .chezmoi.stdin) "" -}}
+{{- $data = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $data = set $data "defaultProvider" "openai-codex" -}}
+{{- $data = set $data "defaultModel" "gpt-5.6-sol" -}}
+{{- $data = set $data "defaultThinkingLevel" "high" -}}
+{{- $data | toPrettyJson -}}
