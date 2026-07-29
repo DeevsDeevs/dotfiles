@@ -7,7 +7,7 @@ font-size = 13
 
 macos-option-as-alt = true
 
-background-opacity = 0.66
+background-opacity = 0.82
 background-blur-radius = 30
 
 auto-update-channel = tip
