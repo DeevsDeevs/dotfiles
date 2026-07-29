@@ -43,6 +43,12 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
+_reset_terminal_modes() {
+  printf '\e[=0u\e[?1000;1002;1003;1004;1006l'
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _reset_terminal_modes
+
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
