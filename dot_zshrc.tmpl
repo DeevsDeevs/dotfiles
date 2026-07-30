@@ -49,6 +49,18 @@ _reset_terminal_modes() {
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd _reset_terminal_modes
 
+# Tell the bar's repo widget where this shell is. Nothing outside the shell can
+# work this out: Ghostty is one process for every window, tab and split, so
+# there is no window-to-shell mapping to query and no way to tell which cwd has
+# focus. chpwd covers navigation, precmd covers a repo changing under a shell
+# that never moved (a commit, a branch switch). `&!` disowns so job control
+# stays quiet and the prompt never waits on the IPC.
+if command -v sketchybar > /dev/null; then
+  _sbar_repo_cwd() { sketchybar --trigger repo_cwd RPATH="$PWD" > /dev/null 2>&1 &! }
+  add-zsh-hook chpwd _sbar_repo_cwd
+  add-zsh-hook precmd _sbar_repo_cwd
+fi
+
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
