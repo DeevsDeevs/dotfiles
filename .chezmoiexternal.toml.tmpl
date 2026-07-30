@@ -1,6 +1,11 @@
 {{ if eq .chezmoi.os "darwin" -}}
+# https, not SSH: `chezmoi init` on a machine whose GitHub key isn't loaded yet
+# cannot clone over SSH, and the clone failing means ~/.config/sketchybar never
+# appears at all. The repo is public, so https needs no credentials. To push
+# from the checkout, switch its remote afterwards:
+#   git -C ~/.config/sketchybar remote set-url origin git@github.com:DeevsDeevs/deevs-sketchybar.git
 [".config/sketchybar"]
     type = "git-repo"
-    url = "git@github.com:DeevsDeevs/deevs-sketchybar.git"
+    url = "https://github.com/DeevsDeevs/deevs-sketchybar.git"
     refreshPeriod = "168h"
 {{ end -}}

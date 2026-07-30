@@ -1,0 +1,18 @@
+{{ if eq .chezmoi.os "darwin" -}}
+processes:
+  sketchybar:
+    command: "sketchybar"
+    availability:
+      restart: on_failure
+      max_restarts: 5
+    # No `daemon: true`: sketchybar does not fork, so declaring it a daemon meant
+    # process-compose stopped supervising it and its stdout/stderr went to a pipe
+    # with no reader. Every lua traceback and every sketchybar warning vanished,
+    # which is how a batch of leaks stayed invisible for hours.
+    log_location: ./sketchybar.log
+{{ else -}}
+# sketchybar is darwin-only and darwin-gated in devbox.json; declaring the
+# service unconditionally made `devbox global services up` fail and retry on
+# servers, which this repo also manages.
+processes: {}
+{{ end -}}

@@ -1,5 +1,5 @@
 export DEVBOX_NO_PROMPT=true
-eval "$(devbox global shellenv --init-hook)"
+command -v devbox >/dev/null && eval "$(devbox global shellenv --init-hook)"
 
 {{ if eq .chezmoi.os "darwin" -}}
 export EDITOR="zeditor --wait"
@@ -8,7 +8,7 @@ export EDITOR="nvim"
 export COLORTERM=truecolor
 {{ end -}}
 
-export LS_COLORS="$(vivid generate catppuccin-mocha)"
+command -v vivid >/dev/null && export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -36,7 +36,7 @@ fi
 
 zinit cdreplay -q
 
-eval "$(starship init zsh)"
+command -v starship >/dev/null && eval "$(starship init zsh)"
 
 bindkey -e
 bindkey '^p' history-search-backward

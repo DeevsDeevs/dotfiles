@@ -76,9 +76,9 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
   - Vim-style navigation (hjkl) for window focus and movement
 
 - **[SketchyBar](https://github.com/FelixKratz/SketchyBar)** - Custom status bar
-  - Configuration: [`.config/sketchybar/`](dot_config/sketchybar/)
-  - Uses Lua for configuration
-  - Requires compiled helper binaries and additional dependencies (via Homebrew)
+  - Lives in its own repo, [deevs-sketchybar](https://github.com/DeevsDeevs/deevs-sketchybar), which chezmoi clones to `~/.config/sketchybar` as a [git-repo external](.chezmoiexternal.toml.tmpl)
+  - Configured in Lua; everything user-facing is in that repo's `config.lua`
+  - Its own `install.sh` builds the helper binaries and installs SbarLua + the app font
   - Integrates with yabai for workspace and window information
 
 ### Terminal & Shell
@@ -201,10 +201,11 @@ devbox global run setup-sketchybar
 
 This script will:
 - Install Homebrew (if not present)
-- Install media-control
-- Install SF Symbols and SF fonts
-- Download sketchybar-app-font
-- Compile SketchyBar helper binaries
+- Install media-control, SF Symbols and the SF fonts
+- Hand off to `~/.config/sketchybar/install.sh`, which builds the helper
+  binaries and installs SbarLua plus the app font
+
+`chezmoi apply` has to run first: it is what clones the bar repo.
 
 ### 5. Sync Nix Applications to Spotlight/Raycast (macOS only)
 
@@ -381,8 +382,10 @@ All applications are configured with **Catppuccin Mocha** theme:
 #### SketchyBar Not Showing
 
 1. Ensure dependencies are installed: `devbox global run setup-sketchybar`
-2. Check if helper binaries are compiled: `ls ~/.config/sketchybar/helpers/bin/`
+2. Check the helper binaries built: `ls ~/.config/sketchybar/helpers/*/bin/`
 3. Restart: `sketchybar --reload`
+4. For anything bar-specific, see the troubleshooting section in the
+   [deevs-sketchybar README](https://github.com/DeevsDeevs/deevs-sketchybar#troubleshooting)
 
 #### Applications Not in Spotlight
 
