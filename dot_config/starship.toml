@@ -2,7 +2,7 @@
 
 # Quiet, context-gated prompt. Everything appears only when it means something.
 format = """
-$username$hostname$directory$git_branch$git_status$python$rust$golang$nodejs$cmd_duration$line_break$character"""
+$hostname$directory$git_branch$git_status$python$rust$golang$nodejs$cmd_duration$line_break$character"""
 right_format = "$time"
 
 palette = 'everforest'
@@ -20,15 +20,14 @@ red = "#e67e80"
 purple = "#d699b6"
 
 [username]
-show_always = false          # appears over SSH / as root only
-style_user = "bold yellow"
-style_root = "bold red"
-format = '[$user]($style)'
+disabled = true              # no "deevs@..." on SSH prompts
 
 [hostname]
 ssh_only = true              # remote shells are unmistakable, local stays clean
+ssh_symbol = " "
 style = "bold yellow"
-format = '[@$hostname ]($style)'
+format = '[$ssh_symbol$hostname ]($style)'
+aliases = { "Ubuntu-2404-noble-amd64-base" = "ubuntu" }
 
 [directory]
 style = "bold aqua"

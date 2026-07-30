@@ -1,5 +1,27 @@
 onboarding = false
 
+[theme]
+name = "terminal"
+
+[theme.custom]
+# Everforest from SketchyBar: .config/sketchybar/palettes/everforest.lua
+accent = "#a7c080"
+panel_bg = "#272e33"
+surface0 = "#374145"
+surface1 = "#414b50"
+surface_dim = "#1e2326"
+overlay0 = "#7a8478"
+overlay1 = "#859289"
+text = "#d3c6aa"
+subtext0 = "#9da9a0"
+mauve = "#d699b6"
+green = "#a7c080"
+yellow = "#dbbc7f"
+red = "#e67e80"
+blue = "#7fbbb3"
+teal = "#83c092"
+peach = "#e69875"
+
 # Match tmux muscle memory from ~/.config/tmux/tmux.conf (chezmoi):
 # prefix C-s, reload with prefix+r, split with prefix+" / prefix+%,
 # hjkl pane movement, prefix+c/n/p/1..9 tabs, prefix+x pane close.
