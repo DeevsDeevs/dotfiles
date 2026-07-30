@@ -2800,54 +2800,6 @@
         }
       }
     },
-    "tmuxPlugins.catppuccin@latest": {
-      "last_modified": "2026-07-23T05:10:05Z",
-      "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#tmuxPlugins.catppuccin",
-      "source": "devbox-search",
-      "version": "2.1.3",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/31ypz1j26h1mjpjwha9gm77ccqxw2im0-tmuxplugin-catppuccin-2.1.3",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/31ypz1j26h1mjpjwha9gm77ccqxw2im0-tmuxplugin-catppuccin-2.1.3"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/7vh0iyn0lhh80awvw2sll21zf0jvw61a-tmuxplugin-catppuccin-2.1.3",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/7vh0iyn0lhh80awvw2sll21zf0jvw61a-tmuxplugin-catppuccin-2.1.3"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/714yxx5frdwa2ddabaf1gdlwwh920k1y-tmuxplugin-catppuccin-2.1.3",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/714yxx5frdwa2ddabaf1gdlwwh920k1y-tmuxplugin-catppuccin-2.1.3"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/rh6ahfy716dgdpp79pd41wiwqz56x7k4-tmuxplugin-catppuccin-2.1.3",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/rh6ahfy716dgdpp79pd41wiwqz56x7k4-tmuxplugin-catppuccin-2.1.3"
-        }
-      }
-    },
     "tmuxPlugins.continuum@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
       "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#tmuxPlugins.continuum",

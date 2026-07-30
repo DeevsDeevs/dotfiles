@@ -23,7 +23,6 @@
     "google-cloud-sdk":               "latest",
     "tmuxPlugins.yank":               "latest",
     "tmuxPlugins.vim-tmux-navigator": "latest",
-    "tmuxPlugins.catppuccin":         "latest",
     "tmuxifier":                      "latest",
     "tmuxPlugins.resurrect":          "latest",
     "tmuxPlugins.continuum":          "latest",
@@ -143,7 +142,7 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "ffmpeg": "latest",
+    "ffmpeg":                           "latest",
     "rtk":                              "0.41.0",
     "gh":                               "latest",
     "git+ssh://git":                    "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",

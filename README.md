@@ -85,9 +85,9 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 - **[Ghostty](https://ghostty.org)** - GPU-accelerated terminal (macOS only)
   - Configuration: [`.config/ghostty/config`](dot_config/ghostty/config)
-  - Theme: Catppuccin Mocha
+  - Theme: Everforest Dark Hard
   - Font: JetBrainsMono Nerd Font
-  - Background opacity: 0.95
+  - Background opacity: 0.82
 
 - **[zsh](https://www.zsh.org)** - Shell
   - Configuration: [`.zshrc`](dot_zshrc)
@@ -103,7 +103,7 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
   - Configuration: [`.config/tmux/tmux.conf`](dot_config/tmux/tmux.conf)
   - Prefix: `Ctrl-s`
   - Plugins managed via devbox (installed from Nix)
-  - Theme: Catppuccin Mocha
+  - Theme: Everforest
   - Plugins: vim-tmux-navigator, yank, resurrect, continuum, sensible
 
 ### Editors & AI Tools
@@ -111,10 +111,12 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 - **[Neovim](https://neovim.io)** - Text editor
   - Configuration: [`.config/nvim/`](dot_config/nvim/)
   - Plugin manager: [lazy.nvim](https://github.com/folke/lazy.nvim)
+  - Theme: Everforest Dark Hard
   - Plugins defined in [`lua/plugins/`](dot_config/nvim/lua/plugins/)
 
 - **[Zed](https://zed.dev)** - Code editor (macOS only)
   - Configuration: [`.config/zed/`](dot_config/zed/)
+  - Theme: Everforest Dark
   - Set as default `$EDITOR` via `zeditor --wait`
 
 - **[Claude Code](https://docs.claude.com/docs/claude-code)** - AI coding assistant CLI
@@ -123,7 +125,7 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 - **[OpenCode](https://opencode.ai)** - AI code assistant
   - Configuration: [`.config/opencode/opencode.json`](dot_config/opencode/opencode.json.tmpl)
-  - Theme: Catppuccin
+  - Theme: Everforest
   - MCP integration with Context7
   - 1Password integration for API keys
 
@@ -131,7 +133,7 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 - **[btop](https://github.com/aristocratos/btop)** - System monitor
   - Configuration: [`.config/btop/btop.conf`](dot_config/btop/btop.conf)
-  - Theme: Catppuccin Mocha
+  - Theme: Everforest Dark Hard
   - Vim keybindings enabled
 
 - **[fzf](https://github.com/junegunn/fzf)** - Fuzzy finder
@@ -144,7 +146,7 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 - **[ripgrep](https://github.com/BurntSushi/ripgrep)** - Fast search tool
 - **[bat](https://github.com/sharkdp/bat)** - Enhanced `cat` with syntax highlighting
-- **[vivid](https://github.com/sharkdp/vivid)** - LS_COLORS generator (Catppuccin Mocha theme)
+- **[vivid](https://github.com/sharkdp/vivid)** - LS_COLORS generator using the terminal's Everforest ANSI palette
 
 ### Applications
 
@@ -354,13 +356,11 @@ chezmoi apply
 
 ## Theme
 
-All applications are configured with **Catppuccin Mocha** theme:
-- Ghostty
-- tmux (via catppuccin plugin)
-- btop
-- Neovim (via plugins)
-- SketchyBar (custom Lua configuration)
-- OpenCode
+Terminal and development UIs use **Everforest**:
+- Ghostty, tmux, Starship, and shell file colors
+- btop, Neovim, and Zed
+- SketchyBar and yabai accents
+- Herdr, Pi, and OpenCode
 
 ## Troubleshooting
 
@@ -408,4 +408,4 @@ devbox global run sync-nix-apps
 - [devbox documentation](https://www.jetify.com/devbox/docs/)
 - [yabai wiki](https://github.com/koekeishiya/yabai/wiki)
 - [SketchyBar documentation](https://felixkratz.github.io/SketchyBar/)
-- [Catppuccin theme](https://github.com/catppuccin/catppuccin)
+- [Everforest theme](https://github.com/sainnhe/everforest)

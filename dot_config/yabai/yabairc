@@ -49,7 +49,7 @@ yabai -m config mouse_drop_action           swap
 yabai -m config window_placement            second_child
 yabai -m config window_animation_duration   0.35
 yabai -m config window_animation_easing     ease_out_quint
-yabai -m config insert_feedback_color       0xff61afef
+yabai -m config insert_feedback_color       0xffa7c080
 
 # ===== External bar support ===================
 
