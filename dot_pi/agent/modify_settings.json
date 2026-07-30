@@ -6,4 +6,9 @@
 {{- $data = set $data "defaultProvider" "openai-codex" -}}
 {{- $data = set $data "defaultModel" "gpt-5.6-sol" -}}
 {{- $data = set $data "defaultThinkingLevel" "high" -}}
+{{- $data = set $data "packages" (list
+  "git:github.com/DietrichGebert/ponytail"
+  "npm:@sherif-fanous/pi-rtk"
+  "https://github.com/DeevsDeevs/deevs-pi-kit"
+) -}}
 {{- $data | toPrettyJson -}}
