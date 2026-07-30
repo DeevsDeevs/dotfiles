@@ -67,7 +67,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-mkdir -p ~/.cache/zinit/completions > /dev/null 2>&1
+mkdir -p ~/.cache/zinit/completions ~/.cache/zsh > /dev/null 2>&1
 
 alias ls='ls --color'
 alias vim='nvim'
@@ -285,7 +285,10 @@ if command -v wagner > /dev/null; then
 fi
 
 if command -v codex > /dev/null; then
-  eval "$(codex completion zsh)"
+  _codex_completion=~/.cache/zsh/codex-${${commands[codex]:A}:h:h:t}.zsh
+  [[ -s $_codex_completion ]] || codex completion zsh >| $_codex_completion
+  source $_codex_completion
+  unset _codex_completion
 fi
 
 export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"

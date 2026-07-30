@@ -1,4 +1,5 @@
 "$schema" = 'https://starship.rs/config-schema.json'
+scan_timeout = 100
 
 # Quiet, context-gated prompt. Everything appears only when it means something.
 format = """
