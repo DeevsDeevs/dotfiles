@@ -135,6 +135,10 @@ _devbox_refresh_shell() {
 
   shellenv="$(_devbox_with_github_token devbox global shellenv --preserve-path-stack -r)" || return
   eval "$shellenv" && hash -r
+
+  if [[ "$OSTYPE" == darwin* ]]; then
+    "$(devbox global path)/scripts/sync-nix-apps.sh"
+  fi
 }
 
 alias refresh-global='_devbox_raise_nofile_limit; _devbox_refresh_shell'
