@@ -6,6 +6,7 @@
 {{- $data = set $data "defaultProvider" "openai-codex" -}}
 {{- $data = set $data "defaultModel" "gpt-5.6-sol" -}}
 {{- $data = set $data "defaultThinkingLevel" "high" -}}
+{{- $data = set $data "theme" "everforest" -}}
 {{- $data = set $data "packages" (list
   "git:github.com/DietrichGebert/ponytail"
   "npm:@sherif-fanous/pi-rtk"
