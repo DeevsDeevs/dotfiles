@@ -36,7 +36,9 @@ alt - left : yabai -m space --focus prev
 alt - right : yabai -m space --focus next
 
 # Create and destroy spaces
-alt - w : yabai -m space --create && yabai -m space --focus last
+# `--focus last` is the last space of *all* displays, so creating one on the laptop
+# would throw focus onto the external monitor. Ask the focused display for its own.
+alt - w : yabai -m space --create && yabai -m space --focus "$(yabai -m query --spaces --display | jq '.[-1].index')"
 shift + alt - w : yabai -m space --destroy
 
 # ===== Window Movement ========================
