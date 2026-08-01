@@ -364,6 +364,8 @@ Terminal and development UIs use **Everforest**:
 
 ## Troubleshooting
 
+Symptoms that point at the wrong cause are collected in [GOTCHAS.md](GOTCHAS.md).
+
 ### macOS
 
 #### yabai Not Working
