@@ -75,6 +75,25 @@ d=$(yabai -m query --displays | jq -r '[.[]|select(.["has-focus"])|.index]|join(
 Three consecutive "yabai creates spaces on the wrong display" results turned out
 to be this, not a yabai bug. `space --create` does respect the focused display.
 
+## A window with one tab has no tab bar to search
+
+**Symptom.** A helper that finds a terminal window by tab title never matches, so
+it opens another window every time — instances pile up until you notice.
+
+**Cause.** `AXTabGroup` is the tab *bar*, and macOS only builds one once a window
+holds two or more tabs. A single-tab window exposes no tab group at all, so
+enumerating tabs returns nothing and a title lookup cannot hit. `open -na` makes
+this the normal case: it launches a separate app instance per call, each holding
+one lone window.
+
+**Fix.** Identify the window by the process running inside it, not by its title —
+walk up from the command's pid to the first ancestor inside an `.app` bundle and
+raise that pid. Titles are still worth stamping so the window has a name, just
+not worth matching on.
+
+Raising it is not enough on its own if the window sits on another space: see the
+space-switch note above.
+
 ## `space --focus last` means globally last
 
 Mission control indices are global and ordered by display, so display 1 owning
