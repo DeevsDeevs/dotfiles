@@ -39,10 +39,27 @@ sha256, so a yabai update invalidates the NOPASSWD rule and sudo falls through t
 prompting. The scripting addition stays loaded from boot, so spaces keep working
 — it only bites at the next yabai or Dock restart.
 
-**Fix.** Regenerate the entry (also recorded at the top of `dot_config/yabai/yabairc`):
+**What it costs once it does bite.** `alt - w` stops working entirely — space
+creation needs the addition — and space switching gets slower: yabai reported a
+switch complete in 56–81 ms with the addition loaded and 81–120 ms without it.
+"A little laggy when switching workspaces" is what that feels like, and it is
+easy to misread as a sketchybar problem, which it is not.
+
+**Test whether it is actually loaded.** `sudo -n yabai --load-sa` succeeding only
+means the sudoers rule is valid, not that the addition is live. Ask for something
+that needs it:
+
+```sh
+yabai -m space --create   # "cannot create space due to an error with the
+                          #  scripting-addition." means it is not loaded
+```
+
+**Fix.** Regenerate the entry (also recorded at the top of `dot_config/yabai/yabairc`),
+then actually load it — rewriting sudoers does not inject anything by itself:
 
 ```sh
 echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 "$(readlink -f "$(which yabai)")" | cut -d' ' -f1) $(which yabai) --load-sa" | sudo tee /etc/sudoers.d/yabai
+sudo yabai --load-sa
 ```
 
 ## yabai focus commands are silent no-ops
