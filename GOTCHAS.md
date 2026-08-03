@@ -152,3 +152,84 @@ sits at a negative origin, so combining the two crops the wrong screen. Capture
 the display whole, then crop. Note that `sips --cropOffset` measures from the
 centre, not the top-left; `python3 -c "from PIL import Image; ..."` is less
 surprising.
+
+## A broken sketchybar config reports nothing
+
+**Symptom.** After an edit the bar comes up with one item and no error anywhere —
+`sketchybar --query bar` lists only `menus.refresher`, and both the service log
+and stderr are empty.
+
+**Why.** The Lua config dies on the first runtime error, having already added
+whatever it managed to add. Its stderr goes wherever the supervisor put it, which
+is nowhere once sketchybar has been [orphaned](#sketchybar-can-outlive-its-supervisor).
+
+**Fix.** Run the config by hand and it prints the file, line and message:
+
+```sh
+CONFIG_DIR=~/.config/sketchybar lua ~/.config/sketchybar/sketchybarrc
+```
+
+It connects to the running bar, so expect `Item 'x' already exists` warnings —
+those are noise. The traceback after them is the answer. `luac -p <file>` catches
+syntax errors, but not a nil call like a helper that a later edit deleted.
+
+## sketchybar's display and popup rules
+
+**`display=all` silently hides an item.** Valid for the *bar*, not for an item:
+`bar_item.c` parses the value as `1 << strtoul("all")`, i.e. a mask for display
+zero, which no display has. The item vanishes with no error. Reset with an empty
+value — `display=` — which clears the association back to every display.
+
+**`display=active` exists and is undocumented.** The parser takes a literal
+`"active"` alongside the numeric bitmask, and `display` is an alias for
+`associated_display`. An item set to it is laid out by exactly one bar.
+
+**A popup only renders on the active display.** An item gets one popup window with
+a single anchor, and every bar rewrites that anchor while it is open, so with two
+bars it lands on whichever redrew last. Nothing in the click path records which bar
+was clicked. Worse, "active" depends on a system setting: sketchybar reads
+`SLSGetSpaceManagementMode()`, and with *Displays have separate Spaces* on (mode 1)
+the active display is the menu-bar one, so a popup cannot be shown on an unfocused
+display at all. With it off, active follows the cursor instead.
+
+**`--trigger` does not fire built-in events.** `sketchybar --trigger display_change`
+returns cleanly and delivers nothing; only custom events added with `--add event`
+can be triggered. Testing a `display_change` handler needs a real display switch,
+and moving focus with yabai is [unreliable](#yabai-focus-commands-are-silent-no-ops) —
+verify the active display actually changed before concluding the handler is broken.
+
+**`sbar.animate` does nothing to a bracket's background.** The colour stays where
+it was, while a direct `set` of the same property applies normally. Animate an
+item and let the bracket carry a flat colour.
+
+## A device may have no master volume control
+
+**Symptom.** Turning the volume down silences one ear; the other keeps playing at
+full. Zero is not silent.
+
+**Why.** CoreAudio exposes volume either as one master element or as one element
+per channel, and which you get is per device. Code that takes the first control it
+finds — master, else channel 1, else channel 2 — drives only the left channel on a
+device with no master, and reads that same control back, so it looks consistent
+while the right channel sits wherever it was left. Of everything here only the
+Bluetooth headset lacks a master; the speakers and BlackHole all have one, so the
+bug stays invisible until you put headphones on.
+
+**Fix.** Collect every element the device exposes and set them together; read the
+loudest. See `helpers/audio_devices` and `helpers/volume_keys` in deevs-sketchybar.
+
+To check a device: `kAudioDevicePropertyVolumeScalar` on
+`kAudioObjectPropertyElementMain` is the master, elements 1..n are the channels.
+
+## Bluetooth headsets drop to phone quality when something opens the mic
+
+**Symptom.** Music through a good Bluetooth headset sounds thin and mono.
+
+**Why.** Selecting the headset as the *input* device puts the link into HFP, and
+`system_profiler SPAudioDataType` shows it plainly — input at `1 ch @ 16000 Hz`
+where output is `2 ch @ 44100 Hz`. Any app that holds the microphone open keeps it
+there; meeting recorders and Slack are the usual ones.
+
+**Fix.** Set the default input to something that is not the headset. Nothing in
+the sketchybar audio helpers touches the input device — they only set output — so
+this is macOS, not the bar.
