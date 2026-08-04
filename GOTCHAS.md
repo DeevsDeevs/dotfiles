@@ -126,6 +126,30 @@ update that breaks loading changes nothing until Dock next restarts — which ca
 months later, long after the update that caused it. Losing `alt - w` right after
 running `killall Dock` is this, not whatever you were doing at the time.
 
+**Fixing `LC_UUID` may only reveal the next wall.** With a good payload installed,
+injection got one step further and then stopped:
+
+```
+could not spawn remote thread: (os/kern) protection failure
+yabai: scripting-addition failed to inject payload into Dock.app!
+```
+
+Every documented precondition passed — sudoers authorised, `-arm64e_preview_abi`
+in `kern.bootargs`, SIP `unrestricted_fs` and `task_for_pid` allowed, loader and
+payload universal arm64e against an arm64e Dock, task port acquired. yabai 7.1.16,
+the build that demonstrably worked here, fails identically, so it is not a yabai
+regression.
+
+Circumstantial but strong: macOS itself never changed (15.7.2, installed Oct 2025),
+while XProtect went 5347 (3 Jun) → 5351 (16 Jul) → 5353 (29 Jul). The addition last
+injected on the 13 Jun boot, under 5347. Those config updates carry AMFI policy and
+need no reboot or OS bump, so `system_profiler SPInstallHistoryDataType` is the only
+place the change is visible at all.
+
+Worth checking XProtect versions against the last known-good date before blaming a
+package, a permission or your own config — process injection is exactly what Apple
+tightens this way, and it leaves no log.
+
 ## yabai focus commands are silent no-ops
 
 **Symptom.** `yabai -m display --focus 2` and `yabai -m space --focus 12` exit
