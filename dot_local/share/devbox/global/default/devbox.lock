@@ -989,10 +989,6 @@
       "last_modified": "2026-08-04T02:19:40Z",
       "resolved": "github:ogulcancelik/herdr/adb50cba9b15583db019bb655119915869e8c44e?lastModified=1785809980"
     },
-    "github:ogulcancelik/herdr/v0.7.5": {
-      "last_modified": "2026-07-21T18:04:32Z",
-      "resolved": "github:ogulcancelik/herdr/ef4c23f5775bb8cfec05f05d0844226ff959a07a?lastModified=1784657072"
-    },
     "github:sadjow/claude-code-nix": {
       "last_modified": "2026-07-25T02:58:31Z",
       "resolved": "github:sadjow/claude-code-nix/0d3cd1d6260b6f0ed232224c274c565407446fa1?lastModified=1784948311"
