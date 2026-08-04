@@ -126,29 +126,50 @@ update that breaks loading changes nothing until Dock next restarts — which ca
 months later, long after the update that caused it. Losing `alt - w` right after
 running `killall Dock` is this, not whatever you were doing at the time.
 
-**Fixing `LC_UUID` may only reveal the next wall.** With a good payload installed,
-injection got one step further and then stopped:
+**Fix (what actually worked).** Pin yabai to the last nixpkgs rev whose build was
+not stripped. `devbox.json`, alongside the existing spotify pin to the same rev:
+
+```json
+"github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#yabai": {
+  "platforms": ["x86_64-darwin", "aarch64-darwin"]
+}
+```
+
+That is yabai 7.1.16, `LC_UUID` intact, addition loading. Changing the binary
+stales the sudoers sha256 *and* the Accessibility grant, so regenerate the entry
+and re-add yabai under Privacy & Security afterwards.
+
+**Testing an older yabai needs the running one stopped first.** Installing the
+addition restarts Dock, `yabairc` subscribes to `dock_did_restart` with
+`sudo -n yabai --load-sa`, and the *running* yabai then reinstalls its own payload
+over the one you just wrote. Two attempts here looked like "the old version fails
+too" when the old version had simply been overwritten within the second. Check
+`CFBundleVersion` of the installed payload to see which one is really there —
+7.1.16 writes `2.1.23`, 7.1.25 writes `2.1.29`:
+
+```sh
+yabai --stop-service   # otherwise it clobbers you
+sudo /path/to/old/yabai --uninstall-sa
+sudo /path/to/old/yabai --load-sa
+/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' \
+  /Library/ScriptingAdditions/yabai.osax/Contents/Resources/payload.bundle/Contents/Info.plist
+```
+
+Use `;` not `&&` between those — a non-zero exit part-way silently skips the rest.
+
+**A dead end worth not repeating.** The intermediate failure looks like an OS
+policy change:
 
 ```
 could not spawn remote thread: (os/kern) protection failure
-yabai: scripting-addition failed to inject payload into Dock.app!
 ```
 
-Every documented precondition passed — sudoers authorised, `-arm64e_preview_abi`
-in `kern.bootargs`, SIP `unrestricted_fs` and `task_for_pid` allowed, loader and
-payload universal arm64e against an arm64e Dock, task port acquired. yabai 7.1.16,
-the build that demonstrably worked here, fails identically, so it is not a yabai
-regression.
-
-Circumstantial but strong: macOS itself never changed (15.7.2, installed Oct 2025),
-while XProtect went 5347 (3 Jun) → 5351 (16 Jul) → 5353 (29 Jul). The addition last
-injected on the 13 Jun boot, under 5347. Those config updates carry AMFI policy and
-need no reboot or OS bump, so `system_profiler SPInstallHistoryDataType` is the only
-place the change is visible at all.
-
-Worth checking XProtect versions against the last known-good date before blaming a
-package, a permission or your own config — process injection is exactly what Apple
-tightens this way, and it leaves no log.
+XProtect had gone 5347 (3 Jun) → 5353 (29 Jul) across the window where the
+addition stopped working, which is a tempting fit — AMFI policy ships that way,
+needs no reboot, and logs nothing. It was wrong. The cause was the stripped build
+the whole time, and the "old version fails identically" evidence supporting the
+XProtect theory came from a test that never actually installed the old payload.
+Verify which payload is installed before concluding anything about a version.
 
 ## yabai focus commands are silent no-ops
 

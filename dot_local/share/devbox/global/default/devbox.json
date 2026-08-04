@@ -47,8 +47,7 @@
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "yabai": {
-      "version":   "latest",
+    "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#yabai": {
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
     "skhd": {
