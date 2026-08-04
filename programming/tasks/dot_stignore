@@ -1,0 +1,18 @@
+// Generated dependencies and build output
+(?d)node_modules
+(?d)target
+(?d).venv
+(?d)venv
+(?d)__pycache__
+(?d).pytest_cache
+(?d).mypy_cache
+(?d).ruff_cache
+(?d).next
+(?d)dist
+(?d)*.pyc
+
+// Machine-local state
+(?d).DS_Store
+(?d).attached_registry.json
+(?d).attached_registry.json.lock
+(?d)**/.git/index.lock

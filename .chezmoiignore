@@ -17,4 +17,9 @@ assets/
 .config/sketchybar
 .config/ghostty
 .config/zed
+Library/LaunchAgents/dev.deevs.syncthing.plist
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.config/systemd/user/syncthing.service
 {{ end }}

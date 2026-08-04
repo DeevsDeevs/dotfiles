@@ -1,0 +1,14 @@
+[Unit]
+Description=Syncthing
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=%h/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/syncthing serve --no-browser --no-restart --no-upgrade
+Restart=on-failure
+RestartSec=5
+SuccessExitStatus=3 4
+RestartForceExitStatus=3 4
+
+[Install]
+WantedBy=default.target
