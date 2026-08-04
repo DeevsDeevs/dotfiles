@@ -77,6 +77,55 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 "$(readlink -f "$(wh
 sudo yabai --load-sa
 ```
 
+Write that with `echo`, not `printf '%s'`. A sudoers file whose last line has no
+trailing newline is discarded whole — silently. `sudo -l` simply will not list
+the rule, and the only tell is the file being one byte short.
+
+## The nix yabai cannot load its own scripting addition
+
+**Symptom.** `sudo yabai --load-sa` exits 1 printing nothing, and `space --create`
+keeps failing with `cannot create space due to an error with the
+scripting-addition`. Every documented precondition passes: sudoers authorised,
+`-arm64e_preview_abi` set, SIP `unrestricted_fs` and `task_for_pid` allowed, the
+installed osax version matching what the binary expects.
+
+**Why.** The nixpkgs yabai build ships Mach-O files with **no `LC_UUID` load
+command**, and dyld refuses to `dlopen` a binary without one. The loader still
+reports success — it acquires Dock's task port and runs its shellcode, but that
+shellcode never checks what `dlopen` returned. So injection "succeeds", nothing
+loads, and yabai's only complaint is a `notify()` banner rather than stderr.
+
+```sh
+otool -l "$(readlink -f "$(which yabai)")" | grep -c LC_UUID   # 0 — broken
+otool -l "$(readlink -f "$(which sketchybar)")" | grep -c LC_UUID  # 1 — fine
+```
+
+Not all nix builds do this; sketchybar and ghostty keep theirs. It is specific to
+the yabai derivation.
+
+**Confirm it in one step** — the error dyld will not show you otherwise:
+
+```c
+// clang -o dl dl.c && ./dl
+#include <dlfcn.h>
+#include <stdio.h>
+int main(void) {
+  void *h = dlopen("/Library/ScriptingAdditions/yabai.osax/Contents/Resources/payload.bundle/Contents/MacOS/payload", RTLD_NOW);
+  if (!h) { printf("%s\n", dlerror()); return 1; }
+  return 0;
+}
+```
+
+**Fix.** Install yabai from the official release rather than nixpkgs, or override
+the derivation with `dontStrip = true`. Nothing on the yabai or macOS side helps:
+re-granting permissions, disabling library validation, reinstalling the osax and
+rebooting all leave it exactly as broken.
+
+**Why it hid for months.** The payload stays resident in Dock once injected, so an
+update that breaks loading changes nothing until Dock next restarts — which can be
+months later, long after the update that caused it. Losing `alt - w` right after
+running `killall Dock` is this, not whatever you were doing at the time.
+
 ## yabai focus commands are silent no-ops
 
 **Symptom.** `yabai -m display --focus 2` and `yabai -m space --focus 12` exit
