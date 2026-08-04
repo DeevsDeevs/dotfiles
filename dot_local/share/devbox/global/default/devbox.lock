@@ -985,6 +985,10 @@
       "last_modified": "2026-07-28T06:59:36Z",
       "resolved": "github:numtide/llm-agents.nix/d4a6e87fd4b9d7f551b0d2aba1514213617502a5?lastModified=1785221976&narHash=sha256-n1PgEKstIBdMxilWJpqagnWNF3roP%2FFucvdms1DpEFQ%3D#pi"
     },
+    "github:ogulcancelik/herdr": {
+      "last_modified": "2026-08-04T02:19:40Z",
+      "resolved": "github:ogulcancelik/herdr/adb50cba9b15583db019bb655119915869e8c44e?lastModified=1785809980"
+    },
     "github:ogulcancelik/herdr/v0.7.5": {
       "last_modified": "2026-07-21T18:04:32Z",
       "resolved": "github:ogulcancelik/herdr/ef4c23f5775bb8cfec05f05d0844226ff959a07a?lastModified=1784657072"
@@ -1896,7 +1900,7 @@
     },
     "nodejs@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
-      "plugin_version": "0.0.4",
+      "plugin_version": "0.0.2",
       "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#nodejs_26",
       "source": "devbox-search",
       "version": "26.5.0",

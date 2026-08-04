@@ -154,7 +154,8 @@
     "sshpass":                          "latest",
     "cava":                             "latest",
     "nodejs":                           "latest",
-    "github:numtide/llm-agents.nix#pi": ""
+    "github:numtide/llm-agents.nix#pi": "",
+    "github:ogulcancelik/herdr":        ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
