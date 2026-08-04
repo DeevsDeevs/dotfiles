@@ -153,7 +153,8 @@
     "cava":                             "latest",
     "nodejs":                           "latest",
     "github:numtide/llm-agents.nix#pi": "",
-    "github:ogulcancelik/herdr":        ""
+    "github:ogulcancelik/herdr":        "",
+    "syncthing":                        "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

@@ -977,6 +977,10 @@
       "last_modified": "1970-01-01T00:00:00Z",
       "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#spotify"
     },
+    "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#yabai": {
+      "last_modified": "1970-01-01T00:00:00Z",
+      "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#yabai"
+    },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2026-07-27T08:35:34Z",
       "resolved": "github:NixOS/nixpkgs/38a4887411571457d700c51c64a6e49ead2ed5ab?lastModified=1785141334"
@@ -2684,6 +2688,44 @@
         }
       }
     },
+    "syncthing@latest": {
+      "last_modified": "2026-08-01T16:34:20Z",
+      "resolved": "github:NixOS/nixpkgs/a5cbcfe954791221bfffe2307f7d1a1bf61a871e#syncthing",
+      "source": "devbox-search",
+      "version": "2.1.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/q881g1yd0kk338qdkicwziiqrv32105x-syncthing-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/q881g1yd0kk338qdkicwziiqrv32105x-syncthing-2.1.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/bjfa2hw98hj3bvni4j5yhim99z196x2x-syncthing-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/bjfa2hw98hj3bvni4j5yhim99z196x2x-syncthing-2.1.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jmilsbc31sdzmdj5lgsaqdcfmfc0dr3d-syncthing-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jmilsbc31sdzmdj5lgsaqdcfmfc0dr3d-syncthing-2.1.2"
+        }
+      }
+    },
     "tmux-mem-cpu-load@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
       "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#tmux-mem-cpu-load",
@@ -3464,34 +3506,6 @@
             }
           ],
           "store_path": "/nix/store/vl67613k91g8y8bpzsgb7mn0kamg78xg-yaak-2025.6.1"
-        }
-      }
-    },
-    "yabai@latest": {
-      "last_modified": "2026-07-23T05:10:05Z",
-      "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#yabai",
-      "source": "devbox-search",
-      "version": "7.1.25",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/v35gif22636zk8j06yjhd5g1g8h3kz5a-yabai-7.1.25",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/v35gif22636zk8j06yjhd5g1g8h3kz5a-yabai-7.1.25"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/nqh5qmwhmj48p0pjkjiiqyk9n5walqi8-yabai-7.1.25",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/nqh5qmwhmj48p0pjkjiiqyk9n5walqi8-yabai-7.1.25"
         }
       }
     },
