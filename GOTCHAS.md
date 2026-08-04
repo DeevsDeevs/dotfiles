@@ -29,6 +29,21 @@ launchctl kickstart gui/$(id -u)/com.koekeishiya.skhd
 `skhdrc` on save by itself, and `sketchybar --reload` needs no relaunch. A
 `launchctl kickstart -k` is what turns a stale grant into a dead hotkey daemon.
 
+**Accessibility is not the only grant that drifts.** Screen Recording goes the
+same way, and yabai fails it far more quietly — no abort, no log, just config
+lines that stop applying:
+
+```sh
+yabai -m config window_animation_duration       # reads 0.000000
+yabai -m config window_animation_duration 0.35  # "requires Screen Recording
+                                                #  permissions! ignoring request.."
+```
+
+`yabairc` sets `0.35` and yabai reports `0.000000`, so animations are simply off
+and nothing says why. Read a value back after setting it when a yabai config line
+seems to have no effect — the write is rejected on stderr from a script whose
+output nobody reads.
+
 ## `yabai --load-sa` asks for a password
 
 **Symptom.** `sudo -n yabai --load-sa` fails with `sudo: a password is required`,
