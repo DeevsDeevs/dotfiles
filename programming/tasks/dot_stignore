@@ -1,6 +1,7 @@
 // Generated dependencies and build output
 (?d)node_modules
 (?d)target
+(?d).devbox
 (?d).venv
 (?d)venv
 (?d)__pycache__
