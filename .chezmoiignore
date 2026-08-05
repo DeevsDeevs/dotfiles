@@ -18,8 +18,10 @@ assets/
 .config/ghostty
 .config/zed
 Library/LaunchAgents/dev.deevs.syncthing.plist
+programming/tasks/.stignore
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
 .config/systemd/user/syncthing.service
+tasks/.stignore
 {{ end }}
