@@ -14,7 +14,7 @@
 (?d)*.pyc
 
 // Machine-local state
+(?d).git
 (?d).DS_Store
 (?d).attached_registry.json
 (?d).attached_registry.json.lock
-(?d)**/.git/index.lock
