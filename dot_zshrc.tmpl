@@ -1,3 +1,13 @@
+{{ if eq .chezmoi.os "linux" -}}
+_forwarded_agent="$HOME/.ssh/agent.sock"
+if [[ -n "${SSH_AUTH_SOCK:-}" && "$SSH_AUTH_SOCK" != "$_forwarded_agent" && -S "$SSH_AUTH_SOCK" ]]; then
+  mkdir -p "$HOME/.ssh"
+  ln -sfn "$SSH_AUTH_SOCK" "$_forwarded_agent"
+fi
+[[ -S "$_forwarded_agent" ]] && export SSH_AUTH_SOCK="$_forwarded_agent"
+unset _forwarded_agent
+{{ end -}}
+
 export DEVBOX_NO_PROMPT=true
 command -v devbox >/dev/null && eval "$(devbox global shellenv --init-hook)"
 
