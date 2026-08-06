@@ -1,6 +1,6 @@
 {{ if eq .chezmoi.os "linux" -}}
 _forwarded_agent="$HOME/.ssh/agent.sock"
-if [[ -n "${SSH_AUTH_SOCK:-}" && "$SSH_AUTH_SOCK" != "$_forwarded_agent" && -S "$SSH_AUTH_SOCK" ]]; then
+if [[ -n "${SSH_TTY:-}" && -n "${SSH_AUTH_SOCK:-}" && "$SSH_AUTH_SOCK" != "$_forwarded_agent" && -S "$SSH_AUTH_SOCK" && ! -L "$SSH_AUTH_SOCK" ]]; then
   mkdir -p "$HOME/.ssh"
   ln -sfn "$SSH_AUTH_SOCK" "$_forwarded_agent"
 fi
