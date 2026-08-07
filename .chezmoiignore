@@ -1,4 +1,5 @@
 README.md
+GOTCHAS.md
 assets/
 
 .config/tmux/plugins
@@ -22,6 +23,6 @@ programming/tasks/.stignore
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
-.config/systemd/user/syncthing.service
-tasks/.stignore
+.config/systemd/
+tasks/
 {{ end }}

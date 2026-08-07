@@ -10,6 +10,12 @@ processes:
     # with no reader. Every lua traceback and every sketchybar warning vanished,
     # which is how a batch of leaks stayed invisible for hours.
     log_location: ./sketchybar.log
+    log_configuration:
+      rotation:
+        max_size_mb: 10
+        max_age_days: 7
+        max_backups: 3
+        compress: true
 {{ else -}}
 # sketchybar is darwin-only and darwin-gated in devbox.json; declaring the
 # service unconditionally made `devbox global services up` fail and retry on

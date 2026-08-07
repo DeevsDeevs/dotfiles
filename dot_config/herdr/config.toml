@@ -65,3 +65,4 @@ delivery = "system"
 show_agent_labels_on_pane_borders = true
 mouse_capture = true
 copy_on_select = true
+agent_panel_sort = "spaces"
