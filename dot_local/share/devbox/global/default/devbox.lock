@@ -966,8 +966,8 @@
       }
     },
     "git+ssh://git@github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui": {
-      "last_modified": "2026-08-12T20:22:10Z",
-      "resolved": "git+ssh://git@github.com/DeevsDeevs/dumbgram-tui.git?ref=main&rev=026e0bd1acb632dc1839872ce31cd1f845984469#dumbgram_tui"
+      "last_modified": "2026-08-13T01:25:56Z",
+      "resolved": "git+ssh://git@github.com/DeevsDeevs/dumbgram-tui.git?ref=main&rev=40f3850cdf3775611e7a03bc93f8d77d8a9415c3#dumbgram_tui"
     },
     "github:DeevsDeevs/pup-cli-nix": {
       "last_modified": "2026-07-05T10:09:01Z",
