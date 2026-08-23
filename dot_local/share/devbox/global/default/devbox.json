@@ -154,7 +154,8 @@
     "nodejs":                           "latest",
     "github:numtide/llm-agents.nix#pi": "",
     "github:ogulcancelik/herdr":        "",
-    "syncthing":                        "latest"
+    "syncthing":                        "latest",
+    "openlogi":                         "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
