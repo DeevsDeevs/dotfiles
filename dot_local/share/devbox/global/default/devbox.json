@@ -154,13 +154,13 @@
     "nodejs":                           "latest",
     "github:numtide/llm-agents.nix#pi": "",
     "github:ogulcancelik/herdr":        "",
-    "syncthing":                        "latest",
-    "openlogi":                         "latest"
+    "syncthing":                        "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
     "scripts": {
       "test":             ["echo \"Error: no test specified\" && exit 1"],
+      "setup-openlogi":   ["$(devbox global path)/scripts/setup-openlogi.sh"],
       "setup-sketchybar": ["$(devbox global path)/scripts/setup-sketchybar-deps.sh"],
       "sync-nix-apps":    ["$(devbox global path)/scripts/sync-nix-apps.sh"]
     }

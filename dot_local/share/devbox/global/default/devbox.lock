@@ -1993,44 +1993,6 @@
         }
       }
     },
-    "openlogi@latest": {
-      "last_modified": "2026-08-16T05:26:56Z",
-      "resolved": "github:NixOS/nixpkgs/54ba4bcec4043e72a4006d825e0d7aff5562008f#openlogi",
-      "source": "devbox-search",
-      "version": "0.6.25",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/ywzbngblya7fmn7z709iwxxx90v9i78c-openlogi-0.6.25",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/ywzbngblya7fmn7z709iwxxx90v9i78c-openlogi-0.6.25"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/h728s0c6k1iwsdngblx04lrxmf0qh46g-openlogi-0.6.25",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/h728s0c6k1iwsdngblx04lrxmf0qh46g-openlogi-0.6.25"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/81l6bi7snwvl78a4izgbcfxrz0fsfzws-openlogi-0.6.25",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/81l6bi7snwvl78a4izgbcfxrz0fsfzws-openlogi-0.6.25"
-        }
-      }
-    },
     "openssl@latest": {
       "last_modified": "2025-12-05T06:24:47Z",
       "resolved": "github:NixOS/nixpkgs/42e29df35be6ef54091d3a3b4e97056ce0a98ce8#openssl",
