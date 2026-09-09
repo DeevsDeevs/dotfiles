@@ -990,8 +990,8 @@
       "resolved": "github:numtide/llm-agents.nix/d4a6e87fd4b9d7f551b0d2aba1514213617502a5?lastModified=1785221976&narHash=sha256-n1PgEKstIBdMxilWJpqagnWNF3roP%2FFucvdms1DpEFQ%3D#pi"
     },
     "github:ogulcancelik/herdr": {
-      "last_modified": "2026-08-04T02:19:40Z",
-      "resolved": "github:ogulcancelik/herdr/adb50cba9b15583db019bb655119915869e8c44e?lastModified=1785809980"
+      "last_modified": "2026-09-09T18:07:03Z",
+      "resolved": "github:ogulcancelik/herdr/1f773dd6f44ab5a66371d4249c3d6f33a02d1069?lastModified=1788977223&narHash=sha256-wil9M8ysFH335Tm%2FJW44VsKJA7ejCmW%2F9rj9YolY6%2B4%3D"
     },
     "github:sadjow/claude-code-nix": {
       "last_modified": "2026-07-25T02:58:31Z",
