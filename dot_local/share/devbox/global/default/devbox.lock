@@ -985,21 +985,25 @@
       "last_modified": "2026-07-27T08:35:34Z",
       "resolved": "github:NixOS/nixpkgs/38a4887411571457d700c51c64a6e49ead2ed5ab?lastModified=1785141334"
     },
+    "github:numtide/llm-agents.nix#agent-browser": {
+      "last_modified": "2026-09-09T10:09:55Z",
+      "resolved": "github:numtide/llm-agents.nix/26c3794de36bba9afdb0cb269fa4ab390e09f9ca?lastModified=1788948595&narHash=sha256-rqeK3hPxa6960ivXTRb%2BwO74tKKecqeH2CiKIxxFJuU%3D#agent-browser"
+    },
     "github:numtide/llm-agents.nix#pi": {
-      "last_modified": "2026-07-28T06:59:36Z",
-      "resolved": "github:numtide/llm-agents.nix/d4a6e87fd4b9d7f551b0d2aba1514213617502a5?lastModified=1785221976&narHash=sha256-n1PgEKstIBdMxilWJpqagnWNF3roP%2FFucvdms1DpEFQ%3D#pi"
+      "last_modified": "2026-09-10T09:19:26Z",
+      "resolved": "github:numtide/llm-agents.nix/f9d6a07194a3d5bfe2743e9b8460207fe87da15c?lastModified=1789031966&narHash=sha256-9iJmspIpxKjkAIgDA8MI23Us2C7BRAc2PWcHedd3NcI%3D#pi"
     },
     "github:ogulcancelik/herdr": {
       "last_modified": "2026-09-09T18:07:03Z",
       "resolved": "github:ogulcancelik/herdr/1f773dd6f44ab5a66371d4249c3d6f33a02d1069?lastModified=1788977223&narHash=sha256-wil9M8ysFH335Tm%2FJW44VsKJA7ejCmW%2F9rj9YolY6%2B4%3D"
     },
     "github:sadjow/claude-code-nix": {
-      "last_modified": "2026-07-25T02:58:31Z",
-      "resolved": "github:sadjow/claude-code-nix/0d3cd1d6260b6f0ed232224c274c565407446fa1?lastModified=1784948311"
+      "last_modified": "2026-09-09T21:01:30Z",
+      "resolved": "github:sadjow/claude-code-nix/72091e21c74c14ccb6554a76e4416608039b289d?lastModified=1788987690&narHash=sha256-%2FTSj85TBwXmytliESwnhHrlFAIw2pwSOgAmI0MNCGQk%3D"
     },
     "github:sadjow/codex-cli-nix": {
-      "last_modified": "2026-07-21T18:33:44Z",
-      "resolved": "github:sadjow/codex-cli-nix/bd1773d0f796c93de7f4f00ea6c2469e95e44b62?lastModified=1784658824"
+      "last_modified": "2026-09-09T23:12:51Z",
+      "resolved": "github:sadjow/codex-cli-nix/33542c7e7139127a4bac1cbe0fac8c81a570410a?lastModified=1788995571&narHash=sha256-I58IVp7HfT3TTKZJ5kh7%2FLttu9DnRZFC0qmvxnIvIj4%3D"
     },
     "google-chrome@latest": {
       "last_modified": "2026-07-23T05:10:05Z",

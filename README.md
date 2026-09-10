@@ -44,6 +44,7 @@ dbadd-linux package-name # Add Linux-only package
 Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbox/global/default/scripts/):
 
 - `setup-sketchybar-deps.sh` - Installs SketchyBar dependencies
+- `setup-agent-browser.sh` - Allows Nix Chromium's sandbox on AppArmor-restricted Linux hosts (requires sudo)
 - `sync-nix-apps.sh` - Creates aliases for GUI apps in Spotlight/Raycast
 
 ## Prerequisites
@@ -57,6 +58,29 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 ### Linux
 - [Devbox](https://www.jetify.com/devbox/docs/installing-devbox/)
 - Nix package manager (installed automatically by Devbox)
+
+### Agent Browser on Ubuntu 24.04+
+
+The Linux-only `llm-agents.nix#agent-browser` package includes Chromium. If it
+fails with a SUID sandbox helper error, Ubuntu's AppArmor user-namespace
+restriction may be blocking Chromium's primary sandbox. Run once per host:
+
+```sh
+devbox global run setup-agent-browser
+```
+
+This installs `/etc/apparmor.d/nix-chromium`, allowing user namespaces only for
+Nix Chromium executables. It follows Ubuntu's Chrome profile pattern and matches
+Nix store hashes/versions so browser updates keep working. Chromium's sandbox and
+the system-wide user-namespace restriction stay enabled; no `--no-sandbox` or
+setuid changes are needed. Restart existing agent-browser sessions afterward.
+
+To remove the allowance:
+
+```sh
+sudo apparmor_parser --remove /etc/apparmor.d/nix-chromium
+sudo rm /etc/apparmor.d/nix-chromium
+```
 
 ## Components
 
