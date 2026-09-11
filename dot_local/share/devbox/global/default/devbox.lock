@@ -435,6 +435,44 @@
         }
       }
     },
+    "cliamp@latest": {
+      "last_modified": "2026-08-27T07:16:00Z",
+      "resolved": "github:NixOS/nixpkgs/c27cdad491a991b11ed731760aa2ef8db0cb0410#cliamp",
+      "source": "devbox-search",
+      "version": "1.63.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rnkxdlv6j8im954v7yqjqa2km5nx4wlr-cliamp-1.63.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/rnkxdlv6j8im954v7yqjqa2km5nx4wlr-cliamp-1.63.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jn1b2h6ghglr3rkp4654jqzqab2kvv06-cliamp-1.63.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jn1b2h6ghglr3rkp4654jqzqab2kvv06-cliamp-1.63.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pz9rrdnvs5hxa50r2fwhvy5bd2a3c4qr-cliamp-1.63.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pz9rrdnvs5hxa50r2fwhvy5bd2a3c4qr-cliamp-1.63.2"
+        }
+      }
+    },
     "cmake@latest": {
       "last_modified": "2025-11-23T21:50:36Z",
       "resolved": "github:NixOS/nixpkgs/ee09932cedcef15aaf476f9343d1dea2cb77e261#cmake",
