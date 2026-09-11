@@ -973,10 +973,6 @@
       "last_modified": "2026-07-05T10:09:01Z",
       "resolved": "github:DeevsDeevs/pup-cli-nix/5cd514e1268cfb1694535ac73251a2f5b2d14766?lastModified=1783246141"
     },
-    "github:NixOS/nixpkgs/81bb03c6552286508e78364b5ea0efe3ed526853#cliamp": {
-      "last_modified": "1970-01-01T00:00:00Z",
-      "resolved": "github:NixOS/nixpkgs/81bb03c6552286508e78364b5ea0efe3ed526853#cliamp"
-    },
     "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#spotify": {
       "last_modified": "1970-01-01T00:00:00Z",
       "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#spotify"

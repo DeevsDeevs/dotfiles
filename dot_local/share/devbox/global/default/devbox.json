@@ -157,8 +157,7 @@
     "syncthing":                        "latest",
     "github:numtide/llm-agents.nix#agent-browser": {
       "platforms": ["x86_64-linux", "aarch64-linux"]
-    },
-    "github:NixOS/nixpkgs/81bb03c6552286508e78364b5ea0efe3ed526853#cliamp": ""
+    }
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
