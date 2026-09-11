@@ -1,0 +1,81 @@
+schema_version = 4
+
+[app_settings]
+launch_at_login = false
+check_for_updates = true
+auto_install_updates = false
+update_prompt_seen = true
+show_in_menu_bar = true
+capture_mouse_events = true
+auto_download_assets = true
+asset_source = "automatic"
+thumbwheel_sensitivity = 14
+appearance = "system"
+app_icon = "openlogi"
+
+[devices]
+
+[devices."direct:046d:b042:serial:2601za46n3s8"]
+dpi = 2000
+
+[devices."direct:046d:b042:serial:2601za46n3s8".identity]
+display_name = "MX Master 4"
+codename = "MX Master 4"
+kind = "mouse"
+
+[devices."direct:046d:b042:serial:2601za46n3s8".identity.model_info]
+entity_count = 4
+unit_id = [
+    0,
+    0,
+    0,
+    0,
+]
+model_ids = [
+    45122,
+    0,
+    0,
+]
+extended_model_id = 0
+
+[keyboard]
+
+[devices."direct:046d:b042:serial:2601za46n3s8".identity.model_info.transports]
+usb = false
+equad = false
+btle = true
+bluetooth = false
+
+[devices."direct:046d:b042:serial:2601za46n3s8".bindings]
+MiddleClick = "MiddleClick"
+Back = "PreviousDesktop"
+Forward= "MouseForward"
+
+[devices."direct:046d:b042:serial:2601za46n3s8".disabled_gestures.Forward]
+Up = "MissionControl"
+Down = "ShowDesktop"
+Left = "PrevTab"
+Right = "NextTab"
+Click = "BrowserForward"
+
+[devices."direct:046d:b042:serial:2601za46n3s8".bindings.HapticPanel]
+Up = "MissionControl"
+Down = "ShowDesktop"
+Left = "PrevTab"
+Right = "NextTab"
+Click = "AppExpose"
+
+[devices."direct:046d:b042:serial:2601za46n3s8".smartshift]
+mode = "ratchet"
+auto_disengage = 12
+tunable_torque = 75
+
+[devices."direct:046d:b042:serial:2601za46n3s8".identity.capabilities]
+buttons = true
+pointer = true
+lighting = false
+scroll_inversion = true
+hires_wheel = true
+thumbwheel = true
+haptic_feedback = true
+haptic_panel = true
