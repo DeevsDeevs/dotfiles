@@ -48,8 +48,8 @@ bluetooth = false
 
 [devices."direct:046d:b042:serial:2601za46n3s8".bindings]
 MiddleClick = "MiddleClick"
-Back = { CustomShortcut = "Alt+Left" }
-Forward = { CustomShortcut = "Alt+Right" }
+Back = { RunShellCommand = "$HOME/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/yabai -m space --focus prev" }
+Forward = { RunShellCommand = "$HOME/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/yabai -m space --focus next" }
 
 [devices."direct:046d:b042:serial:2601za46n3s8".disabled_gestures.Forward]
 Up = "MissionControl"
