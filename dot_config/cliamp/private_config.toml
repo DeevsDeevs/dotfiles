@@ -1,0 +1,4 @@
+theme = ""
+[spotify]
+client_id = "9ba11b9cacf2459fb54a45398423f4b7"
+bitrate = 320
