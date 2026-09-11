@@ -48,8 +48,8 @@ bluetooth = false
 
 [devices."direct:046d:b042:serial:2601za46n3s8".bindings]
 MiddleClick = "MiddleClick"
-Back = "PreviousDesktop"
-Forward= "MouseForward"
+Back = { CustomShortcut = "Alt+Left" }
+Forward = { CustomShortcut = "Alt+Right" }
 
 [devices."direct:046d:b042:serial:2601za46n3s8".disabled_gestures.Forward]
 Up = "MissionControl"
