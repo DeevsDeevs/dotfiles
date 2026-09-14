@@ -2291,34 +2291,6 @@
         }
       }
     },
-    "raycast@latest": {
-      "last_modified": "2026-07-23T05:10:05Z",
-      "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#raycast",
-      "source": "devbox-search",
-      "version": "1.104.17",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/lzng69q7gyr4227ljlza5a2wq5pdcikb-raycast-1.104.17",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/lzng69q7gyr4227ljlza5a2wq5pdcikb-raycast-1.104.17"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/yv9nbz4jx5b3izr22vmkc7dz6gqj0jda-raycast-1.104.17",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/yv9nbz4jx5b3izr22vmkc7dz6gqj0jda-raycast-1.104.17"
-        }
-      }
-    },
     "ripgrep@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
       "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#ripgrep",

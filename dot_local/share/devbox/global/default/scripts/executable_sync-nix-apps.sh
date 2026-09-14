@@ -94,4 +94,4 @@ fi
 
 echo ""
 echo "Done! Apps aliased to ~/Applications/installed via DevBox"
-echo "You can now find them in Spotlight and Raycast"
+echo "You can now find them in Spotlight and application launchers"

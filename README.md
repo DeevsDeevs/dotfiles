@@ -14,7 +14,7 @@ Everything is managed through [devbox](https://www.jetify.com/devbox) - a Nix-ba
 - Reproducible across machines
 - No conflicts between package versions
 - Both CLI tools and GUI applications
-- Automatic application syncing to Spotlight/Raycast
+- Automatic application syncing to Spotlight and application launchers
 
 ### Platform-Specific Packages
 
@@ -44,8 +44,9 @@ dbadd-linux package-name # Add Linux-only package
 Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbox/global/default/scripts/):
 
 - `setup-sketchybar-deps.sh` - Installs SketchyBar dependencies
+- `setup-tinycast.sh` - Installs Tinycast's upstream Homebrew cask on macOS
 - `setup-agent-browser.sh` - Allows Nix Chromium's sandbox on AppArmor-restricted Linux hosts (requires sudo)
-- `sync-nix-apps.sh` - Creates aliases for GUI apps in Spotlight/Raycast
+- `sync-nix-apps.sh` - Creates aliases for Nix GUI apps in Spotlight and application launchers
 
 ## Prerequisites
 
@@ -182,10 +183,10 @@ sudo rm /etc/apparmor.d/nix-chromium
 - **Other**: Magic Wormhole
 
 #### macOS only (GUI apps)
-Managed via devbox and available in Spotlight/Raycast after sync:
+Managed via devbox and available in Spotlight after sync (Tinycast is installed through the Devbox setup script):
 
 - **Communication**: Slack, Discord, Zoom
-- **Productivity**: Notion, Raycast
+- **Productivity**: Notion, Tinycast
 - **Development**: DBeaver, Zed
 - **Media**: Spotify
 - **Networking**: WireGuard
@@ -233,13 +234,14 @@ This script will:
 
 `chezmoi apply` has to run first: it is what clones the bar repo.
 
-### 5. Sync Nix Applications to Spotlight/Raycast (macOS only)
+### 5. Install Tinycast and Sync Nix Applications (macOS only)
 
 ```bash
+devbox global run setup-tinycast
 devbox global run sync-nix-apps
 ```
 
-Creates aliases in `~/Applications/installed via DevBox/` for all devbox-installed GUI applications.
+The Tinycast script selects the upstream cask for the Mac's OS and CPU. macOS 15 uses Tinycast's legacy Sequoia build. The sync script creates aliases in `~/Applications/installed via DevBox/` for Nix-installed GUI applications.
 
 ## Post-Installation Configuration (macOS only)
 

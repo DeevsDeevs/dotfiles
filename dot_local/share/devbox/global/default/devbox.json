@@ -58,10 +58,6 @@
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "raycast": {
-      "version":   "latest",
-      "platforms": ["x86_64-darwin", "aarch64-darwin"]
-    },
     "slack": {
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
@@ -166,6 +162,7 @@
       "setup-openlogi":      ["$(devbox global path)/scripts/setup-openlogi.sh"],
       "setup-agent-browser": ["$(devbox global path)/scripts/setup-agent-browser.sh"],
       "setup-sketchybar":    ["$(devbox global path)/scripts/setup-sketchybar-deps.sh"],
+      "setup-tinycast":      ["$(devbox global path)/scripts/setup-tinycast.sh"],
       "sync-nix-apps":       ["$(devbox global path)/scripts/sync-nix-apps.sh"]
     }
   }
