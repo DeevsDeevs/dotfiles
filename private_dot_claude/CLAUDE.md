@@ -36,7 +36,6 @@
 |-------|-------------|---------------|
 | `datetime` | Need current date/time for logging, file naming, timestamps, APIs | `/datetime` or use `date` commands from skill |
 | `anti-ai-slop` | After writing code, before commit - clean up AI-generated bloat | `/anti-ai-slop` |
-| `prompt-improver` | Auto-triggered on vague prompts to ask clarifying questions | Automatic via hook |
 
 ### Quick Skill Reference
 

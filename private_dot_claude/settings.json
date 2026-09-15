@@ -48,8 +48,7 @@
     "datetime@deevs-agent-system": true,
     "dev-experts@deevs-agent-system": true,
     "ponytail@ponytail": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "prompt-improver@claude-code-marketplace": true
+    "rust-analyzer-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
