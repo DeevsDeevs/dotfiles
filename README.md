@@ -45,7 +45,7 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 
 - `setup-sketchybar-deps.sh` - Installs SketchyBar dependencies
 - `setup-tinycast.sh` - Installs Tinycast's upstream Homebrew cask on macOS
-- `setup-agent-browser.sh` - Allows Nix Chromium's sandbox on AppArmor-restricted Linux hosts (requires sudo)
+- `setup-agent-browser.sh` - Finishes browser and AI-agent skill setup on macOS/Linux
 - `sync-nix-apps.sh` - Creates aliases for Nix GUI apps in Spotlight and application launchers
 
 ## Prerequisites
@@ -60,23 +60,24 @@ Located in [`.local/share/devbox/global/default/scripts/`](dot_local/share/devbo
 - [Devbox](https://www.jetify.com/devbox/docs/installing-devbox/)
 - Nix package manager (installed automatically by Devbox)
 
-### Agent Browser on Ubuntu 24.04+
+### Agent Browser
 
-The Linux-only `llm-agents.nix#agent-browser` package includes Chromium. If it
-fails with a SUID sandbox helper error, Ubuntu's AppArmor user-namespace
-restriction may be blocking Chromium's primary sandbox. Run once per host:
+The pinned `llm-agents.nix#agent-browser` package runs on macOS and Linux. Run
+its setup once per host:
 
 ```sh
 devbox global run setup-agent-browser
 ```
 
-This installs `/etc/apparmor.d/nix-chromium`, allowing user namespaces only for
-Nix Chromium executables. It follows Ubuntu's Chrome profile pattern and matches
-Nix store hashes/versions so browser updates keep working. Chromium's sandbox and
-the system-wide user-namespace restriction stay enabled; no `--no-sandbox` or
-setuid changes are needed. Restart existing agent-browser sessions afterward.
+On macOS, this installs Chrome for Testing. On every host, it installs the
+upstream discovery skill globally for Pi, Claude Code, and Codex.
 
-To remove the allowance:
+On Ubuntu 24.04+, the setup also installs `/etc/apparmor.d/nix-chromium`,
+allowing user namespaces only for Nix Chromium executables. Chromium's sandbox
+and the system-wide user-namespace restriction stay enabled; no `--no-sandbox`
+or setuid changes are needed.
+
+To remove the Linux allowance:
 
 ```sh
 sudo apparmor_parser --remove /etc/apparmor.d/nix-chromium

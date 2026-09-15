@@ -152,7 +152,7 @@
     "github:ogulcancelik/herdr":        "",
     "syncthing":                        "latest",
     "github:numtide/llm-agents.nix#agent-browser": {
-      "platforms": ["x86_64-linux", "aarch64-linux"]
+      "platforms": ["x86_64-linux", "aarch64-linux", "x86_64-darwin", "aarch64-darwin"]
     }
   },
   "shell": {
