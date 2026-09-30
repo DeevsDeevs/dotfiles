@@ -998,12 +998,12 @@
       "resolved": "github:ogulcancelik/herdr/1f773dd6f44ab5a66371d4249c3d6f33a02d1069?lastModified=1788977223&narHash=sha256-wil9M8ysFH335Tm%2FJW44VsKJA7ejCmW%2F9rj9YolY6%2B4%3D"
     },
     "github:sadjow/claude-code-nix": {
-      "last_modified": "2026-09-09T21:01:30Z",
-      "resolved": "github:sadjow/claude-code-nix/72091e21c74c14ccb6554a76e4416608039b289d?lastModified=1788987690&narHash=sha256-%2FTSj85TBwXmytliESwnhHrlFAIw2pwSOgAmI0MNCGQk%3D"
+      "last_modified": "2026-09-29T20:01:50Z",
+      "resolved": "github:sadjow/claude-code-nix/82ee196c58667c5f76fdd4ac646e2e2c05778e86?lastModified=1790712110"
     },
     "github:sadjow/codex-cli-nix": {
-      "last_modified": "2026-09-09T23:12:51Z",
-      "resolved": "github:sadjow/codex-cli-nix/33542c7e7139127a4bac1cbe0fac8c81a570410a?lastModified=1788995571&narHash=sha256-I58IVp7HfT3TTKZJ5kh7%2FLttu9DnRZFC0qmvxnIvIj4%3D"
+      "last_modified": "2026-09-30T00:44:57Z",
+      "resolved": "github:sadjow/codex-cli-nix/0cce411a817357ae6d875fd6cc76f8f155e9b12b?lastModified=1790729097"
     },
     "google-chrome@latest": {
       "last_modified": "2026-07-23T05:10:05Z",

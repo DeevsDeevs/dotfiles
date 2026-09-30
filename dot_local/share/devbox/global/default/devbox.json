@@ -142,9 +142,7 @@
     "gh":                               "latest",
     "git+ssh://git":                    "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
     "github:DeevsDeevs/pup-cli-nix":    "",
-    "github:sadjow/claude-code-nix":    "",
     "grpcurl":                          "latest",
-    "github:sadjow/codex-cli-nix":      "",
     "sshpass":                          "latest",
     "cava":                             "latest",
     "nodejs":                           "latest",
@@ -153,7 +151,9 @@
     "syncthing":                        "latest",
     "github:numtide/llm-agents.nix#agent-browser": {
       "platforms": ["x86_64-linux", "aarch64-linux", "x86_64-darwin", "aarch64-darwin"]
-    }
+    },
+    "github:sadjow/claude-code-nix": "",
+    "github:sadjow/codex-cli-nix":   ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
