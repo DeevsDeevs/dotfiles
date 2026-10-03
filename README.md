@@ -33,6 +33,14 @@ dbadd-mac package-name   # Add macOS-only package
 dbadd-linux package-name # Add Linux-only package
 ```
 
+### Pi Release Pin
+
+Pi uses the local [`flakes/pi`](dot_local/share/devbox/global/default/flakes/pi/flake.nix)
+package to install the checksum-pinned official 1.0.1 release through Devbox.
+`dbup` does not change this release pin. Once `llm-agents.nix` packages 1.0.1 or
+newer, replace `path:./flakes/pi#pi` with `github:numtide/llm-agents.nix#pi` in
+`devbox.json`, run `devbox global install`, and `dbsync`.
+
 ### Process Management
 
 [process-compose](https://github.com/F1bonacc1/process-compose) manages background services:

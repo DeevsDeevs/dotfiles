@@ -989,10 +989,6 @@
       "last_modified": "2026-09-09T10:09:55Z",
       "resolved": "github:numtide/llm-agents.nix/26c3794de36bba9afdb0cb269fa4ab390e09f9ca?lastModified=1788948595&narHash=sha256-rqeK3hPxa6960ivXTRb%2BwO74tKKecqeH2CiKIxxFJuU%3D#agent-browser"
     },
-    "github:numtide/llm-agents.nix#pi": {
-      "last_modified": "2026-09-10T09:19:26Z",
-      "resolved": "github:numtide/llm-agents.nix/f9d6a07194a3d5bfe2743e9b8460207fe87da15c?lastModified=1789031966&narHash=sha256-9iJmspIpxKjkAIgDA8MI23Us2C7BRAc2PWcHedd3NcI%3D#pi"
-    },
     "github:ogulcancelik/herdr": {
       "last_modified": "2026-09-09T18:07:03Z",
       "resolved": "github:ogulcancelik/herdr/1f773dd6f44ab5a66371d4249c3d6f33a02d1069?lastModified=1788977223&narHash=sha256-wil9M8ysFH335Tm%2FJW44VsKJA7ejCmW%2F9rj9YolY6%2B4%3D"

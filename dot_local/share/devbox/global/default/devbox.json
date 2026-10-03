@@ -146,7 +146,7 @@
     "sshpass":                          "latest",
     "cava":                             "latest",
     "nodejs":                           "latest",
-    "github:numtide/llm-agents.nix#pi": "",
+    "path:./flakes/pi#pi":               "",
     "github:ogulcancelik/herdr":        "",
     "syncthing":                        "latest",
     "github:numtide/llm-agents.nix#agent-browser": {
