@@ -46,8 +46,6 @@ yabai -m config mouse_drop_action           swap
 # ===== Window modifications ===================
 
 yabai -m config window_placement            second_child
-# 7.1.25: skip the native space-switch transition when focus crosses spaces
-yabai -m config skip_window_focus_animation on
 yabai -m config window_animation_duration   0.35
 yabai -m config window_animation_easing     ease_out_quint
 yabai -m config insert_feedback_color       0xffa7c080
