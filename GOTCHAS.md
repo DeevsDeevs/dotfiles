@@ -171,6 +171,24 @@ the whole time, and the "old version fails identically" evidence supporting the
 XProtect theory came from a test that never actually installed the old payload.
 Verify which payload is installed before concluding anything about a version.
 
+**Resolved upstream (2026-10-05).** nixpkgs PR #549299 (commit `8b60db6`) scopes
+`-Wl,-no_uuid` to the main binary only; the payload and loader keep their
+`LC_UUID`. The pin moved from `a1bab9e` (7.1.16) to `8b60db6` (7.1.25) — drop it
+back to `"latest"` once nixpkgs-unstable contains `8b60db6`. Three traps in the
+upgrade:
+
+- `otool -l $(which yabai) | grep -c LC_UUID` on the **main binary** now returns
+  `0` by design (that UUID was the reproducibility leak). Check the installed
+  payload instead — it must have one, and `CFBundleVersion` 2.1.29 is 7.1.25.
+- 7.1.25 renamed the launchd label `com.koekeishiya.yabai` → `com.asmvik.yabai`,
+  so `--stop-service` aborts on the old install. `launchctl bootout
+  gui/$UID/com.koekeishiya.yabai`, delete the old plist, then `--start-service`.
+- `window_topmost` is gone from the config domain; the yabairc line had to go.
+
+Piping into `sudo tee` from a Claude Code `!` command hangs forever — sudo's
+stdin is the pipe, so it cannot prompt. Write the sudoers line to a temp file
+and `sudo install -m 0440` it instead.
+
 ## yabai focus commands are silent no-ops
 
 **Symptom.** `yabai -m display --focus 2` and `yabai -m space --focus 12` exit

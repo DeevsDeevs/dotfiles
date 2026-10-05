@@ -973,13 +973,13 @@
       "last_modified": "2026-07-05T10:09:01Z",
       "resolved": "github:DeevsDeevs/pup-cli-nix/5cd514e1268cfb1694535ac73251a2f5b2d14766?lastModified=1783246141"
     },
+    "github:NixOS/nixpkgs/8b60db6f7ec6f65ff97b809219e112d3b1bdacb3#yabai": {
+      "last_modified": "1970-01-01T00:00:00Z",
+      "resolved": "github:NixOS/nixpkgs/8b60db6f7ec6f65ff97b809219e112d3b1bdacb3#yabai"
+    },
     "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#spotify": {
       "last_modified": "1970-01-01T00:00:00Z",
       "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#spotify"
-    },
-    "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#yabai": {
-      "last_modified": "1970-01-01T00:00:00Z",
-      "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#yabai"
     },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2026-07-27T08:35:34Z",
