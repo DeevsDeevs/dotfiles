@@ -977,13 +977,13 @@
       "last_modified": "1970-01-01T00:00:00Z",
       "resolved": "github:NixOS/nixpkgs/8b60db6f7ec6f65ff97b809219e112d3b1bdacb3#yabai"
     },
-    "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#spotify": {
-      "last_modified": "1970-01-01T00:00:00Z",
-      "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#spotify"
-    },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2026-07-27T08:35:34Z",
       "resolved": "github:NixOS/nixpkgs/38a4887411571457d700c51c64a6e49ead2ed5ab?lastModified=1785141334"
+    },
+    "github:crmne/spotifast#spotifast-app": {
+      "last_modified": "2026-10-04T18:32:01Z",
+      "resolved": "github:crmne/spotifast/7048219716fb8bbf2f1af0934f545801f52cb29b?lastModified=1791138721#spotifast-app"
     },
     "github:numtide/llm-agents.nix#agent-browser": {
       "last_modified": "2026-09-09T10:09:55Z",
@@ -2513,54 +2513,6 @@
             }
           ],
           "store_path": "/nix/store/n6qy6bbrq9hplg8zchfk0bn4kyqlk8r0-slack-4.49.89"
-        }
-      }
-    },
-    "spicetify-cli@latest": {
-      "last_modified": "2026-07-23T05:10:05Z",
-      "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#spicetify-cli",
-      "source": "devbox-search",
-      "version": "2.44.0",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/r2g9pprkg55xlw47cy5gdzfaam94k9g9-spicetify-cli-2.44.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/r2g9pprkg55xlw47cy5gdzfaam94k9g9-spicetify-cli-2.44.0"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/3mhssg60p80mh3687yq1nmdsvjz28icm-spicetify-cli-2.44.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/3mhssg60p80mh3687yq1nmdsvjz28icm-spicetify-cli-2.44.0"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/rfv71ba5blgczldz6lvn9w9xxsxbf4jn-spicetify-cli-2.44.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/rfv71ba5blgczldz6lvn9w9xxsxbf4jn-spicetify-cli-2.44.0"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/526zk0hpirf1wqhbm40xida3pm7lx33h-spicetify-cli-2.44.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/526zk0hpirf1wqhbm40xida3pm7lx33h-spicetify-cli-2.44.0"
         }
       }
     },
