@@ -189,6 +189,34 @@ Piping into `sudo tee` from a Claude Code `!` command hangs forever — sudo's
 stdin is the pipe, so it cannot prompt. Write the sudoers line to a temp file
 and `sudo install -m 0440` it instead.
 
+## Stuck unclickable window ghosts (Dia, Session, …)
+
+**Symptom.** A frozen copy of a window sits on a display; clicks and drags do
+nothing. Appears randomly, more often for busy Chromium/Electron apps.
+Restarting yabai clears it, so it looks like a yabai state bug, not an app bug.
+
+**Why.** `window_animation_duration 0.35` animates by drawing a *proxy* window —
+a yabai-owned screenshot of the real window — and a race (window changing or
+closing mid-animation) leaks the proxy. Confirmed by listing on-screen CG
+windows: the ghosts are owned by the yabai pid at exactly the app windows'
+frames. The real windows are fine underneath. Only known prevention is
+`window_animation_duration 0.0`; animations were kept, so ghosts get detected
+and cleared instead:
+
+```sh
+~/.config/yabai/scripts/yabai_ghosts.sh        # list ghosts (1s recheck filters live animations)
+~/.config/yabai/scripts/yabai_ghosts.sh --fix  # restart yabai if ghosts found
+```
+
+The checker is `ghostcheck.c` next to it, compiled on first run.
+
+## `skip_window_focus_animation` lands on the wrong space
+
+Enabled briefly after the 7.1.25 upgrade, reverted: clicking space 3 → 6 landed
+on 5. The option switches spaces by focusing a window on the target space, so an
+empty target space routes focus to whichever space has the nearest window. Not
+worth retrying until upstream changes the implementation.
+
 ## yabai focus commands are silent no-ops
 
 **Symptom.** `yabai -m display --focus 2` and `yabai -m space --focus 12` exit
