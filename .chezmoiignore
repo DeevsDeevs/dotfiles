@@ -19,6 +19,8 @@ assets/
 .config/ghostty
 .config/zed
 Library/LaunchAgents/dev.deevs.syncthing.plist
+Library/LaunchAgents/dev.deevs.tailscale-personal.plist
+.local/bin/seine-rdp
 programming/tasks/.stignore
 {{ end }}
 

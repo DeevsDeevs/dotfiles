@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>dev.deevs.tailscale-personal</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>{{ .chezmoi.homeDir }}/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/tailscaled</string>
+    <string>--tun=userspace-networking</string>
+    <string>--socks5-server=127.0.0.1:1055</string>
+    <string>--socket={{ .chezmoi.homeDir }}/.local/state/tailscale-personal/tailscaled.sock</string>
+    <string>--statedir={{ .chezmoi.homeDir }}/.local/state/tailscale-personal</string>
+    <string>--port=0</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>ProcessType</key>
+  <string>Background</string>
+  <key>StandardOutPath</key>
+  <string>{{ .chezmoi.homeDir }}/.local/state/tailscale-personal/tailscaled.log</string>
+  <key>StandardErrorPath</key>
+  <string>{{ .chezmoi.homeDir }}/.local/state/tailscale-personal/tailscaled.log</string>
+</dict>
+</plist>

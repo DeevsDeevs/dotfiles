@@ -1,0 +1,16 @@
+#!/bin/zsh
+# Remote desktop to seine-river: SSH tunnel + FreeRDP, RDP password from Keychain.
+set -euo pipefail
+
+port=13389
+ssh -N -o ExitOnForwardFailure=yes -L "${port}:localhost:3389" seine-river &
+tunnel=$!
+trap 'kill $tunnel 2>/dev/null' EXIT
+
+for _ in {1..20}; do nc -z localhost "$port" 2>/dev/null && break; sleep 0.5; done
+
+# /args-from:stdin must be the only argument, so everything goes through stdin.
+{
+  print -l -- "/v:localhost:${port}" /u:rdp /cert:tofu /dynamic-resolution /size:1600x1000 /clipboard "$@"
+  print -r -- "/p:$(security find-generic-password -s seine-river-rdp -a rdp -w)"
+} | sdl-freerdp /args-from:stdin
