@@ -798,6 +798,44 @@
         }
       }
     },
+    "freerdp@latest": {
+      "last_modified": "2026-08-27T07:16:00Z",
+      "resolved": "github:NixOS/nixpkgs/c27cdad491a991b11ed731760aa2ef8db0cb0410#freerdp",
+      "source": "devbox-search",
+      "version": "3.30.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hfyxbgjs6jshayqkdqzdr4qrq7nghwjf-freerdp-3.30.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/hfyxbgjs6jshayqkdqzdr4qrq7nghwjf-freerdp-3.30.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/94h6n4rp2lcbv4fijh7kna142p43lqlw-freerdp-3.30.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/94h6n4rp2lcbv4fijh7kna142p43lqlw-freerdp-3.30.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xcvx0q47wkizix03kp422p9z0yldk32s-freerdp-3.30.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xcvx0q47wkizix03kp422p9z0yldk32s-freerdp-3.30.0"
+        }
+      }
+    },
     "fzf@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
       "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#fzf",
@@ -2647,6 +2685,56 @@
             }
           ],
           "store_path": "/nix/store/jmilsbc31sdzmdj5lgsaqdcfmfc0dr3d-syncthing-2.1.2"
+        }
+      }
+    },
+    "tailscale@latest": {
+      "last_modified": "2026-08-27T07:16:00Z",
+      "resolved": "github:NixOS/nixpkgs/c27cdad491a991b11ed731760aa2ef8db0cb0410#tailscale",
+      "source": "devbox-search",
+      "version": "1.102.3",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/74ladz50vzkifs07q4lxccs7jdqjn4fk-tailscale-1.102.3",
+              "default": true
+            },
+            {
+              "name": "derper",
+              "path": "/nix/store/d9vdy6zi4yq5wfc8hakpqfqa2yryri41-tailscale-1.102.3-derper"
+            }
+          ],
+          "store_path": "/nix/store/74ladz50vzkifs07q4lxccs7jdqjn4fk-tailscale-1.102.3"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hqis9ib35vabdygmn94jc28bnldw280d-tailscale-1.102.3",
+              "default": true
+            },
+            {
+              "name": "derper",
+              "path": "/nix/store/8gpbl93ixnim5hyghnh0h1ajz00ckbpx-tailscale-1.102.3-derper"
+            }
+          ],
+          "store_path": "/nix/store/hqis9ib35vabdygmn94jc28bnldw280d-tailscale-1.102.3"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lfqbsp1wh59izfbs39sf9yds7dp0jwdj-tailscale-1.102.3",
+              "default": true
+            },
+            {
+              "name": "derper",
+              "path": "/nix/store/dfws75id2iw9mslr795k22dvgmmf85xq-tailscale-1.102.3-derper"
+            }
+          ],
+          "store_path": "/nix/store/lfqbsp1wh59izfbs39sf9yds7dp0jwdj-tailscale-1.102.3"
         }
       }
     },

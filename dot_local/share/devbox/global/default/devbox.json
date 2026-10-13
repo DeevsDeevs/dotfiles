@@ -133,23 +133,31 @@
       "version":   "latest",
       "platforms": ["x86_64-linux", "aarch64-linux"]
     },
-    "ffmpeg":                           "latest",
-    "rtk":                              "0.41.0",
-    "gh":                               "latest",
-    "git+ssh://git":                    "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
-    "github:DeevsDeevs/pup-cli-nix":    "",
-    "grpcurl":                          "latest",
-    "sshpass":                          "latest",
-    "cava":                             "latest",
-    "nodejs":                           "latest",
-    "path:./flakes/pi#pi":               "",
-    "github:ogulcancelik/herdr":        "",
-    "syncthing":                        "latest",
+    "ffmpeg":                        "latest",
+    "rtk":                           "0.41.0",
+    "gh":                            "latest",
+    "git+ssh://git":                 "github.com/DeevsDeevs/dumbgram-tui.git?ref=main#dumbgram_tui",
+    "github:DeevsDeevs/pup-cli-nix": "",
+    "grpcurl":                       "latest",
+    "sshpass":                       "latest",
+    "cava":                          "latest",
+    "nodejs":                        "latest",
+    "path:./flakes/pi#pi":           "",
+    "github:ogulcancelik/herdr":     "",
+    "syncthing":                     "latest",
     "github:numtide/llm-agents.nix#agent-browser": {
       "platforms": ["x86_64-linux", "aarch64-linux", "x86_64-darwin", "aarch64-darwin"]
     },
     "github:sadjow/claude-code-nix": "",
-    "github:sadjow/codex-cli-nix":   ""
+    "github:sadjow/codex-cli-nix":   "",
+    "tailscale": {
+      "version":   "latest",
+      "platforms": ["aarch64-darwin", "x86_64-darwin"]
+    },
+    "freerdp": {
+      "version":   "latest",
+      "platforms": ["aarch64-darwin", "x86_64-darwin"]
+    }
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
