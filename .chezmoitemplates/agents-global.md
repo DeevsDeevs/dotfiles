@@ -30,3 +30,7 @@
 
 ## Review focus
 - Prioritize correctness risks, regressions, and missing tests.
+
+## Commits
+
+Never add AI attribution to commits or PRs: no `Co-Authored-By: Claude`, no session links, no "Generated with" footers. The author is the user alone.

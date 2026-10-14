@@ -59,6 +59,8 @@
 ## Git Workflow
 
 ### Commit Messages
+Never add AI attribution to commits or PRs: no `Co-Authored-By: Claude`, no session links, no "Generated with" footers. The author is the user alone.
+
 Use **Conventional Commits** format:
 - `feat:` - New features
 - `fix:` - Bug fixes
