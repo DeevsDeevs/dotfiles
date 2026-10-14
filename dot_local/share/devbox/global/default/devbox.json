@@ -143,7 +143,6 @@
     "cava":                          "latest",
     "nodejs":                        "latest",
     "path:./flakes/pi#pi":           "",
-    "github:ogulcancelik/herdr":     "",
     "syncthing":                     "latest",
     "github:numtide/llm-agents.nix#agent-browser": {
       "platforms": ["x86_64-linux", "aarch64-linux", "x86_64-darwin", "aarch64-darwin"]
@@ -157,7 +156,8 @@
     "freerdp": {
       "version":   "latest",
       "platforms": ["aarch64-darwin", "x86_64-darwin"]
-    }
+    },
+    "github:ogulcancelik/herdr": ""
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
