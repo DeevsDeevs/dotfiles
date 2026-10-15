@@ -1,0 +1,4 @@
+{{- if eq .chezmoi.os "linux" }}{{ if stat "/etc/seine-river/SERVER.md" }}
+
+{{ output "cat" "/etc/seine-river/SERVER.md" | trim }}
+{{ end }}{{ end -}}
