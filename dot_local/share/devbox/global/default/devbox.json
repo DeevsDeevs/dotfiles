@@ -158,7 +158,9 @@
       "platforms": ["aarch64-darwin", "x86_64-darwin"]
     },
     "github:ogulcancelik/herdr": "",
-    "restic":                    "latest"
+    "restic":                    "latest",
+    "xray":                      "latest",
+    "miniupnpc":                 "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

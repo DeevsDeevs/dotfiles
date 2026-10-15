@@ -1792,6 +1792,54 @@
         }
       }
     },
+    "miniupnpc@latest": {
+      "last_modified": "2026-10-10T12:58:50Z",
+      "resolved": "github:NixOS/nixpkgs/ca1659429c950a11a565b5764e37a1b704e17ec8#miniupnpc",
+      "source": "devbox-search",
+      "version": "2.3.3",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/3yybwaw7a9fb6rkh4av63z485mzf84f6-miniupnpc-2.3.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/3yybwaw7a9fb6rkh4av63z485mzf84f6-miniupnpc-2.3.3"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rk3hjb1rdg8f85ggqs3pq8k0g0jl0sdb-miniupnpc-2.3.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/rk3hjb1rdg8f85ggqs3pq8k0g0jl0sdb-miniupnpc-2.3.3"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fg2p08iyxrchal0gn3j43jv3zcn7p8i6-miniupnpc-2.3.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/fg2p08iyxrchal0gn3j43jv3zcn7p8i6-miniupnpc-2.3.3"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/c6lzrwzsirbfji0rpi214inzpkhjxbmk-miniupnpc-2.3.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/c6lzrwzsirbfji0rpi214inzpkhjxbmk-miniupnpc-2.3.3"
+        }
+      }
+    },
     "mold@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
       "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#mold",
@@ -3518,6 +3566,44 @@
             }
           ],
           "store_path": "/nix/store/cv38gsm6nhd4yh5iilh7jz5q2nambd3g-xclip-0.13"
+        }
+      }
+    },
+    "xray@latest": {
+      "last_modified": "2026-10-10T12:58:50Z",
+      "resolved": "github:NixOS/nixpkgs/ca1659429c950a11a565b5764e37a1b704e17ec8#xray",
+      "source": "devbox-search",
+      "version": "26.9.9",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/01x017ghypygg6frw3wqkril6in9mj5i-xray-26.9.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/01x017ghypygg6frw3wqkril6in9mj5i-xray-26.9.9"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/abkhcn00j53f9ry6gzm1q32j1vav2gif-xray-26.9.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/abkhcn00j53f9ry6gzm1q32j1vav2gif-xray-26.9.9"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qi81if4v0isvvhsmva6nw0c7nvwb27h3-xray-26.9.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/qi81if4v0isvvhsmva6nw0c7nvwb27h3-xray-26.9.9"
         }
       }
     },
