@@ -1,0 +1,6 @@
+[Unit]
+Description=Telegram DM about failed %i
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/unit-failed-notify %i

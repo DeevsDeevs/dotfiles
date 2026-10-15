@@ -2,6 +2,7 @@
 Description=restic retention and prune on Cloudflare R2
 After=network-online.target
 Wants=network-online.target
+OnFailure=notify-failure@%n.service
 
 [Service]
 Type=oneshot

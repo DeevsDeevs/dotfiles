@@ -1,0 +1,11 @@
+#!/bin/sh
+# Telegram DM for a failed systemd user unit. Needs ~/.config/notify/telegram.env (TELEGRAM_TOKEN, TELEGRAM_CHAT).
+set -eu
+unit="$1"
+. "$HOME/.config/notify/telegram.env"
+logs=$(journalctl --user -u "$unit" -n 15 -o cat --no-pager 2>&1 | cut -c1-200)
+curl -fsS -m 20 "https://api.telegram.org/bot$TELEGRAM_TOKEN/sendMessage" \
+  --data-urlencode "chat_id=$TELEGRAM_CHAT" \
+  --data-urlencode "text=❌ $unit failed on $(hostname)
+
+$logs" >/dev/null
