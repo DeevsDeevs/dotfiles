@@ -1,0 +1,11 @@
+[Unit]
+Description=restic retention and prune on Cloudflare R2
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/restic/env
+ExecStart=%h/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/restic forget --keep-hourly 24 --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune --retry-lock 2h
+Nice=10
+IOSchedulingClass=idle

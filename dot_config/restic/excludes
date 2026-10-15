@@ -1,0 +1,19 @@
+# Rebuildable or re-downloadable; Rust target/ and most tool caches are skipped via --exclude-caches (CACHEDIR.TAG)
+$HOME/.cache
+$HOME/.local/share/devbox/global/default/.devbox
+$HOME/.local/share/zinit
+$HOME/.local/share/Trash
+$HOME/.local/share/uv
+$HOME/snap
+$HOME/.rustup
+$HOME/.cargo/registry
+$HOME/.cargo/git
+$HOME/.npm
+$HOME/.bun/install/cache
+**/.venv
+**/node_modules
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/.direnv

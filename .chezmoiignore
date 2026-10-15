@@ -26,5 +26,6 @@ programming/tasks/.stignore
 
 {{ if ne .chezmoi.os "linux" }}
 .config/systemd/
+.config/restic/
 tasks/
 {{ end }}

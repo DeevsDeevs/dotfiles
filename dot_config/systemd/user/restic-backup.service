@@ -1,0 +1,11 @@
+[Unit]
+Description=restic backup of home to Cloudflare R2
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/restic/env
+ExecStart=%h/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/restic backup %h --exclude-file=%h/.config/restic/excludes --exclude-caches --one-file-system --skip-if-unchanged --retry-lock 30m
+Nice=10
+IOSchedulingClass=idle
