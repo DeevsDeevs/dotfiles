@@ -15,7 +15,6 @@
     "starship":                       "latest",
     "neovim":                         "latest",
     "zinit":                          "latest",
-    "opencode":                       "latest",
     "lua5_4":                         "latest",
     "process-compose":                "latest",
     "mosh":                           "latest",

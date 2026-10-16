@@ -1,2 +1,3 @@
 .config/btop/themes/catppuccin_mocha.theme
 .config/nvim/lua/plugins/catppuccin.lua
+.config/opencode/opencode.json

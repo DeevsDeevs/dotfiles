@@ -157,12 +157,6 @@ sudo rm /etc/apparmor.d/nix-chromium
   - Configuration: [`.claude/settings.json`](private_dot_claude/settings.json)
   - Environment: Disables zoxide in Claude Code sessions
 
-- **[OpenCode](https://opencode.ai)** - AI code assistant
-  - Configuration: [`.config/opencode/opencode.json`](dot_config/opencode/opencode.json.tmpl)
-  - Theme: Everforest
-  - MCP integration with Context7
-  - 1Password integration for API keys
-
 ### System Utilities
 
 - **[btop](https://github.com/aristocratos/btop)** - System monitor
@@ -395,7 +389,7 @@ Terminal and development UIs use **Everforest**:
 - Ghostty, tmux, Starship, and shell file colors
 - btop, Neovim, and Zed
 - SketchyBar and yabai accents
-- Herdr, Pi, and OpenCode
+- Herdr and Pi
 
 ## Troubleshooting
 

@@ -2041,44 +2041,6 @@
         }
       }
     },
-    "opencode@latest": {
-      "last_modified": "2026-07-23T05:10:05Z",
-      "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#opencode",
-      "source": "devbox-search",
-      "version": "1.18.3",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/yc17arf8hlq42h66n6ywfkb5lzwpv44f-opencode-1.18.3",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/yc17arf8hlq42h66n6ywfkb5lzwpv44f-opencode-1.18.3"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/wvlpqjrhijvp7b0mg4dznx57d1fzh2fx-opencode-1.18.3",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/wvlpqjrhijvp7b0mg4dznx57d1fzh2fx-opencode-1.18.3"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/g8n4rzm8iii1c9yz9gj5mldgfh2sac60-opencode-1.18.3",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/g8n4rzm8iii1c9yz9gj5mldgfh2sac60-opencode-1.18.3"
-        }
-      }
-    },
     "openssl@latest": {
       "last_modified": "2025-12-05T06:24:47Z",
       "resolved": "github:NixOS/nixpkgs/42e29df35be6ef54091d3a3b4e97056ce0a98ce8#openssl",
