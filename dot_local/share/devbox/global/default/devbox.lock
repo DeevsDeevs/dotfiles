@@ -1023,13 +1023,13 @@
       "last_modified": "2026-10-04T18:32:01Z",
       "resolved": "github:crmne/spotifast/7048219716fb8bbf2f1af0934f545801f52cb29b?lastModified=1791138721#spotifast-app"
     },
+    "github:herdrdev/herdr/v0.9.5": {
+      "last_modified": "2026-10-14T15:56:41Z",
+      "resolved": "github:herdrdev/herdr/2ecf19a92fc3a7fff75b6ce3655ef04f4625ec01?lastModified=1791993401"
+    },
     "github:numtide/llm-agents.nix#agent-browser": {
       "last_modified": "2026-09-09T10:09:55Z",
       "resolved": "github:numtide/llm-agents.nix/26c3794de36bba9afdb0cb269fa4ab390e09f9ca?lastModified=1788948595&narHash=sha256-rqeK3hPxa6960ivXTRb%2BwO74tKKecqeH2CiKIxxFJuU%3D#agent-browser"
-    },
-    "github:ogulcancelik/herdr": {
-      "last_modified": "2026-10-14T00:40:36Z",
-      "resolved": "github:ogulcancelik/herdr/6521382dbed36f2d001417108149c338aee116ea?lastModified=1791938436"
     },
     "github:sadjow/claude-code-nix": {
       "last_modified": "2026-09-29T20:01:50Z",
