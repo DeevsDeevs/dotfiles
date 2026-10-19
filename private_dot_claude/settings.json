@@ -45,12 +45,19 @@
     "anti-ai-slop@deevs-agent-system": true,
     "arxiv-search@deevs-agent-system": true,
     "chain-system@deevs-agent-system": true,
+    "cloudflare@cloudflare": true,
     "datetime@deevs-agent-system": true,
     "dev-experts@deevs-agent-system": true,
     "ponytail@ponytail": true,
     "rust-analyzer-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
+    },
     "ponytail": {
       "source": {
         "source": "github",
