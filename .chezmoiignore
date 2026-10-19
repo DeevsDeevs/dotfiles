@@ -24,6 +24,14 @@ Library/LaunchAgents/dev.deevs.tailscale-personal.plist
 programming/tasks/.stignore
 {{ end }}
 
+{{ if eq .chezmoi.os "linux" }}
+programming/
+{{ end }}
+
+{{ if eq .chezmoi.hostname "seine-river" }}
+tasks/
+{{ end }}
+
 {{ if ne .chezmoi.os "linux" }}
 .config/systemd/
 .local/bin/unit-failed-notify
