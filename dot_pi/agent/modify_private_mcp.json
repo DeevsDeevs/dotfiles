@@ -1,0 +1,39 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $config := dict -}}
+{{- if ne (trim .chezmoi.stdin) "" -}}
+{{-   $config = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- if not (hasKey $config "mcpServers") -}}
+{{-   $_ := set $config "mcpServers" dict -}}
+{{- end -}}
+{{- $apiKey := output "sh" "-c" "if command -v op >/dev/null 2>&1 && command -v timeout >/dev/null 2>&1; then timeout 5s op read --no-newline 'op://JustEnvs/context7-api-key/credential' </dev/null 2>/dev/null || true; fi" -}}
+{{- $context7 := dict
+  "url" "https://mcp.context7.com/mcp"
+  "exposure" "direct"
+  "description" "Look up current library and framework documentation."
+-}}
+{{- if ne $apiKey "" -}}
+{{-   $_ := set $context7 "headers" (dict "CONTEXT7_API_KEY" $apiKey) -}}
+{{- end -}}
+{{- $_ := set $config.mcpServers "context7" $context7 -}}
+{{- if eq .chezmoi.hostname "hetzner-deevs" }}
+{{- $_ := set $config.mcpServers "datadog" (dict
+  "url" "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp"
+  "exposure" "deferred"
+  "description" "Investigate Datadog EU logs, metrics, monitors and traces."
+) -}}
+{{- $_ := set $config.mcpServers "sentry" (dict
+  "url" "https://mcp.sentry.dev/mcp"
+  "exposure" "deferred"
+  "description" "Investigate Sentry errors, issues and application performance."
+) -}}
+{{- else -}}
+{{- $_ := unset $config.mcpServers "datadog" -}}
+{{- $_ := unset $config.mcpServers "sentry" -}}
+{{- end }}
+{{- $_ := set $config.mcpServers "notion" (dict
+  "url" "https://mcp.notion.com/mcp"
+  "exposure" "deferred"
+  "description" "Search and manage Notion pages, databases and workspace documentation."
+) -}}
+{{- $config | toPrettyJson -}}

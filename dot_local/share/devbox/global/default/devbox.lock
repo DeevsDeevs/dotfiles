@@ -1032,12 +1032,12 @@
       "resolved": "github:numtide/llm-agents.nix/26c3794de36bba9afdb0cb269fa4ab390e09f9ca?lastModified=1788948595&narHash=sha256-rqeK3hPxa6960ivXTRb%2BwO74tKKecqeH2CiKIxxFJuU%3D#agent-browser"
     },
     "github:sadjow/claude-code-nix": {
-      "last_modified": "2026-09-29T20:01:50Z",
-      "resolved": "github:sadjow/claude-code-nix/82ee196c58667c5f76fdd4ac646e2e2c05778e86?lastModified=1790712110"
+      "last_modified": "2026-10-18T23:01:19Z",
+      "resolved": "github:sadjow/claude-code-nix/c932f70402686f018d829534d71f9e8ba7859cfb?lastModified=1792364479"
     },
     "github:sadjow/codex-cli-nix": {
-      "last_modified": "2026-09-30T00:44:57Z",
-      "resolved": "github:sadjow/codex-cli-nix/0cce411a817357ae6d875fd6cc76f8f155e9b12b?lastModified=1790729097"
+      "last_modified": "2026-10-15T22:14:22Z",
+      "resolved": "github:sadjow/codex-cli-nix/8dc8656b82ed75c9f76002f1368415b1e8471264?lastModified=1792102462"
     },
     "google-chrome@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
