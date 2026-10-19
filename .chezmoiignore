@@ -27,6 +27,7 @@ programming/tasks/.stignore
 {{ if ne .chezmoi.os "linux" }}
 .config/systemd/
 .local/bin/unit-failed-notify
+.local/bin/herdr
 .config/restic/
 tasks/
 {{ end }}
