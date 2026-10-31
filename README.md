@@ -41,6 +41,14 @@ package to install the checksum-pinned official 1.0.1 release through Devbox.
 newer, replace `path:./flakes/pi#pi` with `github:numtide/llm-agents.nix#pi` in
 `devbox.json`, run `devbox global install`, and `dbsync`.
 
+### Spotifast Release Pin
+
+Spotifast uses [`flakes/spotifast`](dot_local/share/devbox/global/default/flakes/spotifast/flake.nix)
+to install the checksum-pinned official macOS 0.15.0 release; upstream's Nix
+source build currently fails to link on Apple Silicon. `dbup` does not advance
+this pin: update its version and checksum together, or restore
+`github:crmne/spotifast#spotifast-app` once the upstream build is fixed.
+
 ### Process Management
 
 [process-compose](https://github.com/F1bonacc1/process-compose) manages background services:

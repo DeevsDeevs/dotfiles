@@ -1,7 +1,7 @@
 {
   description = "Official Spotifast macOS release";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/38a4887411571457d700c51c64a6e49ead2ed5ab";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
 
   outputs = { nixpkgs, ... }: {
     packages = nixpkgs.lib.genAttrs [ "aarch64-darwin" "x86_64-darwin" ] (system:
