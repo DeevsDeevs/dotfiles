@@ -1019,10 +1019,6 @@
       "last_modified": "2026-07-27T08:35:34Z",
       "resolved": "github:NixOS/nixpkgs/38a4887411571457d700c51c64a6e49ead2ed5ab?lastModified=1785141334"
     },
-    "github:crmne/spotifast#spotifast-app": {
-      "last_modified": "2026-10-04T18:32:01Z",
-      "resolved": "github:crmne/spotifast/7048219716fb8bbf2f1af0934f545801f52cb29b?lastModified=1791138721#spotifast-app"
-    },
     "github:herdrdev/herdr/v0.9.5": {
       "last_modified": "2026-10-14T15:56:41Z",
       "resolved": "github:herdrdev/herdr/2ecf19a92fc3a7fff75b6ce3655ef04f4625ec01?lastModified=1791993401"
