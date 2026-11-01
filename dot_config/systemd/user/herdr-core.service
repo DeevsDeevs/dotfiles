@@ -1,0 +1,13 @@
+[Unit]
+Description=Start herdr-core at boot instead of on the first client connect
+OnFailure=notify-failure@%n.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# The core keeps this environment for every terminal; the bare user-manager PATH lacks devbox.
+Environment=PATH=%h/.local/bin:%h/.npm-global/bin:%h/.local/share/devbox/global/default/.devbox/nix/profile/default/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/.local/bin/herdr-core server start
+
+[Install]
+WantedBy=default.target
