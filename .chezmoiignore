@@ -18,6 +18,7 @@ assets/
 .config/sketchybar
 .config/ghostty
 .config/zed
+.config/herdr-app
 Library/LaunchAgents/dev.deevs.syncthing.plist
 Library/LaunchAgents/dev.deevs.tailscale-personal.plist
 .local/bin/seine-rdp

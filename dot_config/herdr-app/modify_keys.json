@@ -1,0 +1,37 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Layer tmux-style ctrl-s chords over Herdr's own defaults. Empty until Herdr
+       first writes its defaults, so the app never starts with only these keys. */ -}}
+{{- if eq (trim .chezmoi.stdin) "" -}}
+{{- else -}}
+{{- $config := fromJson .chezmoi.stdin -}}
+{{- $chords := dict
+  "ctrl-s c" "tab.new"
+  "ctrl-s n" "tab.next"
+  "ctrl-s p" "tab.prev"
+  "ctrl-s ," "tab.rename"
+  "ctrl-s shift-7" "tab.close"
+  "ctrl-s shift-'" "pane.split:down"
+  "ctrl-s shift-5" "pane.split:right"
+  "ctrl-s h" "pane.go:left"
+  "ctrl-s j" "pane.go:down"
+  "ctrl-s k" "pane.go:up"
+  "ctrl-s l" "pane.go:right"
+  "ctrl-s x" "pane.close"
+  "ctrl-s z" "pane.zoom"
+  "ctrl-s w" "mod.open:picker"
+-}}
+{{- range $i := list 1 2 3 4 5 6 7 8 9 -}}
+{{-   $_ := set $chords (printf "ctrl-s %d" $i) (printf "tab.select:%d" $i) -}}
+{{- end -}}
+{{- $global := get $config "global" | default dict -}}
+{{- $missing := false -}}
+{{- range $k, $v := $chords -}}
+{{-   if ne (get $global $k) $v -}}{{- $missing = true -}}{{- end -}}
+{{- end -}}
+{{- if not $missing -}}
+{{- .chezmoi.stdin -}}
+{{- else -}}
+{{- $_ := set $config "global" (merge $chords $global) -}}
+{{- $config | toPrettyJson -}}
+{{- end -}}
+{{- end -}}

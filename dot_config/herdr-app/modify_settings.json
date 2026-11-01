@@ -1,0 +1,13 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Herdr rewrites settings.json itself (zoom keys), so only pin these keys. */ -}}
+{{- $config := dict -}}
+{{- if ne (trim .chezmoi.stdin) "" -}}
+{{-   $config = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- if and (eq (get $config "telemetry" | toJson) "false") (eq (get $config "theme" | toJson) ("everforest" | toJson)) -}}
+{{- .chezmoi.stdin -}}
+{{- else -}}
+{{- $_ := set $config "telemetry" false -}}
+{{- $_ := set $config "theme" "everforest" -}}
+{{- $config | toPrettyJson -}}
+{{- end -}}
