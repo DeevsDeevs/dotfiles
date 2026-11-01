@@ -49,6 +49,19 @@ source build currently fails to link on Apple Silicon. `dbup` does not advance
 this pin: update its version and checksum together, or restore
 `github:crmne/spotifast#spotifast-app` once the upstream build is fixed.
 
+### Hex Dictation (Apple Silicon)
+
+[`flakes/hex`](dot_local/share/devbox/global/default/flakes/hex/flake.nix) installs
+the checksum-pinned, signed Hex 3.0.0 macOS app and `hex` CLI through Devbox;
+upstream's Nix flake currently only packages Linux. It requires macOS 15+.
+`dbup` does not advance this pin: update its version and checksum together.
+
+On each Mac, run `defaults write anomaly.hex DisableUpdates -bool true` to keep
+updates managed by Nix, then launch Hex from `~/Applications/installed via DevBox`.
+Grant Microphone and Accessibility access and download a local speech model.
+Quit Wispr Flow while trying Hex so the dictation shortcuts do not compete.
+Models, history, and personal app settings stay outside this dotfiles repository.
+
 ### Process Management
 
 [process-compose](https://github.com/F1bonacc1/process-compose) manages background services:
