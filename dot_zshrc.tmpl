@@ -317,4 +317,13 @@ if command -v codex > /dev/null; then
   unset _codex_completion
 fi
 
+# Under herdr-core, Codex's shared daemon would run its commands outside the hc terminal.
+codex() {
+  if [[ -n $HC_TERMINAL_ID ]]; then
+    command codex --no-daemon "$@"
+  else
+    command codex "$@"
+  fi
+}
+
 export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
