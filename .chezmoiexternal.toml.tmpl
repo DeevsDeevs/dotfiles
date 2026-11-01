@@ -8,4 +8,13 @@
     type = "git-repo"
     url = "https://github.com/DeevsDeevs/deevs-sketchybar.git"
     refreshPeriod = "168h"
+
+# Only the mod folder out of the repo (its README, recipe and preview stay out).
+# Not exact: Herdr writes jsconfig.json and gpui-kit.d.ts into every mod folder.
+[".config/herdr-app/mods/agent-browser"]
+    type = "archive"
+    url = "https://github.com/DeevsDeevs/herdr-agent-browser/archive/refs/heads/main.tar.gz"
+    stripComponents = 3
+    include = ["*/mods/agent-browser/**"]
+    refreshPeriod = "24h"
 {{ end -}}

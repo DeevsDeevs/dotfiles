@@ -20,6 +20,7 @@
   "ctrl-s z" "pane.zoom"
   "ctrl-s w" "mod.open:picker"
   "ctrl-s f" "layout.toggle:panel"
+  "ctrl-s b" "mod.open:agent-browser"
 -}}
 {{- range $i := list 1 2 3 4 5 6 7 8 9 -}}
 {{-   $_ := set $chords (printf "ctrl-s %d" $i) (printf "tab.select:%d" $i) -}}
