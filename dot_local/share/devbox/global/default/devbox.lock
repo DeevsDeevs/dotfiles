@@ -1028,12 +1028,12 @@
       "resolved": "github:numtide/llm-agents.nix/26c3794de36bba9afdb0cb269fa4ab390e09f9ca?lastModified=1788948595&narHash=sha256-rqeK3hPxa6960ivXTRb%2BwO74tKKecqeH2CiKIxxFJuU%3D#agent-browser"
     },
     "github:sadjow/claude-code-nix": {
-      "last_modified": "2026-10-18T23:01:19Z",
-      "resolved": "github:sadjow/claude-code-nix/c932f70402686f018d829534d71f9e8ba7859cfb?lastModified=1792364479"
+      "last_modified": "2026-10-31T02:01:53Z",
+      "resolved": "github:sadjow/claude-code-nix/b89e273e45ef0ea122e3410f55dd7a102e71f453?lastModified=1793412113"
     },
     "github:sadjow/codex-cli-nix": {
-      "last_modified": "2026-10-15T22:14:22Z",
-      "resolved": "github:sadjow/codex-cli-nix/8dc8656b82ed75c9f76002f1368415b1e8471264?lastModified=1792102462"
+      "last_modified": "2026-10-29T20:11:36Z",
+      "resolved": "github:sadjow/codex-cli-nix/f9eefb1b70318cf8f4a5925d1fd5ceb2dddb0f51?lastModified=1793304696"
     },
     "google-chrome@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
@@ -2160,6 +2160,10 @@
           "store_path": "/nix/store/k0gl1zc7f5hk87lylxwbipb0b870bcmk-openssl-3.6.0-bin"
         }
       }
+    },
+    "path:./flakes/pi#pi": {
+      "last_modified": "1970-01-01T00:00:00Z",
+      "resolved": "path:/home/deevs/.local/share/devbox/global/default/flakes/pi#pi"
     },
     "pigz@latest": {
       "last_modified": "2026-07-23T05:10:05Z",

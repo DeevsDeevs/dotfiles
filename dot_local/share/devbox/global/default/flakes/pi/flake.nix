@@ -6,23 +6,23 @@
 
   outputs = { nixpkgs, llm-agents, ... }:
     let
-      version = "1.1.0";
+      version = "1.4.0";
       releases = {
         x86_64-linux = {
           platform = "linux-x64";
-          sha256 = "3faa94666cd3849d37af320ff749407d0271b07a9b94f420c87e30866e10e289";
+          sha256 = "f2e4e4329603223d03260cdb8bd5033dbdc1f73ba58ab8939db2e56546e115d2";
         };
         aarch64-linux = {
           platform = "linux-arm64";
-          sha256 = "f3b0cac459f9df5420e4e48b48e95d81bfab57b701dd3fe4b08fda7d11d27dab";
+          sha256 = "fa5829c7ef83ffeaebba015715c8306220f89b2aa8a00154efbba98dd5440156";
         };
         aarch64-darwin = {
           platform = "darwin-arm64";
-          sha256 = "3455b13de35c15a5893cdebc922678199e90a7ce99b06cbc23f37860e90d63c7";
+          sha256 = "79d9979d76a2a5adb7c28e27e9b44629928ccd0dc9fbb6ae7217860bd5e8be5d";
         };
         x86_64-darwin = {
           platform = "darwin-x64";
-          sha256 = "8fdd9149ae27e7470a6a10ed8a7c0ed80738d55adec80a8d7764f6386d1e658b";
+          sha256 = "1bdefc9e1074c1de458ea9f2e43e6013ce49cd05326009b3de144037036585e2";
         };
       };
     in {
