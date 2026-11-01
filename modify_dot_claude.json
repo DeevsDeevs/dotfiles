@@ -12,10 +12,19 @@
   "url" "https://mcp.context7.com/mcp"
   "headers" (dict "CONTEXT7_API_KEY" $apiKey)
 -}}
+{{- /* op unavailable on this machine: keep whatever context7 entry already exists */ -}}
+{{- if and (eq $apiKey "") (hasKey $config.mcpServers "context7") -}}
+{{-   $context7 = get $config.mcpServers "context7" -}}
+{{- end -}}
 {{- $datadog := dict
   "type" "http"
   "url" "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp"
 -}}
+{{- /* already compliant: emit input unchanged so claude's own formatting never shows as drift */ -}}
+{{- if and (eq (get $config.mcpServers "context7" | toJson) ($context7 | toJson)) (eq (get $config.mcpServers "datadog" | toJson) ($datadog | toJson)) -}}
+{{- .chezmoi.stdin -}}
+{{- else -}}
 {{- $_ := set $config.mcpServers "context7" $context7 -}}
 {{- $_ := set $config.mcpServers "datadog" $datadog -}}
 {{- $config | toPrettyJson -}}
+{{- end -}}

@@ -3,13 +3,25 @@
 {{- if ne (trim .chezmoi.stdin) "" -}}
 {{- $data = fromJson .chezmoi.stdin -}}
 {{- end -}}
-{{- $data = set $data "defaultProvider" "openai-codex" -}}
-{{- $data = set $data "defaultModel" "gpt-6.1-sol" -}}
-{{- $data = set $data "defaultThinkingLevel" "high" -}}
-{{- $data = set $data "theme" "everforest" -}}
-{{- $data = set $data "packages" (list
-  "git:github.com/DietrichGebert/ponytail"
-  "npm:@sherif-fanous/pi-rtk"
-  "https://github.com/DeevsDeevs/deevs-pi-kit"
-) -}}
+{{- $want := dict
+  "defaultProvider" "openai-codex"
+  "defaultModel" "gpt-6.1-sol"
+  "defaultThinkingLevel" "high"
+  "theme" "everforest"
+  "packages" (list
+    "git:github.com/DietrichGebert/ponytail"
+    "npm:@sherif-fanous/pi-rtk"
+    "https://github.com/DeevsDeevs/deevs-pi-kit"
+  )
+-}}
+{{- $ok := true -}}
+{{- range $k, $v := $want -}}
+{{-   if ne (get $data $k | toJson) ($v | toJson) -}}{{- $ok = false -}}{{- end -}}
+{{- end -}}
+{{- /* already compliant: emit input unchanged so pi's own formatting never shows as drift */ -}}
+{{- if $ok -}}
+{{- .chezmoi.stdin -}}
+{{- else -}}
+{{- range $k, $v := $want -}}{{- $_ := set $data $k $v -}}{{- end -}}
 {{- $data | toPrettyJson -}}
+{{- end -}}
