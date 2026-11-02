@@ -9,22 +9,15 @@
     url = "https://github.com/DeevsDeevs/deevs-sketchybar.git"
     refreshPeriod = "168h"
 
-# Only the mod folder out of the repo (its README, recipe and preview stay out).
+# My Herdr mods, each out of its item folder in deevs-herdr-kit (<name>/mods/<name>/);
+# the item's README, recipe and preview stay out. Add a mod by adding its name.
 # Not exact: Herdr writes jsconfig.json and gpui-kit.d.ts into every mod folder.
-[".config/herdr-app/mods/agent-browser"]
-    type = "archive"
-    url = "https://github.com/DeevsDeevs/herdr-agent-browser/archive/refs/heads/main.tar.gz"
-    stripComponents = 3
-    include = ["*/mods/agent-browser/**"]
-    refreshPeriod = "24h"
-
-# My own mods: each folder out of deevs-herdr-kit. Add a mod by adding its name.
-{{ range list "agent-images" -}}
+{{ range list "agent-browser" "agent-images" -}}
 [".config/herdr-app/mods/{{ . }}"]
     type = "archive"
     url = "https://github.com/DeevsDeevs/deevs-herdr-kit/archive/refs/heads/main.tar.gz"
-    stripComponents = 3
-    include = ["*/mods/{{ . }}/**"]
+    stripComponents = 4
+    include = ["*/{{ . }}/mods/{{ . }}/**"]
     refreshPeriod = "24h"
 {{ end -}}
 {{ end -}}
