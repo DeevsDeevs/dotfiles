@@ -1,6 +1,7 @@
 # Lists the images in an agent's conversation: Claude Code, Codex or pi.
 # argv[1]: JSON {pid, argv, cwd, have: [hash, ...]}.
 # Prints JSON {transcript, images: [{h, mime, who, at, data?}]}; data only for hashes not in `have`.
+import base64
 import glob
 import hashlib
 import json
@@ -103,6 +104,23 @@ def images(o, who):
             yield from images(v, who)
 
 
+def size(data):
+    # PNG IHDR or a JPEG SOF marker; the header sits in the first bytes, so decode only those.
+    b = base64.b64decode(data[:262144] + "=" * (-min(len(data), 262144) % 4), validate=False)
+    if b[:8] == b"\x89PNG\r\n\x1a\n":
+        return int.from_bytes(b[16:20], "big"), int.from_bytes(b[20:24], "big")
+    i = 2
+    while b[:2] == b"\xff\xd8" and i + 9 < len(b):
+        if b[i] != 0xFF:
+            i += 1
+            continue
+        marker = b[i + 1]
+        if marker in (0xC0, 0xC1, 0xC2):
+            return int.from_bytes(b[i + 7:i + 9], "big"), int.from_bytes(b[i + 5:i + 7], "big")
+        i += 2 + int.from_bytes(b[i + 2:i + 4], "big")
+    return None, None
+
+
 def main():
     req = json.loads(sys.argv[1])
     have = set(req.get("have") or [])
@@ -126,7 +144,8 @@ def main():
                     if h in seen:
                         continue
                     seen.add(h)
-                    item = {"h": h, "mime": mime, "who": who, "at": d.get("timestamp")}
+                    w, ht = size(data)
+                    item = {"h": h, "mime": mime, "who": who, "at": d.get("timestamp"), "w": w, "ht": ht}
                     if h not in have:
                         item["data"] = data
                     found.append(item)

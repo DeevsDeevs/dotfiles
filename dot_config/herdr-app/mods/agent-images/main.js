@@ -1,7 +1,7 @@
 // The images in the focused agent's conversation (Claude Code, Codex, pi), here or on
 // another machine: look at them, copy one, paste it into any agent with Cmd+V.
 
-import { View, div, image } from "gpui-kit";
+import { View, div, image, svg } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
 import { exec, hc, focused, agents, theme, props, closeOverlay, readTextFile, appHome, notify } from "herdr";
 import { writeFile, mkdir, readdir } from "fs/promises";
@@ -9,11 +9,12 @@ import { writeFile, mkdir, readdir } from "fs/promises";
 // Under mods/ but not a mod (no main.js). Names are content hashes, so a path never changes.
 const CACHE = "mods/agent-images-cache";
 const EXT = { "image/png": "png", "image/jpeg": "jpg", "image/gif": "gif", "image/webp": "webp" };
-const APPS = { "claude-code": "Claude", codex: "Codex", pi: "pi" };
+const APPS = { "claude-code": "Claude Code", codex: "Codex", pi: "pi" };
 const WHO = { you: "Pasted", tool: "Tool" };
-const GAP = 12;
-const CARD_MIN = 190;
+const GAP = 14;
+const CARD_MIN = 200;
 const abs = (rel) => `${appHome()}/${rel}`;
+const icon = (name) => svg(`mods/agent-images/${name}.svg`);
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const pad = (n) => String(n).padStart(2, "0");
@@ -38,21 +39,19 @@ function control(el, onClick) {
     });
 }
 
-function button(t, id, label, onClick, { solid = false, tip } = {}) {
+function iconButton(t, id, name, onClick, tip) {
   return control(
     h_flex()
       .id(id)
-      .h(26)
-      .px(10)
+      .size(28)
       .flex_none()
       .items_center()
+      .justify_center()
       .rounded(6)
-      .text_size(12)
-      .bg(solid ? t.solid : t.raised)
-      .text_color(solid ? t.solid_foreground : t.foreground)
-      .hover((s) => (solid ? s.opacity(0.9) : s.bg(t.hover)))
-      .when(Boolean(tip), (el) => el.tooltip(tip))
-      .child(label),
+      .text_color(t.muted)
+      .hover((s) => s.bg(t.hover).text_color(t.foreground))
+      .tooltip(tip)
+      .child(icon(name).size(15)),
     onClick,
   );
 }
@@ -67,6 +66,7 @@ export default class AgentImages extends View {
     this.hover = null;
     this.copied = null;
     this.width = 0;
+    this.height = 0;
     this.h = cx.focus_handle();
     this.h.focus();
     this.follow(cx);
@@ -152,11 +152,17 @@ export default class AgentImages extends View {
       }
       this.copied = im.h;
       cx.notify();
-      cx.timer.after(1500, (cx) => {
+      cx.timer.after(1200, (cx) => {
         if (this.copied === im.h) this.copied = null;
         cx.notify();
       });
     });
+  }
+
+  // Copy's icon turns into a check for a moment; the button keeps its size and words.
+  copyIcon(t, im) {
+    const done = this.copied === im.h;
+    return icon(done ? "check" : "copy").size(14).when(done, (el) => el.text_color(t.working));
   }
 
   step(shown, by, cx) {
@@ -173,16 +179,17 @@ export default class AgentImages extends View {
 
   header(t) {
     const agent = agents().find((a) => a.address === this.target);
-    const machine = this.target?.includes("/") ? this.target.split("/")[0] : "this Mac";
+    const machine = this.target?.includes("/") ? this.target.split("/")[0] : null;
+    const who = agent ? `${APPS[agent.app] ?? agent.app ?? "Agent"}${machine ? ` on ${machine}` : ""}` : "";
     const count = (f) => this.items.filter((im) => f === "all" || im.who === f).length;
     const segment = (f, label) => {
       const on = this.filter === f;
       return control(
         h_flex()
           .id(`ai-f-${f}`)
-          .h(22)
+          .h(24)
           .px(10)
-          .gap(5)
+          .gap(6)
           .items_center()
           .rounded(5)
           .text_size(12)
@@ -200,51 +207,44 @@ export default class AgentImages extends View {
       );
     };
     return h_flex()
-      .h(46)
-      .px(14)
+      .h(48)
+      .pl(16)
+      .pr(10)
       .gap(10)
       .flex_none()
       .items_center()
       .bg(t.chrome)
       .border_b(1)
       .border_color(t.border)
-      .child(div().font_semibold().text_size(13.5).child("Images"))
-      .when(Boolean(this.target), (el) => el.child(
-        h_flex()
-          .gap(6)
-          .min_w(0)
-          .items_center()
-          .text_size(12)
-          .child(div().px(6).py(1).rounded(4).bg(t.raised).text_color(t.muted).child(`${APPS[agent?.app] ?? agent?.app ?? "agent"} · ${machine}`))
-          .child(div().text_color(t.dim).truncate().child(agent?.title ?? ""))))
-      .child(div().flex_1())
-      .child(h_flex().p(2).gap(2).rounded(7).bg(t.raised)
+      .child(icon("image").size(15).text_color(t.muted))
+      .child(div().flex_none().font_semibold().text_size(13).child("Images"))
+      .child(h_flex().flex_1().min_w(0).gap(6).text_size(12)
+        .child(div().flex_none().text_color(t.muted).child(who))
+        .when(Boolean(agent?.title), (el) => el
+          .child(div().flex_none().text_color(t.dim).child("·"))
+          .child(div().min_w(0).text_color(t.dim).truncate().child(agent.title))))
+      .child(h_flex().flex_none().p(2).gap(2).rounded(7).bg(t.raised)
         .child(segment("all", "All"))
         .child(segment("you", "Pasted"))
         .child(segment("tool", "Tool")))
-      .when(Boolean(props()?.overlay), (el) => el.child(button(t, "ai-close", "✕", () => this.dismiss(), { tip: "Close (Esc)" })));
+      .when(Boolean(props()?.overlay), (el) => el.child(iconButton(t, "ai-close", "x", () => this.dismiss(), "Close  Esc")));
   }
 
   grid(t, shown) {
-    const inner = Math.max(0, this.width - 2 * 16);
+    const inner = Math.max(0, this.width - 2 * 18);
     const cols = Math.max(1, Math.floor((inner + GAP) / (CARD_MIN + GAP)));
     const w = Math.floor((inner - GAP * (cols - 1)) / cols);
-    const thumbH = Math.round(w * 0.62);
+    const thumbH = Math.round(w * 0.625);
     // The pop-up takes the half away from the hovered card, so it never covers the pointer.
     const hover = this.hover && shown.includes(this.hover.im) ? this.hover : null;
 
     const card = (im, i) => {
       const hovered = hover?.im === im;
-      const copied = this.copied === im.h;
       return control(
         v_flex()
           .id(`ai-${im.h}`)
           .w(w)
-          .rounded(8)
-          .overflow_hidden()
-          .border(1)
-          .border_color(hovered ? t.accent : t.border)
-          .bg(t.background)
+          .gap(7)
           .on_hover((inside, cx) => {
             if (inside) this.hover = { im, right: i % cols < cols / 2 };
             else if (this.hover?.im === im) this.hover = null;
@@ -254,24 +254,38 @@ export default class AgentImages extends View {
             div()
               .relative()
               .h(thumbH)
-              .p(6)
+              .rounded(8)
+              .overflow_hidden()
+              .border(1)
+              .border_color(hovered ? t.accent : t.border)
               .bg(t.canvas)
               .child(image(im.rel).size_full())
-              .when(hovered || copied, (el) => el.child(
-                div().absolute().top(8).right(8).child(
-                  button(t, `ai-qc-${im.h}`, copied ? "Copied ✓" : "Copy", (cx) => this.copyImage(im, cx), { solid: true })))),
+              .when(hovered || this.copied === im.h, (el) => el.child(
+                control(
+                  h_flex()
+                    .id(`ai-qc-${im.h}`)
+                    .absolute()
+                    .top(6)
+                    .right(6)
+                    .size(28)
+                    .items_center()
+                    .justify_center()
+                    .rounded(6)
+                    .bg(t.popover)
+                    .border(1)
+                    .border_color(t.border)
+                    .shadow_sm()
+                    .text_color(t.foreground)
+                    .hover((s) => s.bg(t.hover))
+                    .tooltip("Copy image")
+                    .child(this.copyIcon(t, im)),
+                  (cx) => this.copyImage(im, cx),
+                ))),
           )
-          .child(
-            h_flex()
-              .h(30)
-              .px(10)
-              .gap(8)
-              .items_center()
-              .text_size(11.5)
-              .child(div().size(6).rounded(3).flex_none().bg(im.who === "you" ? t.accent : t.dim))
-              .child(div().text_color(im.who === "you" ? t.foreground : t.muted).child(WHO[im.who] ?? im.who))
-              .child(div().flex_1())
-              .child(div().text_color(t.dim).child(when(im.at)))),
+          .child(h_flex().px(2).items_center().text_size(11.5)
+            .child(div().text_color(im.who === "you" ? t.accent : t.muted).child(WHO[im.who] ?? im.who))
+            .child(div().flex_1())
+            .child(div().text_color(t.dim).child(when(im.at)))),
         (cx) => {
           this.open = im;
           this.hover = null;
@@ -289,60 +303,81 @@ export default class AgentImages extends View {
           .id("ai-grid")
           .size_full()
           .overflow_y_scroll()
-          .p(16)
+          .p(18)
           .child(h_flex().flex_wrap().gap(GAP).children(shown.map(card))))
-      .when(Boolean(hover), (el) => el.child(
-        v_flex()
-          .absolute()
-          .top(16)
-          .bottom(16)
-          .w(Math.floor(inner / 2) - GAP)
-          .when(hover.right, (d) => d.right(16))
-          .when(!hover.right, (d) => d.left(16))
-          .overflow_hidden()
-          .rounded(10)
-          .border(1)
-          .border_color(t.border)
-          .bg(t.canvas)
-          .shadow_lg()
-          .child(div().flex_1().min_h(0).p(10).child(image(hover.im.rel).size_full()))
-          .child(h_flex().h(28).px(12).gap(8).items_center().text_size(11.5).bg(t.popover).text_color(t.dim)
-            .child(WHO[hover.im.who] ?? hover.im.who)
-            .child("·")
-            .child(when(hover.im.at))
-            .child(div().flex_1())
-            .child("click to open"))));
+      .when(Boolean(hover), (el) => el.child(this.popup(t, hover, inner)));
+  }
+
+  // Sized to the picture, at most its own size (×2 for tiny ones), so nothing floats in a box.
+  popup(t, hover, inner) {
+    const PAD = 8;
+    const { w, ht } = hover.im;
+    const maxW = Math.floor(inner / 2) - GAP - 2 * PAD;
+    const maxH = Math.max(120, this.height - 48 - 2 * 18 - 2 * PAD);
+    const s = w && ht ? Math.min(maxW / w, maxH / ht, 2) : 1;
+    const box = (n, fallback) => (n ? Math.round(n * s) + 2 * PAD : fallback);
+    return div()
+      .absolute()
+      .top(18)
+      .w(box(w, maxW + 2 * PAD))
+      .h(box(ht, maxH + 2 * PAD))
+      .when(hover.right, (d) => d.right(18))
+      .when(!hover.right, (d) => d.left(18))
+      .p(PAD)
+      .rounded(10)
+      .border(1)
+      .border_color(t.border)
+      .bg(t.popover)
+      .shadow_lg()
+      .child(image(hover.im.rel).size_full().rounded(4));
   }
 
   viewer(t, shown) {
     const im = this.open;
     const i = shown.findIndex((x) => x.h === im.h);
-    const copied = this.copied === im.h;
     return v_flex()
       .flex_1()
       .min_h(0)
       .child(
         h_flex()
           .h(44)
-          .px(14)
-          .gap(8)
+          .pl(8)
+          .pr(10)
+          .gap(4)
           .flex_none()
           .items_center()
           .border_b(1)
           .border_color(t.border)
-          .child(button(t, "ai-back", "← All images", (cx) => {
-            this.open = null;
-            cx.notify();
-          }, { tip: "Esc" }))
-          .child(button(t, "ai-prev", "‹", (cx) => this.step(shown, -1, cx), { tip: "Previous (←)" }))
-          .child(button(t, "ai-next", "›", (cx) => this.step(shown, 1, cx), { tip: "Next (→)" }))
-          .child(div().text_size(12).text_color(t.dim).child(`${i + 1} of ${shown.length} · ${WHO[im.who] ?? im.who} · ${when(im.at)}`))
+          .child(control(
+            h_flex().id("ai-back").h(28).pl(6).pr(10).gap(6).items_center().rounded(6).text_size(12)
+              .text_color(t.muted)
+              .hover((s) => s.bg(t.hover).text_color(t.foreground))
+              .tooltip("All images  Esc")
+              .child(icon("arrow-left").size(15))
+              .child("All"),
+            (cx) => {
+              this.open = null;
+              cx.notify();
+            }))
+          .child(div().w(1).h(16).mx(6).bg(t.border))
+          .child(iconButton(t, "ai-prev", "chevron-left", (cx) => this.step(shown, -1, cx), "Previous  ←"))
+          .child(iconButton(t, "ai-next", "chevron-right", (cx) => this.step(shown, 1, cx), "Next  →"))
+          .child(div().ml(6).text_size(12).text_color(t.muted).child(`${i + 1} of ${shown.length}`))
+          .child(div().ml(10).text_size(12).text_color(t.dim).child(`${WHO[im.who] ?? im.who} · ${when(im.at)}`))
           .child(div().flex_1())
-          .child(button(t, "ai-preview", "Open in Preview", () => exec("open", [abs(im.rel)])))
-          .child(button(t, "ai-path", "Copy path", (cx) => cx.write_to_clipboard(abs(im.rel)), { tip: "Where the image is saved on this Mac" }))
-          .child(button(t, "ai-copy", copied ? "Copied ✓" : "Copy image", (cx) => this.copyImage(im, cx), { solid: true, tip: "⌘C, then paste into any agent with ⌘V" })),
+          .child(iconButton(t, "ai-path", "link", (cx) => cx.write_to_clipboard(abs(im.rel)), "Copy file path"))
+          .child(iconButton(t, "ai-preview", "external-link", () => exec("open", [abs(im.rel)]), "Open in Preview"))
+          .child(control(
+            h_flex().id("ai-copy").ml(6).h(28).px(12).gap(7).items_center().rounded(6).text_size(12)
+              .bg(t.solid)
+              .text_color(t.solid_foreground)
+              .hover((s) => s.opacity(0.9))
+              .tooltip("Copy image  ⌘C")
+              .child(this.copyIcon(t, im))
+              .child("Copy"),
+            (cx) => this.copyImage(im, cx))),
       )
-      .child(div().id("ai-big").flex_1().min_h(0).p(16).overflow_hidden().bg(t.canvas).child(image(im.rel).size_full()));
+      .child(div().id("ai-big").flex_1().min_h(0).p(20).overflow_hidden().bg(t.canvas).child(image(im.rel).size_full()));
   }
 
   render(cx) {
@@ -351,16 +386,17 @@ export default class AgentImages extends View {
     const shown = this.items.filter((im) => this.filter === "all" || im.who === this.filter);
     if (this.open && !shown.some((im) => im.h === this.open.h)) this.open = null;
 
-    let body;
     const empty = (title, hint) =>
-      v_flex().flex_1().gap(6).items_center().justify_center().text_size(13)
-        .child(div().text_color(t.muted).child(title))
-        .when(Boolean(hint), (el) => el.child(div().text_size(12).text_color(t.dim).child(hint)));
-    if (!this.target) body = empty("No agent in focus", "Click an agent's terminal and this window follows it.");
+      v_flex().flex_1().gap(8).items_center().justify_center()
+        .child(icon("image").size(22).text_color(t.dim))
+        .child(div().text_size(13).text_color(t.muted).child(title))
+        .when(Boolean(hint), (el) => el.child(div().max_w(420).text_size(12).text_color(t.dim).child(hint)));
+    let body;
+    if (!this.target) body = empty("No agent in focus", "Click an agent's terminal; this window follows it.");
     else if (this.error && !this.items.length) body = empty("Couldn't read this agent's images", this.error);
     else if (!this.loaded) body = empty("Looking for images…");
     else if (!shown.length) body = empty(
-      this.filter === "you" ? "You haven't pasted an image here yet" : "No images in this conversation yet",
+      this.filter === "you" ? "Nothing pasted here yet" : "No images in this conversation yet",
       "Paste one into the agent with ⌘V and it shows up here.");
     else if (this.open) body = this.viewer(t, shown);
     else body = this.grid(t, shown);
@@ -372,8 +408,9 @@ export default class AgentImages extends View {
       .text_color(t.foreground)
       .track_focus(this.h)
       .on_size_change((size, cx) => {
-        if (Math.abs(size.width - this.width) > 1) {
+        if (Math.abs(size.width - this.width) > 1 || Math.abs(size.height - this.height) > 1) {
           this.width = size.width;
+          this.height = size.height;
           cx.notify();
         }
       })
