@@ -185,15 +185,21 @@ export default class AgentImages extends View {
       const inner = Math.max(0, this.width - 24);
       const cols = Math.max(1, Math.floor((inner + GAP) / (180 + GAP)));
       const w = Math.floor((inner - GAP * (cols - 1)) / cols);
-      body = v_flex()
+      // The pop-up takes the half away from the hovered card, so it never covers the pointer.
+      const hover = this.hover && shown.includes(this.hover.im) ? this.hover : null;
+      const grid = v_flex()
         .id("ai-grid")
-        .flex_1()
-        .min_h(0)
+        .size_full()
         .overflow_y_scroll()
         .p(12)
-        .child(h_flex().flex_wrap().gap(GAP).children(shown.map((im) =>
+        .child(h_flex().flex_wrap().gap(GAP).children(shown.map((im, i) =>
           v_flex()
             .id(`ai-${im.h}`)
+            .on_hover((inside, cx) => {
+              if (inside) this.hover = { im, right: i % cols < cols / 2 };
+              else if (this.hover?.im === im) this.hover = null;
+              cx.notify();
+            })
             .w(w)
             .rounded(8)
             .border(1)
@@ -204,12 +210,34 @@ export default class AgentImages extends View {
             .on_mouse_down("left", (_e, cx) => cx.stop_propagation())
             .on_click((_e, cx) => {
               this.open = im;
+              this.hover = null;
               cx.notify();
             })
             .child(div().h(Math.round(w * 0.62)).p(6).overflow_hidden().bg(t.canvas).rounded_t(8).child(image(im.rel).size_full()))
             .child(h_flex().h(26).px(8).gap(6).items_center().text_size(11.5)
               .child(div().text_color(im.who === "you" ? t.accent : t.muted).child(im.who))
               .child(div().text_color(t.dim).truncate().child(when(im.at)))))));
+      body = div()
+        .flex_1()
+        .min_h(0)
+        .relative()
+        .child(grid)
+        .when(Boolean(hover), (el) => el.child(
+          div()
+            .absolute()
+            .top(12)
+            .bottom(12)
+            .w(Math.floor(inner / 2) - GAP)
+            .when(hover.right, (d) => d.right(12))
+            .when(!hover.right, (d) => d.left(12))
+            .p(8)
+            .overflow_hidden()
+            .rounded(8)
+            .border(1)
+            .border_color(t.border)
+            .bg(t.canvas)
+            .shadow_lg()
+            .child(image(hover.im.rel).size_full())));
     }
 
     return v_flex()
