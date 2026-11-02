@@ -909,8 +909,8 @@
       "resolved": "github:herdrdev/herdr/2ecf19a92fc3a7fff75b6ce3655ef04f4625ec01?lastModified=1791993401"
     },
     "github:numtide/llm-agents.nix#agent-browser": {
-      "last_modified": "2026-11-01T05:47:49Z",
-      "resolved": "github:numtide/llm-agents.nix/8efcba308a6b12a92441cb4df624e484bad9e18a?lastModified=1793512069#agent-browser"
+      "last_modified": "2026-11-02T05:50:48Z",
+      "resolved": "github:numtide/llm-agents.nix/49ba6e0dafaaf270d341ec693deafb8632d24385?lastModified=1793598648#agent-browser"
     },
     "github:sadjow/claude-code-nix": {
       "last_modified": "2026-10-31T02:01:53Z",
