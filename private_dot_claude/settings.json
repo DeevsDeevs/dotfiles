@@ -4,7 +4,6 @@
   },
   "permissions": {
     "allow": [
-      "mcp__context7__*",
       "mcp__datadog__*",
       "Bash(grep:*)",
       "Bash(rg:*)",

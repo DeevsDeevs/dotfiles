@@ -13,7 +13,6 @@
 - Bounded non-interactive commands may use the session's own background/job facilities.
 
 ## Tooling
-- For library-specific questions, use Context7 documentation when the tool is available.
 - Prefer `rg` for searching the repo.
 
 ## Code quality

@@ -1,5 +1,4 @@
 {{- /* chezmoi:modify-template */ -}}
-{{- $apiKey := output "sh" "-c" "if command -v op >/dev/null 2>&1 && command -v timeout >/dev/null 2>&1; then timeout 5s op read --no-newline 'op://JustEnvs/context7-api-key/credential' </dev/null 2>/dev/null || true; fi" -}}
 {{- $config := dict -}}
 {{- if ne (trim .chezmoi.stdin) "" -}}
 {{-   $config = fromJson .chezmoi.stdin -}}
@@ -7,24 +6,15 @@
 {{- if not (hasKey $config "mcpServers") -}}
 {{-   $_ := set $config "mcpServers" dict -}}
 {{- end -}}
-{{- $context7 := dict
-  "type" "http"
-  "url" "https://mcp.context7.com/mcp"
-  "headers" (dict "CONTEXT7_API_KEY" $apiKey)
--}}
-{{- /* op unavailable on this machine: keep whatever context7 entry already exists */ -}}
-{{- if and (eq $apiKey "") (hasKey $config.mcpServers "context7") -}}
-{{-   $context7 = get $config.mcpServers "context7" -}}
-{{- end -}}
 {{- $datadog := dict
   "type" "http"
   "url" "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp"
 -}}
 {{- /* already compliant: emit input unchanged so claude's own formatting never shows as drift */ -}}
-{{- if and (eq (get $config.mcpServers "context7" | toJson) ($context7 | toJson)) (eq (get $config.mcpServers "datadog" | toJson) ($datadog | toJson)) -}}
+{{- if and (not (hasKey $config.mcpServers "context7")) (eq (get $config.mcpServers "datadog" | toJson) ($datadog | toJson)) -}}
 {{- .chezmoi.stdin -}}
 {{- else -}}
-{{- $_ := set $config.mcpServers "context7" $context7 -}}
+{{- $_ := unset $config.mcpServers "context7" -}}
 {{- $_ := set $config.mcpServers "datadog" $datadog -}}
 {{- $config | toPrettyJson -}}
 {{- end -}}
