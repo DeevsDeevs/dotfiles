@@ -17,4 +17,14 @@
     stripComponents = 3
     include = ["*/mods/agent-browser/**"]
     refreshPeriod = "24h"
+
+# My own mods: each folder out of deevs-herdr-kit. Add a mod by adding its name.
+{{ range list "agent-images" -}}
+[".config/herdr-app/mods/{{ . }}"]
+    type = "archive"
+    url = "https://github.com/DeevsDeevs/deevs-herdr-kit/archive/refs/heads/main.tar.gz"
+    stripComponents = 3
+    include = ["*/mods/{{ . }}/**"]
+    refreshPeriod = "24h"
+{{ end -}}
 {{ end -}}
