@@ -26,13 +26,7 @@
     "command": "input=$(cat); dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); cd \"$dir\" 2>/dev/null || cd ~; status=\"\"; user=$(whoami); host=$(hostname -s); status+=\"${user}@${host}\"; short_dir=$(echo \"$dir\" | sed \"s|^$HOME|~|\"); status+=\"  ${short_dir}\"; if git rev-parse --git-dir > /dev/null 2>&1; then branch=$(git -c core.useReplaceRefs=false branch --show-current 2>/dev/null || echo \"detached\"); git_status=$(git -c core.useReplaceRefs=false status --porcelain 2>/dev/null); if [ -n \"$git_status\" ]; then status+=\"  ${branch} [±]\"; else status+=\"  ${branch}\"; fi; fi; if [ -n \"$DEVBOX_SHELL_ENABLED\" ]; then status+=\"  [devbox]\"; fi; time=$(date +%H:%M); status+=\"  ${time}\"; printf \"%s\" \"$status\""
   },
   "enabledPlugins": {
-    "97-dev@deevs-agent-system": true,
-    "anti-ai-slop@deevs-agent-system": true,
-    "arxiv-search@deevs-agent-system": true,
-    "chain-system@deevs-agent-system": true,
     "cloudflare@cloudflare": true,
-    "datetime@deevs-agent-system": true,
-    "dev-experts@deevs-agent-system": true,
     "ponytail@ponytail": true,
     "rust-analyzer-lsp@claude-plugins-official": true
   },

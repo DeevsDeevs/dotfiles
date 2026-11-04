@@ -7,10 +7,10 @@
 - Keep responses concise and action-focused.
 - Ask for confirmation before adding new production dependencies.
 
-## Processes and background work
-- Persistent or interactive processes — dev servers, watchers, REPLs, terminal panes, anything that must survive the agent session — belong in herdr-core (`hc`, https://herdr.dev): persistent terminals that agents can run, read, send to, and wait on. Run `hc --skill` for the manual before first use. Not `herdr`, the retired TUI. Launch Codex under `hc` with `--no-daemon`.
+## hc and chains
+- You run inside hc (`$HC_TERMINAL_ID`). For long-running work, other machines or other agents, load the `hc` skill.
 - Never detach processes with `&`, `nohup`, `disown`, or `setsid`.
-- Bounded non-interactive commands may use the session's own background/job facilities.
+- Save and resume work context with the `chains` skill.
 
 ## Tooling
 - Prefer `rg` for searching the repo.
