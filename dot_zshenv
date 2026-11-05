@@ -1,0 +1,7 @@
+# Every zsh reads this, including `ssh host cmd` and an hc core started over ssh, whose
+# terminals inherit its PATH. Same dirs as herdr-core.service; .zshrc still runs devbox shellenv.
+typeset -U path
+for _dir in ~/.local/share/devbox/global/default/.devbox/nix/profile/default/bin ~/.npm-global/bin ~/.local/bin; do
+  [[ -d $_dir ]] && path=($_dir $path)
+done
+unset _dir
