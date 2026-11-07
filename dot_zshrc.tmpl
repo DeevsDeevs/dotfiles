@@ -8,6 +8,11 @@ fi
 unset _forwarded_agent
 {{ end -}}
 
+# A core started from an agent's tool shell hands that agent's CLAUDE* variables to every
+# terminal (herdr-core#86), and CLAUDE_CODE_CHILD_SESSION turns transcripts off. An
+# interactive shell is never Claude's own tool shell, so drop them.
+unset -m 'CLAUDE*'
+
 export DEVBOX_NO_PROMPT=true
 command -v devbox >/dev/null && eval "$(devbox global shellenv --init-hook)"
 
