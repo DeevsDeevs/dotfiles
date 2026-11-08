@@ -4,6 +4,7 @@ $HOME/.local/share/devbox/global/default/.devbox
 $HOME/.local/share/zinit
 $HOME/.local/share/Trash
 $HOME/.local/share/uv
+$HOME/.local/share/containers
 $HOME/snap
 $HOME/.rustup
 $HOME/.cargo/registry
