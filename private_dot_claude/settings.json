@@ -36,6 +36,28 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=~/.agents/skills/chains/chain.mjs; [ -f \"$f\" ] || f=~/.claude/skills/chains/chain.mjs; out=$(node \"$f\" remind --hook claude-stop 2>/dev/null) && [ -n \"$out\" ] && printf '%s\\n' \"$out\"; exit 0",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=~/.agents/skills/chains/chain.mjs; [ -f \"$f\" ] || f=~/.claude/skills/chains/chain.mjs; out=$(node \"$f\" remind --hook claude-precompact 2>/dev/null) && [ -n \"$out\" ] && printf '%s\\n' \"$out\"; exit 0",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
