@@ -904,10 +904,6 @@
       "last_modified": "2026-11-01T00:57:29Z",
       "resolved": "github:NixOS/nixpkgs/d357a2b54f0b6dc4aeb4e993190a52cf151b6f24?lastModified=1793494649"
     },
-    "github:herdrdev/herdr/v0.9.5": {
-      "last_modified": "2026-10-14T15:56:41Z",
-      "resolved": "github:herdrdev/herdr/2ecf19a92fc3a7fff75b6ce3655ef04f4625ec01?lastModified=1791993401"
-    },
     "github:numtide/llm-agents.nix#agent-browser": {
       "last_modified": "2026-11-02T05:50:48Z",
       "resolved": "github:numtide/llm-agents.nix/49ba6e0dafaaf270d341ec693deafb8632d24385?lastModified=1793598648#agent-browser"
