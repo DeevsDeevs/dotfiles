@@ -49,6 +49,14 @@ source build currently fails to link on Apple Silicon. `dbup` does not advance
 this pin: update its version and checksum together, or restore
 `github:crmne/spotifast#spotifast-app` once the upstream build is fixed.
 
+### Notion Release Pin
+
+Notion uses [`flakes/notion`](dot_local/share/devbox/global/default/flakes/notion/flake.nix)
+to install the checksum-pinned official macOS 7.43.0 release; Devbox and nixpkgs
+currently package 7.25.1. `dbup` does not advance this pin: update its version and
+both architecture checksums together. Run `devbox global install` followed by
+`devbox global run sync-nix-apps` to refresh the launcher and link registration.
+
 ### Hex Dictation (Apple Silicon)
 
 [`flakes/hex`](dot_local/share/devbox/global/default/flakes/hex/flake.nix) installs

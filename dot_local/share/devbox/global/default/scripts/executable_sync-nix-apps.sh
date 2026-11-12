@@ -24,6 +24,7 @@ readalias() {
         -e "return posix path of (toPath)" 2>/dev/null
 }
 
+lsregister="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"
 linksdir="$(devbox global path)/.devbox/nix/profile/default/Applications"
 
 if [ ! -d "$linksdir" ]; then
@@ -58,10 +59,14 @@ for link in "$linksdir"/*.app(N); do
         makealias "$aliasesdir" "$apppath"
     else
         existing_target=$(readalias "$aliaspath" 2>/dev/null | tr -d '\n' | sed 's/[[:space:]]*$//')
+        existing_target="${existing_target%/}"
         if [ "$apppath" != "$existing_target" ]; then
             echo "  → updating alias for $appname"
             echo "     old: $existing_target"
             echo "     new: $apppath"
+            if [ -n "$existing_target" ]; then
+                "$lsregister" -u "$existing_target"
+            fi
             rm "$aliaspath"
             sleep 1
             makealias "$aliasesdir" "$apppath"
@@ -69,6 +74,7 @@ for link in "$linksdir"/*.app(N); do
             echo "  → alias up to date"
         fi
     fi
+    "$lsregister" -f "$apppath"
 done
 
 if [ -d "$aliasesdir" ]; then

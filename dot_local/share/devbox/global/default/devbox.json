@@ -64,8 +64,7 @@
       "version":   "latest",
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
-    "notion-app": {
-      "version":   "latest",
+    "path:./flakes/notion#notion-app": {
       "platforms": ["x86_64-darwin", "aarch64-darwin"]
     },
     "path:./flakes/spotifast#spotifast-app": {
