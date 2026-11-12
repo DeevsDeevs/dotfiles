@@ -6,7 +6,7 @@
   outputs = { nixpkgs, ... }: {
     packages = nixpkgs.lib.genAttrs [ "aarch64-darwin" "x86_64-darwin" ] (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
         isArm = system == "aarch64-darwin";
       in {
         notion-app = pkgs.stdenvNoCC.mkDerivation rec {

@@ -1815,24 +1815,6 @@
         }
       }
     },
-    "notion-app@latest": {
-      "last_modified": "2026-10-17T03:39:59Z",
-      "resolved": "github:NixOS/nixpkgs/7a6522c868711d06e3a520bbcdfafe9806f4337f#notion-app",
-      "source": "devbox-search",
-      "version": "7.25.1",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/ql07781kkcfazs3fx7rjy7ya0nf3xxj4-notion-app-7.25.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/ql07781kkcfazs3fx7rjy7ya0nf3xxj4-notion-app-7.25.1"
-        }
-      }
-    },
     "openssl@latest": {
       "last_modified": "2026-10-30T07:30:20Z",
       "resolved": "github:NixOS/nixpkgs/885ba4d038f10c3d17d7a92e8c3cc185b99c9158#openssl",
