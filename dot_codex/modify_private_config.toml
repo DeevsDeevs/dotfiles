@@ -5,7 +5,10 @@
 {{- end -}}
 
 {{- /* Top-level settings. */ -}}
-{{- $data = set $data "sandbox_mode" "workspace-write" -}}
+{{- /* seine-river (Ubuntu 26.04) restricts unprivileged user namespaces through AppArmor, so
+      Codex's bubblewrap sandbox fails ("bwrap: loopback: Failed RTM_NEWADDR") and every
+      command asks for approval. Fixing it needs root, so run Codex unsandboxed there. */ -}}
+{{- $data = set $data "sandbox_mode" (ternary "danger-full-access" "workspace-write" (eq .chezmoi.hostname "seine-river")) -}}
 {{- $data = set $data "web_search" "live" -}}
 {{- $data = set $data "model" "gpt-6.1-sol" -}}
 {{- $data = set $data "personality" "pragmatic" -}}
