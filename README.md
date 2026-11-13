@@ -303,6 +303,27 @@ devbox global run setup-sketchybar
 
 Service managed automatically by process-compose.
 
+### Personal tailnet in browsers
+
+The personal tailnet runs as a userspace `tailscaled` (SOCKS on `127.0.0.1:1055`) beside
+the work Tailscale app. A PAC served on `127.0.0.1:1056` sends only its names there.
+Set the tailnet in `~/.config/chezmoi/chezmoi.toml`, apply, then load and point macOS at it:
+
+```toml
+[data]
+    personal_tailnet = "<name>.ts.net"
+```
+
+```bash
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/dev.deevs.tailnet-pac.plist
+for s in "Wi-Fi" "USB 10/100/1000 LAN" "USB 10/100/1G/2.5G LAN"; do
+  sudo networksetup -setautoproxyurl "$s" http://127.0.0.1:1056/proxy.pac
+done
+```
+
+Browsers then open `http://<host>.<name>.ts.net:<port>` directly; for curl use
+`--socks5-hostname 127.0.0.1:1055`.
+
 ## Key Bindings (macOS only)
 
 ### Window Navigation
