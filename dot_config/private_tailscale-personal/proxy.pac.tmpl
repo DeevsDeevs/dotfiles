@@ -1,0 +1,9 @@
+// Personal-tailnet names go through the userspace tailscaled's SOCKS proxy: the work
+// Tailscale owns the system network. Matched by name only, since both tailnets use 100.x.
+// The tailnet name lives in chezmoi.toml ([data] personal_tailnet), not in this public repo.
+function FindProxyForURL(url, host) {
+{{- with get . "personal_tailnet" }}
+    if (dnsDomainIs(host, ".{{ . }}")) return "SOCKS5 127.0.0.1:1055; SOCKS 127.0.0.1:1055";
+{{- end }}
+    return "DIRECT";
+}

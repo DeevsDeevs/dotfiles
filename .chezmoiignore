@@ -21,6 +21,8 @@ assets/
 .config/herdr-app
 Library/LaunchAgents/dev.deevs.syncthing.plist
 Library/LaunchAgents/dev.deevs.tailscale-personal.plist
+Library/LaunchAgents/dev.deevs.tailnet-pac.plist
+.config/tailscale-personal
 .local/bin/seine-rdp
 programming/tasks/.stignore
 {{ end }}
