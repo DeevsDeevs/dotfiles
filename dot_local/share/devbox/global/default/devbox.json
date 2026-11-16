@@ -160,7 +160,8 @@
     },
     "restic":    "latest",
     "xray":      "latest",
-    "miniupnpc": "latest"
+    "miniupnpc": "latest",
+    "sing-box":  "latest"
   },
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

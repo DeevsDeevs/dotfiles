@@ -2254,6 +2254,44 @@
         }
       }
     },
+    "sing-box@latest": {
+      "last_modified": "2026-11-14T08:26:23Z",
+      "resolved": "github:NixOS/nixpkgs/5d2b81a7a3be3e2f832879028e4d60abbf58e9a0#sing-box",
+      "source": "devbox-search",
+      "version": "1.14.4",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/0ccn66xl0rc82f6cd17jj4w3maifz4x4-sing-box-1.14.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/0ccn66xl0rc82f6cd17jj4w3maifz4x4-sing-box-1.14.4"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/0caphd0a3qbhb2cah41dpqakmwl3skk0-sing-box-1.14.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/0caphd0a3qbhb2cah41dpqakmwl3skk0-sing-box-1.14.4"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/dl55pnyzbpgja5y2davjrvj3zdjg44bx-sing-box-1.14.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/dl55pnyzbpgja5y2davjrvj3zdjg44bx-sing-box-1.14.4"
+        }
+      }
+    },
     "sketchybar@latest": {
       "last_modified": "2026-10-17T03:39:59Z",
       "resolved": "github:NixOS/nixpkgs/7a6522c868711d06e3a520bbcdfafe9806f4337f#sketchybar",
