@@ -22,6 +22,15 @@
   "ctrl-s f" "layout.toggle:panel"
   "ctrl-s b" "mod.open:agent-browser"
   "ctrl-s i" "mod.open:agent-images"
+  "ctrl-s t" "mod.open:agent-tower"
+  "ctrl-s /" "agent-tower.search"
+  "ctrl-s s" "agent-tower.view-list"
+  "ctrl-s o" "agent-tower.view-board"
+  "ctrl-s g" "agent-tower.view-timeline"
+  "ctrl-s r" "agent-tower.view-radar"
+  "ctrl-s v" "agent-tower.view-watchlist"
+  "ctrl-s a" "agent-tower.area-next"
+  "ctrl-s m" "agent-tower.view-shape"
 -}}
 {{- range $i := list 1 2 3 4 5 6 7 8 9 -}}
 {{-   $_ := set $chords (printf "ctrl-s %d" $i) (printf "tab.select:%d" $i) -}}

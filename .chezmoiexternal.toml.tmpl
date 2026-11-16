@@ -20,4 +20,16 @@
     include = ["*/{{ . }}/mods/{{ . }}/**"]
     refreshPeriod = "24h"
 {{ end -}}
+
+# Tower: two mods out of one item folder (agent-tower/mods/<name>/). Its layouts
+# (agent-tower/layouts/) are copied by hand once: Herdr rewrites layout files when
+# a column is resized, so chezmoi would fight it.
+{{ range list "agent-tower" "agent-tower-panel" -}}
+[".config/herdr-app/mods/{{ . }}"]
+    type = "archive"
+    url = "https://github.com/DeevsDeevs/deevs-herdr-kit/archive/refs/heads/main.tar.gz"
+    stripComponents = 4
+    include = ["*/agent-tower/mods/{{ . }}/**"]
+    refreshPeriod = "24h"
+{{ end -}}
 {{ end -}}
