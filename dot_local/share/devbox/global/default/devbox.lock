@@ -908,6 +908,10 @@
       "last_modified": "2026-11-02T05:50:48Z",
       "resolved": "github:numtide/llm-agents.nix/49ba6e0dafaaf270d341ec693deafb8632d24385?lastModified=1793598648#agent-browser"
     },
+    "github:numtide/llm-agents.nix#antigravity-cli": {
+      "last_modified": "2026-11-19T13:34:16Z",
+      "resolved": "github:numtide/llm-agents.nix/60037f203e5f2dd1f318318c93e78a9a5e42646a?lastModified=1795095256#antigravity-cli"
+    },
     "github:sadjow/claude-code-nix": {
       "last_modified": "2026-10-31T02:01:53Z",
       "resolved": "github:sadjow/claude-code-nix/b89e273e45ef0ea122e3410f55dd7a102e71f453?lastModified=1793412113"
@@ -2255,8 +2259,8 @@
       }
     },
     "sing-box@latest": {
-      "last_modified": "2026-11-14T08:26:23Z",
-      "resolved": "github:NixOS/nixpkgs/5d2b81a7a3be3e2f832879028e4d60abbf58e9a0#sing-box",
+      "last_modified": "2026-11-16T14:48:49Z",
+      "resolved": "github:NixOS/nixpkgs/e21fec321d73511849707a7585e4ea155ee4bf40#sing-box",
       "source": "devbox-search",
       "version": "1.14.4",
       "systems": {

@@ -148,6 +148,9 @@
     "github:numtide/llm-agents.nix#agent-browser": {
       "platforms": ["x86_64-linux", "aarch64-linux", "x86_64-darwin", "aarch64-darwin"]
     },
+    "github:numtide/llm-agents.nix#antigravity-cli": {
+      "platforms": ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]
+    },
     "github:sadjow/claude-code-nix": "",
     "github:sadjow/codex-cli-nix":   "",
     "tailscale": {
