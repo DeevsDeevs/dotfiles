@@ -1,0 +1,18 @@
+{
+  "chains": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "out=$(node ~/.agents/skills/chains/chain.mjs list --max 5 --hook agy-start 2>/dev/null); case \"$out\" in \"{\"*) ;; *) out='{}';; esac; printf '%s\\n' \"$out\"",
+        "timeout": 10
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "out=$(node ~/.agents/skills/chains/chain.mjs remind --hook agy-stop 2>/dev/null); case \"$out\" in \"{\"*) ;; *) out='{}';; esac; printf '%s\\n' \"$out\"",
+        "timeout": 10
+      }
+    ]
+  }
+}
