@@ -34,4 +34,4 @@ EOF
 esac
 
 npx --yes skills add vercel-labs/agent-browser --global \
-  --agent claude-code codex --skill agent-browser --yes
+  --agent claude-code codex antigravity-cli --skill agent-browser --yes

@@ -1,0 +1,26 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* agy rewrites settings.json itself (model, trusted folders), so only add these rules.
+      Skills are links into ~/.agents/skills, outside any workspace: without the read rule agy
+      stops and asks before it opens a skill's own SKILL.md, which stalls an unattended agent.
+      hc is how agents here start, read and message each other. */ -}}
+{{- $config := dict -}}
+{{- if ne (trim .chezmoi.stdin) "" -}}
+{{-   $config = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $want := list (printf "read_file(%s/.agents/skills)" .chezmoi.homeDir) "command(hc)" -}}
+{{- $permissions := get $config "permissions" | default (dict) -}}
+{{- $allow := get $permissions "allow" | default (list) -}}
+{{- $missing := false -}}
+{{- range $want -}}
+{{-   if not (has . $allow) -}}
+{{-     $allow = append $allow . -}}
+{{-     $missing = true -}}
+{{-   end -}}
+{{- end -}}
+{{- if $missing -}}
+{{-   $_ := set $permissions "allow" $allow -}}
+{{-   $_ := set $config "permissions" $permissions -}}
+{{-   $config | toPrettyJson -}}
+{{- else -}}
+{{-   .chezmoi.stdin -}}
+{{- end -}}
