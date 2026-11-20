@@ -55,4 +55,10 @@
 {{- $features = set $features "multi_agent" true -}}
 {{- $data = set $data "features" $features -}}
 
+{{- /* Task folders are made under ~/tasks by agents, with no one there to answer the trust
+      question. Codex takes trust from a trusted parent folder: trust the root once. */ -}}
+{{- $projects := get $data "projects" | default (dict) -}}
+{{- $projects = set $projects (printf "%s/tasks" .chezmoi.homeDir) (dict "trust_level" "trusted") -}}
+{{- $data = set $data "projects" $projects -}}
+
 {{- $data | toToml -}}

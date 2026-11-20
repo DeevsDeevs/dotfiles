@@ -17,6 +17,13 @@
 {{-     $missing = true -}}
 {{-   end -}}
 {{- end -}}
+{{- /* On the Linux servers agy's auto mode is not available (it needs a sandbox built on
+      unprivileged user namespaces, which their kernel settings restrict), so it would ask before
+      every shell command. Agents run unattended there: let it proceed, as Codex does. */ -}}
+{{- if and (eq .chezmoi.os "linux") (ne (get $config "toolPermission" | toJson) ("always-proceed" | toJson)) -}}
+{{-   $_ := set $config "toolPermission" "always-proceed" -}}
+{{-   $missing = true -}}
+{{- end -}}
 {{- if $missing -}}
 {{-   $_ := set $permissions "allow" $allow -}}
 {{-   $_ := set $config "permissions" $permissions -}}

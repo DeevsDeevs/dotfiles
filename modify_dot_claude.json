@@ -10,11 +10,20 @@
   "type" "http"
   "url" "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp"
 -}}
+{{- /* Task folders are made under ~/tasks by agents, so no one is there to answer "do you trust
+      this folder?". Claude Code takes trust from any trusted parent folder: trust the root once. */ -}}
+{{- $tasks := printf "%s/tasks" .chezmoi.homeDir -}}
+{{- $projects := get $config "projects" | default (dict) -}}
+{{- $tasksProject := get $projects $tasks | default (dict) -}}
+{{- $tasksTrusted := eq (get $tasksProject "hasTrustDialogAccepted" | toJson) "true" -}}
 {{- /* already compliant: emit input unchanged so claude's own formatting never shows as drift */ -}}
-{{- if and (not (hasKey $config.mcpServers "context7")) (eq (get $config.mcpServers "datadog" | toJson) ($datadog | toJson)) -}}
+{{- if and (not (hasKey $config.mcpServers "context7")) (eq (get $config.mcpServers "datadog" | toJson) ($datadog | toJson)) $tasksTrusted -}}
 {{- .chezmoi.stdin -}}
 {{- else -}}
 {{- $_ := unset $config.mcpServers "context7" -}}
 {{- $_ := set $config.mcpServers "datadog" $datadog -}}
+{{- $_ := set $tasksProject "hasTrustDialogAccepted" true -}}
+{{- $_ := set $projects $tasks $tasksProject -}}
+{{- $_ := set $config "projects" $projects -}}
 {{- $config | toPrettyJson -}}
 {{- end -}}
