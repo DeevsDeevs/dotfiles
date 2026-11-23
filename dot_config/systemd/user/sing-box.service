@@ -1,0 +1,12 @@
+[Unit]
+Description=sing-box proxy server
+OnFailure=notify-failure@%n.service
+
+[Service]
+ExecStart=%h/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/sing-box run -c %h/.config/sing-box/config.json
+WorkingDirectory=%h
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
