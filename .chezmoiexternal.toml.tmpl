@@ -12,7 +12,7 @@
 # My Herdr mods, each out of its item folder in deevs-herdr-kit (<name>/mods/<name>/);
 # the item's README, recipe and preview stay out. Add a mod by adding its name.
 # Not exact: Herdr writes jsconfig.json and gpui-kit.d.ts into every mod folder.
-{{ range list "agent-browser" "agent-images" -}}
+{{ range list "agent-browser" "agent-images" "agent-files" -}}
 [".config/herdr-app/mods/{{ . }}"]
     type = "archive"
     url = "https://github.com/DeevsDeevs/deevs-herdr-kit/archive/refs/heads/main.tar.gz"
